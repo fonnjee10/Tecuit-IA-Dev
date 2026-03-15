@@ -11,7 +11,7 @@ const ChatConfig = {
     'hermes-7b-q4': {
       id: 'hermes-7b-q4',
       name: 'Hermes 7B Q4',
-      modelName: 'nous-hermes-2-mistral-7b-dpo',
+      modelName: 'izhanjafry/nous-hermes-2-mistral-7b-dpo',
       apiUrl: 'https://tecuit-ai-nc.ngrok.dev',
       localUrl: 'http://localhost:1234',
       quantization: 'Q4',
@@ -40,7 +40,7 @@ const ChatConfig = {
   
   // Limites
   maxFileSize: 50 * 1024 * 1024, // 50MB
-  maxHistoryLength: 50, // Nombre max de messages dans l'historique
+  maxHistoryLength: 100, // Nombre max de messages dans l'historique
   
   // Timeouts
   requestTimeout: 120000, // 2 minutes
