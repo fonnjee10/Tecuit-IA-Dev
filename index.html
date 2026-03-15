@@ -897,11 +897,7 @@ const translations = {
 
 const languages = [
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-  { code: 'pt', name: 'Português', flag: '🇵🇹' }
+  { code: 'en', name: 'English', flag: '🇬🇧' }
 ];
 
 let currentLanguage = 'fr';
@@ -922,7 +918,7 @@ const MODEL_MAP = {
 };
 const ENCRYPTION_KEY = 'TecuitIA-SecretKey-2024-AES256';
 const MAX_FILE_SIZE = 50 * 1024 * 1024;
-const API_TIMEOUT = 30000;
+const API_TIMEOUT = 60000;
 
 // ==================== STATE ====================
 let currentUser = null;
@@ -1166,7 +1162,6 @@ function showMainApp() {
   loadFromLocalStorage();
   updateMemoryDisplay();
   
-  // Test API connection on app load
   setTimeout(() => testApiConnection(currentApiUrl), 1000);
 }
 
@@ -1336,7 +1331,6 @@ function selectModel(modelName, apiUrl) {
   addSystemMessage(t('model_changed') + ' <strong>' + modelName + '</strong>');
   showToast(modelName + ' ' + t('model_activated'));
   
-  // Test new API connection
   setTimeout(() => testApiConnection(apiUrl), 500);
 }
 
@@ -1620,7 +1614,7 @@ async function handleFileUpload(file) {
       await worker.load();
       await worker.loadLanguage('eng');
       await worker.initialize('eng');
-      const { data: { text } } = await worker.recognize(file);
+      const {  { text } } = await worker.recognize(file);
       await worker.terminate();
       extractedText = text;
       hideFileProgress();
@@ -1676,7 +1670,7 @@ function readTextFile(file) {
   });
 }
 
-// ==================== SEND MESSAGE ====================
+// ==================== SEND MESSAGE (FIXED) ====================
 async function sendMessage() {
   const text = input.value.trim();
   if (!text && !pendingFileContent || isGenerating) return;
@@ -1698,6 +1692,16 @@ async function sendMessage() {
   const signal = abortController.signal;
   
   try {
+    // Build messages array - ensure it's never empty
+    const messagesToSend = conversationHistory
+      .filter(function(m) { return m.role === 'user' || m.role === 'assistant'; })
+      .map(function(m) { return { role: m.role, content: m.content }; });
+    
+    // CRITICAL FIX: Ensure messages array is never empty
+    if (messagesToSend.length === 0) {
+      messagesToSend.push({ role: 'user', content: fullMessage });
+    }
+    
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT);
     
@@ -1709,9 +1713,7 @@ async function sendMessage() {
       },
       body: JSON.stringify({
         model: MODEL_MAP[currentModel].modelName,
-        messages: conversationHistory
-          .filter(function(m) { return m.role === 'user' || m.role === 'assistant'; })
-          .map(function(m) { return { role: m.role, content: m.content }; }),
+        messages: messagesToSend,
         stream: true,
         temperature: 0.7,
         max_tokens: 2048
@@ -1743,7 +1745,7 @@ async function sendMessage() {
       
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        if (line.includes('data:')) {
+        if (line.includes('')) {
           const dataStr = line.replace('data:', '').trim();
           if (dataStr === '[DONE]' || dataStr === '') continue;
           try {
@@ -1783,12 +1785,12 @@ async function sendMessage() {
         lastAiMsg[lastAiMsg.length - 1].innerHTML += '<br><br><em class="text-tecuit-subtext">[' + t('generation_stopped') + ']</em>';
       }
     } else {
-      // More detailed error message
       let errorMsg = err.message;
-      if (errorMsg.includes('Failed to fetch')) {
+      if (errorMsg.includes('Failed to fetch') || errorMsg.includes('messages')) {
         errorMsg = t('connection_error') + ' - ' + t('backend_accessible') + '<br><br>' +
           '<small class="text-tecuit-subtext">URL: ' + currentApiUrl + '<br>' +
-          'Modèle: ' + MODEL_MAP[currentModel].modelName + '</small>';
+          'Modèle: ' + MODEL_MAP[currentModel].modelName + '<br>' +
+          'Erreur: Le champ "messages" est requis - vérifiez que la conversation n\'est pas vide</small>';
       }
       
       const errorHtml = '<div class="error-message">' +
@@ -1797,7 +1799,6 @@ async function sendMessage() {
         '</div>';
       appendMessage(errorHtml, 'tecuit');
       
-      // Update status indicator
       apiStatusIndicator.className = 'status-indicator status-offline';
       apiStatus = 'offline';
     }
@@ -1846,7 +1847,7 @@ function exportConversation() {
     user: currentUser ? currentUser.email : 'anonymous',
     exportedAt: new Date().toISOString(),
     encrypted: true,
-    data: encryptData(messages)
+     encryptData(messages)
   };
   
   const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
