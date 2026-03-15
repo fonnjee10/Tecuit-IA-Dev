@@ -809,7 +809,8 @@ const translations = {
     processing_file: "Traitement du fichier...",
     connection_test_success: "Connexion API réussie !",
     connection_test_failed: "Échec de la connexion API",
-    checking_connection: "Vérification de la connexion..."
+    checking_connection: "Vérification de la connexion...",
+    messages_required: "Le champ 'messages' est requis par l'API"
   },
   en: {
     login_subtitle: "Log in to access your conversations",
@@ -891,7 +892,8 @@ const translations = {
     processing_file: "Processing file...",
     connection_test_success: "API connection successful!",
     connection_test_failed: "API connection failed",
-    checking_connection: "Checking connection..."
+    checking_connection: "Checking connection...",
+    messages_required: "'messages' field is required by API"
   }
 };
 
@@ -939,7 +941,7 @@ function initLanguageSelector() {
     const option = document.createElement('div');
     option.className = 'lang-option';
     option.dataset.lang = lang.code;
-    option.innerHTML = `<span class="lang-flag">${lang.flag}</span><span>${lang.name}</span>`;
+    option.innerHTML = `<span>${lang.flag}</span><span>${lang.name}</span>`;
     option.addEventListener('click', () => setLanguage(lang.code));
     dropdown.appendChild(option);
   });
@@ -1162,6 +1164,7 @@ function showMainApp() {
   loadFromLocalStorage();
   updateMemoryDisplay();
   
+  // Test API connection on app load
   setTimeout(() => testApiConnection(currentApiUrl), 1000);
 }
 
@@ -1331,6 +1334,7 @@ function selectModel(modelName, apiUrl) {
   addSystemMessage(t('model_changed') + ' <strong>' + modelName + '</strong>');
   showToast(modelName + ' ' + t('model_activated'));
   
+  // Test new API connection
   setTimeout(() => testApiConnection(apiUrl), 500);
 }
 
@@ -1614,7 +1618,7 @@ async function handleFileUpload(file) {
       await worker.load();
       await worker.loadLanguage('eng');
       await worker.initialize('eng');
-      const {  { text } } = await worker.recognize(file);
+      const { data: { text } } = await worker.recognize(file);
       await worker.terminate();
       extractedText = text;
       hideFileProgress();
@@ -1692,12 +1696,12 @@ async function sendMessage() {
   const signal = abortController.signal;
   
   try {
-    // Build messages array - ensure it's never empty
+    // CRITICAL FIX: Ensure messages array is never empty
     const messagesToSend = conversationHistory
       .filter(function(m) { return m.role === 'user' || m.role === 'assistant'; })
       .map(function(m) { return { role: m.role, content: m.content }; });
     
-    // CRITICAL FIX: Ensure messages array is never empty
+    // If no messages in history, add the current message
     if (messagesToSend.length === 0) {
       messagesToSend.push({ role: 'user', content: fullMessage });
     }
@@ -1745,7 +1749,7 @@ async function sendMessage() {
       
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        if (line.includes('')) {
+        if (line.includes('data:')) {
           const dataStr = line.replace('data:', '').trim();
           if (dataStr === '[DONE]' || dataStr === '') continue;
           try {
@@ -1785,12 +1789,13 @@ async function sendMessage() {
         lastAiMsg[lastAiMsg.length - 1].innerHTML += '<br><br><em class="text-tecuit-subtext">[' + t('generation_stopped') + ']</em>';
       }
     } else {
+      // More detailed error message
       let errorMsg = err.message;
       if (errorMsg.includes('Failed to fetch') || errorMsg.includes('messages')) {
         errorMsg = t('connection_error') + ' - ' + t('backend_accessible') + '<br><br>' +
           '<small class="text-tecuit-subtext">URL: ' + currentApiUrl + '<br>' +
           'Modèle: ' + MODEL_MAP[currentModel].modelName + '<br>' +
-          'Erreur: Le champ "messages" est requis - vérifiez que la conversation n\'est pas vide</small>';
+          'Error: ' + (errorMsg.includes('messages') ? t('messages_required') : '') + '</small>';
       }
       
       const errorHtml = '<div class="error-message">' +
@@ -1799,6 +1804,7 @@ async function sendMessage() {
         '</div>';
       appendMessage(errorHtml, 'tecuit');
       
+      // Update status indicator
       apiStatusIndicator.className = 'status-indicator status-offline';
       apiStatus = 'offline';
     }
@@ -1847,7 +1853,7 @@ function exportConversation() {
     user: currentUser ? currentUser.email : 'anonymous',
     exportedAt: new Date().toISOString(),
     encrypted: true,
-     encryptData(messages)
+    data: encryptData(messages)
   };
   
   const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
