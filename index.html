@@ -298,16 +298,16 @@ body {
         <span class="gradient-text">Tecuit IA</span>
         <span class="beta-badge"><i class="fa-solid fa-flask"></i> BETA</span>
       </h1>
-      <p class="text-tecuit-subtext text-sm" data-i18n="login_subtitle">Connectez-vous pour accéder à vos conversations</p>
+      <p class="text-tecuit-subtext text-sm">Connectez-vous pour accéder à vos conversations</p>
     </div>
     
     <form id="loginForm" class="space-y-4">
       <div class="animate-fade-in" style="animation-delay: 0.1s">
-        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="email">Email</label>
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2">Email</label>
         <input type="email" id="login-email" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none" placeholder="votre@email.com" required>
       </div>
       <div class="animate-fade-in" style="animation-delay: 0.2s">
-        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="password">Mot de passe</label>
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2">Mot de passe</label>
         <div class="relative">
           <input type="password" id="login-password" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none pr-12" placeholder="••••••••" required>
           <button type="button" onclick="togglePassword('login-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-tecuit-subtext hover:text-white transition-colors">
@@ -315,20 +315,20 @@ body {
           </button>
         </div>
       </div>
-      <button type="submit" class="w-full bg-tecuit-accent hover:bg-tecuit-accentHover text-white py-3 rounded-xl font-medium transition-all glow-effect btn-animate animate-fade-in" style="animation-delay: 0.3s" data-i18n="login">
+      <button type="submit" class="w-full bg-tecuit-accent hover:bg-tecuit-accentHover text-white py-3 rounded-xl font-medium transition-all glow-effect btn-animate animate-fade-in" style="animation-delay: 0.3s">
         Se connecter
       </button>
     </form>
     
     <div class="mt-6 text-center animate-fade-in" style="animation-delay: 0.4s">
       <p class="text-tecuit-subtext text-sm">
-        <span data-i18n="no_account">Pas encore de compte ?</span>
-        <button onclick="showRegister()" class="text-tecuit-accent hover:underline transition-colors" data-i18n="register">S'inscrire</button>
+        <span>Pas encore de compte ?</span>
+        <button onclick="showRegister()" class="text-tecuit-accent hover:underline transition-colors">S'inscrire</button>
       </p>
     </div>
     <div class="mt-4 text-center animate-fade-in" style="animation-delay: 0.5s">
       <p class="text-[10px] text-tecuit-subtext">
-        <i class="fa-solid fa-lock mr-1"></i> <span data-i18n="encryption_note">Vos données sont cryptées en AES-256</span>
+        <i class="fa-solid fa-lock mr-1"></i> <span>Vos données sont cryptées en AES-256</span>
       </p>
       <p class="text-[10px] text-amber-500/80 mt-1">
         <i class="fa-solid fa-triangle-exclamation mr-1"></i> Version BETA - Des bugs peuvent survenir
@@ -349,30 +349,30 @@ body {
         <span class="gradient-text">Tecuit IA</span>
         <span class="beta-badge"><i class="fa-solid fa-flask"></i> BETA</span>
       </h1>
-      <p class="text-tecuit-subtext text-sm" data-i18n="register_subtitle">Rejoignez Tecuit IA gratuitement</p>
+      <p class="text-tecuit-subtext text-sm">Rejoignez Tecuit IA gratuitement</p>
     </div>
     
     <form id="registerForm" class="space-y-4">
       <div class="animate-fade-in" style="animation-delay: 0.1s">
-        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="username">Nom d'utilisateur</label>
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2">Nom d'utilisateur</label>
         <input type="text" id="register-username" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none" placeholder="Votre nom" required>
       </div>
       <div class="animate-fade-in" style="animation-delay: 0.2s">
-        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="email">Email</label>
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2">Email</label>
         <input type="email" id="register-email" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none" placeholder="votre@email.com" required>
       </div>
       <div class="animate-fade-in" style="animation-delay: 0.3s">
-        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="password">Mot de passe</label>
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2">Mot de passe</label>
         <div class="relative">
           <input type="password" id="register-password" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none pr-12" placeholder="••••••••" minlength="6" required>
           <button type="button" onclick="togglePassword('register-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-tecuit-subtext hover:text-white transition-colors">
             <i class="fa-solid fa-eye"></i>
           </button>
         </div>
-        <p class="text-[10px] text-tecuit-subtext mt-1" data-i18n="password_min">Minimum 6 caractères</p>
+        <p class="text-[10px] text-tecuit-subtext mt-1">Minimum 6 caractères</p>
       </div>
       <div class="animate-fade-in" style="animation-delay: 0.4s">
-        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="confirm_password">Confirmer le mot de passe</label>
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2">Confirmer le mot de passe</label>
         <div class="relative">
           <input type="password" id="register-confirm" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none pr-12" placeholder="••••••••" required>
           <button type="button" onclick="togglePassword('register-confirm')" class="absolute right-3 top-1/2 -translate-y-1/2 text-tecuit-subtext hover:text-white transition-colors">
@@ -380,15 +380,15 @@ body {
           </button>
         </div>
       </div>
-      <button type="submit" class="w-full bg-tecuit-accent hover:bg-tecuit-accentHover text-white py-3 rounded-xl font-medium transition-all glow-effect btn-animate animate-fade-in" style="animation-delay: 0.5s" data-i18n="register">
+      <button type="submit" class="w-full bg-tecuit-accent hover:bg-tecuit-accentHover text-white py-3 rounded-xl font-medium transition-all glow-effect btn-animate animate-fade-in" style="animation-delay: 0.5s">
         S'inscrire
       </button>
     </form>
     
     <div class="mt-6 text-center animate-fade-in" style="animation-delay: 0.6s">
       <p class="text-tecuit-subtext text-sm">
-        <span data-i18n="have_account">Déjà un compte ?</span>
-        <button onclick="showLogin()" class="text-tecuit-accent hover:underline transition-colors" data-i18n="login">Se connecter</button>
+        <span>Déjà un compte ?</span>
+        <button onclick="showLogin()" class="text-tecuit-accent hover:underline transition-colors">Se connecter</button>
       </p>
     </div>
   </div>
@@ -447,7 +447,7 @@ body {
     <div class="p-4 h-full flex flex-col">
       <div class="flex items-center justify-between mb-6">
         <div class="flex items-center gap-2">
-          <h2 class="font-semibold text-lg" data-i18n="conversations">Conversations</h2>
+          <h2 class="font-semibold text-lg">Conversations</h2>
           <span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
         </div>
         <button id="closeSidebarBtn" class="text-tecuit-subtext hover:text-white transition-colors btn-animate">
@@ -456,10 +456,10 @@ body {
       </div>
       <button id="newConversationBtn" class="w-full bg-tecuit-accent hover:bg-tecuit-accentHover text-white py-3 rounded-xl mb-4 flex items-center justify-center gap-2 transition-all glow-effect btn-animate">
         <i class="fa-solid fa-plus"></i>
-        <span data-i18n="new_conversation">Nouvelle conversation</span>
+        <span>Nouvelle conversation</span>
       </button>
       <div class="flex-1 overflow-y-auto">
-        <div class="text-xs text-tecuit-subtext mb-2" data-i18n="today">Aujourd'hui</div>
+        <div class="text-xs text-tecuit-subtext mb-2">Aujourd'hui</div>
         <div id="conversation-list" class="space-y-2"></div>
       </div>
       <div class="pt-4 border-t border-tecuit-border">
@@ -474,7 +474,7 @@ body {
         </div>
         <button id="logoutBtn" class="w-full text-left p-3 rounded-xl hover:bg-tecuit-dark/50 transition-colors text-tecuit-subtext hover:text-red-400 text-sm flex items-center gap-2 btn-animate">
           <i class="fa-solid fa-sign-out-alt"></i>
-          <span data-i18n="logout">Déconnexion</span>
+          <span>Déconnexion</span>
         </button>
       </div>
     </div>
@@ -503,7 +503,7 @@ body {
     <div id="stopButtonContainer" class="hidden mb-2 flex justify-center">
       <button id="stopGenBtn" class="bg-tecuit-card border border-tecuit-border text-white text-sm px-5 py-2.5 rounded-full shadow-xl flex items-center gap-2 hover:bg-red-900/30 hover:border-red-500/50 transition-all glow-effect btn-animate">
         <i class="fa-solid fa-stop text-red-400"></i>
-        <span data-i18n="stop_generation">Arrêter la génération</span>
+        <span>Arrêter la génération</span>
       </button>
     </div>
     
@@ -518,7 +518,7 @@ body {
     </div>
     
     <div class="text-center mt-2">
-      <p class="text-[10px] text-tecuit-subtext" data-i18n="disclaimer">Tecuit IA peut faire des erreurs. Vérifiez les informations importantes.</p>
+      <p class="text-[10px] text-tecuit-subtext">Tecuit IA peut faire des erreurs. Vérifiez les informations importantes.</p>
       <p class="text-[9px] text-amber-500/60 mt-0.5">
         <i class="fa-solid fa-flask mr-1"></i> Version BETA v2.1.0
       </p>
@@ -534,7 +534,7 @@ body {
     <div id="sheet-content" class="absolute bottom-0 left-0 right-0 bg-tecuit-card border-t border-tecuit-border rounded-t-3xl transform translate-y-full transition-transform duration-300 pointer-events-auto max-h-[85vh] flex flex-col">
       <div class="p-4 pb-2 overflow-y-auto">
         <div class="sheet-handle"></div>
-        <h3 class="text-center font-semibold text-lg mb-4 flex items-center justify-center gap-2" data-i18n="tecuit_options">
+        <h3 class="text-center font-semibold text-lg mb-4 flex items-center justify-center gap-2">
           Options Tecuit
           <span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
         </h3>
@@ -543,19 +543,19 @@ body {
             <div class="w-12 h-12 rounded-full bg-tecuit-accent/10 flex items-center justify-center text-tecuit-accent">
               <i class="fa-solid fa-camera text-xl"></i>
             </div>
-            <span class="text-xs font-medium" data-i18n="camera">Caméra</span>
+            <span class="text-xs font-medium">Caméra</span>
           </button>
           <button class="feature-item flex flex-col items-center justify-center gap-2 p-4 bg-tecuit-dark/50 rounded-2xl border border-tecuit-border hover:border-tecuit-accent/50 transition-all" onclick="triggerFileUpload('photos')">
             <div class="w-12 h-12 rounded-full bg-tecuit-accent/10 flex items-center justify-center text-tecuit-accent">
               <i class="fa-regular fa-image text-xl"></i>
             </div>
-            <span class="text-xs font-medium" data-i18n="photos">Photos</span>
+            <span class="text-xs font-medium">Photos</span>
           </button>
           <button class="feature-item flex flex-col items-center justify-center gap-2 p-4 bg-tecuit-dark/50 rounded-2xl border border-tecuit-border hover:border-tecuit-accent/50 transition-all" onclick="triggerFileUpload('files')">
             <div class="w-12 h-12 rounded-full bg-tecuit-accent/10 flex items-center justify-center text-tecuit-accent">
               <i class="fa-solid fa-paperclip text-xl"></i>
             </div>
-            <span class="text-xs font-medium" data-i18n="files">Fichiers</span>
+            <span class="text-xs font-medium">Fichiers</span>
           </button>
         </div>
         <div class="h-px bg-tecuit-border w-full mb-4"></div>
@@ -565,8 +565,8 @@ body {
               <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
             </div>
             <div class="text-left flex-1">
-              <h4 class="font-medium text-sm" data-i18n="create_image">Créer une image</h4>
-              <p class="text-xs text-tecuit-subtext" data-i18n="create_image_desc">Visualisez n'importe quoi</p>
+              <h4 class="font-medium text-sm">Créer une image</h4>
+              <p class="text-xs text-tecuit-subtext">Visualisez n'importe quoi</p>
             </div>
             <i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
           </button>
@@ -575,8 +575,8 @@ body {
               <i class="fa-regular fa-lightbulb text-lg"></i>
             </div>
             <div class="text-left flex-1">
-              <h4 class="font-medium text-sm" data-i18n="advanced_reasoning">Raisonnement avancé</h4>
-              <p class="text-xs text-tecuit-subtext" data-i18n="advanced_reasoning_desc">Réfléchir plus longtemps</p>
+              <h4 class="font-medium text-sm">Raisonnement avancé</h4>
+              <p class="text-xs text-tecuit-subtext">Réfléchir plus longtemps</p>
             </div>
             <i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
           </button>
@@ -585,8 +585,8 @@ body {
               <i class="fa-solid fa-magnifying-glass-chart text-lg"></i>
             </div>
             <div class="text-left flex-1">
-              <h4 class="font-medium text-sm" data-i18n="deep_research">Recherche approfondie</h4>
-              <p class="text-xs text-tecuit-subtext" data-i18n="deep_research_desc">Rapports détaillés</p>
+              <h4 class="font-medium text-sm">Recherche approfondie</h4>
+              <p class="text-xs text-tecuit-subtext">Rapports détaillés</p>
             </div>
             <i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
           </button>
@@ -595,8 +595,8 @@ body {
               <i class="fa-solid fa-globe text-lg"></i>
             </div>
             <div class="text-left flex-1">
-              <h4 class="font-medium text-sm" data-i18n="web_search">Recherche sur Internet</h4>
-              <p class="text-xs text-tecuit-subtext" data-i18n="web_search_desc">Infos en temps réel</p>
+              <h4 class="font-medium text-sm">Recherche sur Internet</h4>
+              <p class="text-xs text-tecuit-subtext">Infos en temps réel</p>
             </div>
             <i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
           </button>
@@ -605,8 +605,8 @@ body {
               <i class="fa-solid fa-book-open text-lg"></i>
             </div>
             <div class="text-left flex-1">
-              <h4 class="font-medium text-sm" data-i18n="study_learn">Étudier et apprendre</h4>
-              <p class="text-xs text-tecuit-subtext" data-i18n="study_learn_desc">Nouveaux concepts</p>
+              <h4 class="font-medium text-sm">Étudier et apprendre</h4>
+              <p class="text-xs text-tecuit-subtext">Nouveaux concepts</p>
             </div>
             <i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
           </button>
@@ -621,7 +621,7 @@ body {
     <div class="absolute inset-0 flex items-center justify-center p-4">
       <div class="bg-tecuit-card border border-tecuit-border rounded-2xl w-full max-w-sm p-6 shadow-2xl animate-scale-in">
         <div class="flex items-center justify-between mb-4">
-          <h3 class="text-xl font-bold flex items-center gap-2" data-i18n="select_model">
+          <h3 class="text-xl font-bold flex items-center gap-2">
             Sélectionner le modèle
             <span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
           </h3>
@@ -629,7 +629,7 @@ body {
             <i class="fa-solid fa-xmark text-xl"></i>
           </button>
         </div>
-        <p class="text-sm text-tecuit-subtext mb-6" data-i18n="select_model_desc">Choisissez l'IA adaptée à vos besoins.</p>
+        <p class="text-sm text-tecuit-subtext mb-6">Choisissez l'IA adaptée à vos besoins.</p>
         
         <!-- Connection Test Button -->
         <button id="testConnectionBtn" class="w-full mb-4 bg-tecuit-dark border border-tecuit-border text-tecuit-subtext text-sm px-4 py-2 rounded-xl flex items-center justify-center gap-2 hover:border-tecuit-accent/50 transition-all btn-animate">
@@ -644,26 +644,26 @@ body {
                   data-model-name="nous-hermes-2-mistral-7b-dpo">
             <div class="flex justify-between items-center mb-2">
               <span class="font-semibold text-white">Hermes 7B Q4</span>
-              <span class="text-xs bg-tecuit-border px-2 py-1 rounded text-tecuit-subtext" data-i18n="fast">Rapide</span>
+              <span class="text-xs bg-tecuit-border px-2 py-1 rounded text-tecuit-subtext">Rapide</span>
             </div>
-            <p class="text-xs text-tecuit-subtext" data-i18n="hermes_4b_desc"></p>
+            <p class="text-xs text-tecuit-subtext">nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev</p>
           </button>
           <button class="model-option w-full text-left p-4 rounded-xl border border-tecuit-border bg-tecuit-dark/50 hover:border-tecuit-accent transition-all btn-animate" 
                   data-model="Hermes 7B Q8" 
                   data-api="https://zenkaritecuitai.ngrok.app"
-                  data-model-name="nousresearch/nous-hermes-2-mistral-7b-dpo">
+                  data-model-name="nous-hermes-2-mistral-7b-dpo">
             <div class="flex justify-between items-center mb-2">
               <span class="font-semibold text-white">Hermes 7B Q8</span>
-              <span class="text-xs bg-indigo-900/50 text-indigo-300 px-2 py-1 rounded border border-indigo-500/30" data-i18n="powerful">Puissant</span>
+              <span class="text-xs bg-indigo-900/50 text-indigo-300 px-2 py-1 rounded border border-indigo-500/30">Puissant</span>
             </div>
-            <p class="text-xs text-tecuit-subtext" data-i18n="hermes_7b_desc"></p>
+            <p class="text-xs text-tecuit-subtext">nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app</p>
           </button>
         </div>
         
         <div class="mt-6 p-4 bg-amber-900/20 border border-amber-500/30 rounded-xl">
           <p class="text-xs text-amber-400 flex items-start gap-2">
             <i class="fa-solid fa-circle-info mt-0.5"></i>
-            <span>Si vous rencontrez des erreurs de connexion, assurez-vous que les tunnels ngrok sont actifs et que CORS est configuré correctement sur le backend.</span>
+            <span><strong>Important:</strong> Si vous rencontrez des erreurs OPTIONS/CORS, assurez-vous que LM Studio a CORS activé dans les paramètres serveur.</span>
           </p>
         </div>
       </div>
@@ -676,7 +676,7 @@ body {
     <div class="absolute inset-0 flex items-center justify-center p-4">
       <div class="bg-tecuit-card border border-tecuit-border rounded-2xl w-full max-w-sm p-6 shadow-2xl animate-scale-in">
         <div class="flex items-center justify-between mb-4">
-          <h3 class="text-xl font-bold flex items-center gap-2" data-i18n="options">
+          <h3 class="text-xl font-bold flex items-center gap-2">
             Options
             <span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
           </h3>
@@ -690,8 +690,8 @@ body {
               <i class="fa-solid fa-download"></i>
             </div>
             <div>
-              <div class="font-medium text-sm" data-i18n="export_conversation">Exporter la conversation</div>
-              <div class="text-xs text-tecuit-subtext" data-i18n="export_desc">Télécharger en JSON crypté</div>
+              <div class="font-medium text-sm">Exporter la conversation</div>
+              <div class="text-xs text-tecuit-subtext">Télécharger en JSON crypté</div>
             </div>
           </button>
           <button id="clearBtn" class="w-full text-left p-4 rounded-xl border border-tecuit-border bg-tecuit-dark/50 hover:border-red-500/50 transition-all flex items-center gap-3 btn-animate">
@@ -699,8 +699,8 @@ body {
               <i class="fa-solid fa-trash"></i>
             </div>
             <div>
-              <div class="font-medium text-sm" data-i18n="clear_conversation">Effacer la conversation</div>
-              <div class="text-xs text-tecuit-subtext" data-i18n="clear_desc">Supprimer l'historique</div>
+              <div class="font-medium text-sm">Effacer la conversation</div>
+              <div class="text-xs text-tecuit-subtext">Supprimer l'historique</div>
             </div>
           </button>
         </div>
@@ -730,49 +730,6 @@ body {
 // ==================== TRANSLATIONS ====================
 const translations = {
   fr: {
-    login_subtitle: "Connectez-vous pour accéder à vos conversations",
-    email: "Email",
-    password: "Mot de passe",
-    login: "Se connecter",
-    no_account: "Pas encore de compte ?",
-    register: "S'inscrire",
-    encryption_note: "Vos données sont cryptées en AES-256",
-    register_subtitle: "Rejoignez Tecuit IA gratuitement",
-    username: "Nom d'utilisateur",
-    password_min: "Minimum 6 caractères",
-    confirm_password: "Confirmer le mot de passe",
-    have_account: "Déjà un compte ?",
-    conversations: "Conversations",
-    new_conversation: "Nouvelle conversation",
-    today: "Aujourd'hui",
-    logout: "Déconnexion",
-    stop_generation: "Arrêter la génération",
-    disclaimer: "Tecuit IA peut faire des erreurs. Vérifiez les informations importantes.",
-    tecuit_options: "Options Tecuit",
-    camera: "Caméra",
-    photos: "Photos",
-    files: "Fichiers",
-    create_image: "Créer une image",
-    create_image_desc: "Visualisez n'importe quoi",
-    advanced_reasoning: "Raisonnement avancé",
-    advanced_reasoning_desc: "Réfléchir plus longtemps",
-    deep_research: "Recherche approfondie",
-    deep_research_desc: "Rapports détaillés",
-    web_search: "Recherche sur Internet",
-    web_search_desc: "Infos en temps réel",
-    study_learn: "Étudier et apprendre",
-    study_learn_desc: "Nouveaux concepts",
-    select_model: "Sélectionner le modèle",
-    select_model_desc: "Choisissez l'IA adaptée à vos besoins.",
-    fast: "Rapide",
-    powerful: "Puissant",
-    hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-    hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-    options: "Options",
-    export_conversation: "Exporter la conversation",
-    export_desc: "Télécharger en JSON crypté",
-    clear_conversation: "Effacer la conversation",
-    clear_desc: "Supprimer l'historique",
     welcome_message: "Bonjour",
     welcome_subtitle: "Je suis Tecuit IA, votre assistant intelligent.",
     help_with: "Je peux vous aider avec :",
@@ -810,52 +767,9 @@ const translations = {
     connection_test_success: "Connexion API réussie !",
     connection_test_failed: "Échec de la connexion API",
     checking_connection: "Vérification de la connexion...",
-    messages_required: "Le champ 'messages' est requis par l'API"
+    cors_error: "Erreur CORS - Activez CORS dans LM Studio"
   },
   en: {
-    login_subtitle: "Log in to access your conversations",
-    email: "Email",
-    password: "Password",
-    login: "Log In",
-    no_account: "No account yet?",
-    register: "Sign Up",
-    encryption_note: "Your data is encrypted with AES-256",
-    register_subtitle: "Join Tecuit IA for free",
-    username: "Username",
-    password_min: "Minimum 6 characters",
-    confirm_password: "Confirm Password",
-    have_account: "Already have an account?",
-    conversations: "Conversations",
-    new_conversation: "New Conversation",
-    today: "Today",
-    logout: "Log Out",
-    stop_generation: "Stop Generation",
-    disclaimer: "Tecuit IA can make mistakes. Verify important information.",
-    tecuit_options: "Tecuit Options",
-    camera: "Camera",
-    photos: "Photos",
-    files: "Files",
-    create_image: "Create Image",
-    create_image_desc: "Visualize anything",
-    advanced_reasoning: "Advanced Reasoning",
-    advanced_reasoning_desc: "Think longer",
-    deep_research: "Deep Research",
-    deep_research_desc: "Detailed reports",
-    web_search: "Web Search",
-    web_search_desc: "Real-time info",
-    study_learn: "Study & Learn",
-    study_learn_desc: "New concepts",
-    select_model: "Select Model",
-    select_model_desc: "Choose the AI that fits your needs.",
-    fast: "Fast",
-    powerful: "Powerful",
-    hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-    hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-    options: "Options",
-    export_conversation: "Export Conversation",
-    export_desc: "Download encrypted JSON",
-    clear_conversation: "Clear Conversation",
-    clear_desc: "Delete history",
     welcome_message: "Hello",
     welcome_subtitle: "I am Tecuit IA, your intelligent assistant.",
     help_with: "I can help you with:",
@@ -893,7 +807,7 @@ const translations = {
     connection_test_success: "API connection successful!",
     connection_test_failed: "API connection failed",
     checking_connection: "Checking connection...",
-    messages_required: "'messages' field is required by API"
+    cors_error: "CORS Error - Enable CORS in LM Studio"
   }
 };
 
@@ -908,12 +822,12 @@ let currentLanguage = 'fr';
 const API_ENDPOINT = '/v1/chat/completions';
 const MODEL_MAP = {
   'Hermes 7B Q4': {
-    modelName: 'izhanjafry/nous-hermes-2-mistral-7b-dpo',
+    modelName: 'nous-hermes-2-mistral-7b-dpo',
     apiUrl: 'https://tecuit-ai-nc.ngrok.dev',
     quantization: 'Q4'
   },
   'Hermes 7B Q8': {
-    modelName: 'nousresearch/nous-hermes-2-mistral-7b-dpo',
+    modelName: 'nous-hermes-2-mistral-7b-dpo',
     apiUrl: 'https://zenkaritecuitai.ngrok.app',
     quantization: 'Q8'
   }
@@ -966,14 +880,6 @@ function setLanguage(langCode) {
   currentLanguage = langCode;
   localStorage.setItem('tecuit_language', langCode);
   document.getElementById('current-lang-display').textContent = langCode.toUpperCase();
-  
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    if (translations[langCode] && translations[langCode][key]) {
-      el.textContent = translations[langCode][key];
-    }
-  });
-  
   document.getElementById('langDropdown').classList.remove('active');
   showToast(translations[langCode].feature_activated || 'Language changed');
 }
@@ -1015,6 +921,7 @@ function hashPassword(password) {
 async function testApiConnection(apiUrl) {
   const indicator = document.getElementById('apiStatusIndicator');
   indicator.className = 'status-indicator status-checking';
+  showToast(t('checking_connection'));
   
   try {
     const controller = new AbortController();
@@ -1047,7 +954,7 @@ async function testApiConnection(apiUrl) {
   } catch (error) {
     indicator.className = 'status-indicator status-offline';
     apiStatus = 'offline';
-    showToast(t('connection_test_failed'));
+    showToast(t('connection_test_failed') + ': ' + error.message);
     console.error('[Connection Test] Error:', error);
     return false;
   }
@@ -1164,7 +1071,6 @@ function showMainApp() {
   loadFromLocalStorage();
   updateMemoryDisplay();
   
-  // Test API connection on app load
   setTimeout(() => testApiConnection(currentApiUrl), 1000);
 }
 
@@ -1334,7 +1240,6 @@ function selectModel(modelName, apiUrl) {
   addSystemMessage(t('model_changed') + ' <strong>' + modelName + '</strong>');
   showToast(modelName + ' ' + t('model_activated'));
   
-  // Test new API connection
   setTimeout(() => testApiConnection(apiUrl), 500);
 }
 
@@ -1394,7 +1299,7 @@ function createNewConversation() {
   currentConversationId = 'conv_' + Date.now();
   const conversation = {
     id: currentConversationId,
-    title: t('new_conversation'),
+    title: 'Nouvelle conversation',
     messages: [],
     createdAt: new Date().toISOString(),
     model: currentModel,
@@ -1618,7 +1523,7 @@ async function handleFileUpload(file) {
       await worker.load();
       await worker.loadLanguage('eng');
       await worker.initialize('eng');
-      const { data: { text } } = await worker.recognize(file);
+      const {  { text } } = await worker.recognize(file);
       await worker.terminate();
       extractedText = text;
       hideFileProgress();
@@ -1696,7 +1601,7 @@ async function sendMessage() {
   const signal = abortController.signal;
   
   try {
-    // CRITICAL FIX: Ensure messages array is never empty
+    // CRITICAL FIX: Ensure messages array is NEVER empty
     const messagesToSend = conversationHistory
       .filter(function(m) { return m.role === 'user' || m.role === 'assistant'; })
       .map(function(m) { return { role: m.role, content: m.content }; });
@@ -1749,8 +1654,8 @@ async function sendMessage() {
       
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        if (line.includes('data:')) {
-          const dataStr = line.replace('data:', '').trim();
+        if (line.includes('')) {
+          const dataStr = line.replace('', '').trim();
           if (dataStr === '[DONE]' || dataStr === '') continue;
           try {
             const json = JSON.parse(dataStr);
@@ -1789,13 +1694,12 @@ async function sendMessage() {
         lastAiMsg[lastAiMsg.length - 1].innerHTML += '<br><br><em class="text-tecuit-subtext">[' + t('generation_stopped') + ']</em>';
       }
     } else {
-      // More detailed error message
       let errorMsg = err.message;
-      if (errorMsg.includes('Failed to fetch') || errorMsg.includes('messages')) {
-        errorMsg = t('connection_error') + ' - ' + t('backend_accessible') + '<br><br>' +
+      if (errorMsg.includes('Failed to fetch') || errorMsg.includes('OPTIONS')) {
+        errorMsg = t('cors_error') + '<br><br>' +
           '<small class="text-tecuit-subtext">URL: ' + currentApiUrl + '<br>' +
-          'Modèle: ' + MODEL_MAP[currentModel].modelName + '<br>' +
-          'Error: ' + (errorMsg.includes('messages') ? t('messages_required') : '') + '</small>';
+          'Modèle: ' + MODEL_MAP[currentModel].modelName + '<br><br>' +
+          '<strong>Solution:</strong> Dans LM Studio, allez dans Server Settings → Activez "CORS" → Redémarrez le serveur</small>';
       }
       
       const errorHtml = '<div class="error-message">' +
@@ -1804,7 +1708,6 @@ async function sendMessage() {
         '</div>';
       appendMessage(errorHtml, 'tecuit');
       
-      // Update status indicator
       apiStatusIndicator.className = 'status-indicator status-offline';
       apiStatus = 'offline';
     }
@@ -1853,7 +1756,7 @@ function exportConversation() {
     user: currentUser ? currentUser.email : 'anonymous',
     exportedAt: new Date().toISOString(),
     encrypted: true,
-    data: encryptData(messages)
+     encryptData(messages)
   };
   
   const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
