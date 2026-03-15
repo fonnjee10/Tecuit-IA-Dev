@@ -1,4 +1,21 @@
-<!DOCTYPE html>
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <style>
+                body {
+                  background-color: white; /* Ensure the iframe has a white background */
+                }
+
+                .hidden { display: none !important; }
+
+
+              </style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -277,6 +294,7 @@ body {
 .status-online { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
 .status-offline { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
 .status-checking { background: #f59e0b; animation: pulse 1s infinite; }
+.hidden { display: none !important; }
 </style>
 </head>
 <body class="h-screen overflow-hidden">
@@ -323,7 +341,7 @@ body {
     <div class="mt-6 text-center animate-fade-in" style="animation-delay: 0.4s">
       <p class="text-tecuit-subtext text-sm">
         <span>Pas encore de compte ?</span>
-        <button onclick="showRegister()" class="text-tecuit-accent hover:underline transition-colors">S'inscrire</button>
+        <button id="showRegisterBtn" class="text-tecuit-accent hover:underline transition-colors font-medium">S'inscrire</button>
       </p>
     </div>
     <div class="mt-4 text-center animate-fade-in" style="animation-delay: 0.5s">
@@ -388,7 +406,7 @@ body {
     <div class="mt-6 text-center animate-fade-in" style="animation-delay: 0.6s">
       <p class="text-tecuit-subtext text-sm">
         <span>Déjà un compte ?</span>
-        <button onclick="showLogin()" class="text-tecuit-accent hover:underline transition-colors">Se connecter</button>
+        <button id="showLoginBtn" class="text-tecuit-accent hover:underline transition-colors font-medium">Se connecter</button>
       </p>
     </div>
   </div>
@@ -737,7 +755,7 @@ const translations = {
     image_analysis: "Analyse de fichiers (texte, images avec OCR)",
     web_research: "Recherche sur Internet",
     memory_continuity: "Mémoire de 10GB pour la continuité",
-    encrypted_data: "Données cryptées AES-256",
+    encrypted_ "Données cryptées AES-256",
     new_conversation_created: "Nouvelle conversation créée",
     model_changed: "Modèle changé pour",
     model_activated: "activé",
@@ -777,7 +795,7 @@ const translations = {
     image_analysis: "File analysis (text, images with OCR)",
     web_research: "Web Research",
     memory_continuity: "10GB memory for continuity",
-    encrypted_data: "AES-256 Encrypted Data",
+    encrypted_ "AES-256 Encrypted Data",
     new_conversation_created: "New conversation created",
     model_changed: "Model changed to",
     model_activated: "activated",
@@ -847,6 +865,34 @@ let currentConversationId = null;
 let isGenerating = false;
 let pendingFileContent = null;
 let apiStatus = 'checking';
+
+// ==================== AUTHENTICATION FUNCTIONS (FIXED) ====================
+function showLogin() {
+  console.log('[Auth] showLogin called');
+  const loginForm = document.getElementById('login-form');
+  const registerForm = document.getElementById('register-form');
+  if (loginForm && registerForm) {
+    loginForm.classList.remove('hidden');
+    registerForm.classList.add('hidden');
+  }
+}
+
+function showRegister() {
+  console.log('[Auth] showRegister called');
+  const loginForm = document.getElementById('login-form');
+  const registerForm = document.getElementById('register-form');
+  if (loginForm && registerForm) {
+    loginForm.classList.add('hidden');
+    registerForm.classList.remove('hidden');
+  }
+}
+
+function togglePassword(inputId) {
+  const input = document.getElementById(inputId);
+  if (input) {
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
+}
 
 // ==================== TRANSLATION FUNCTIONS ====================
 function initLanguageSelector() {
@@ -961,21 +1007,6 @@ async function testApiConnection(apiUrl) {
 }
 
 // ==================== AUTHENTICATION ====================
-function showLogin() {
-  document.getElementById('login-form').classList.remove('hidden');
-  document.getElementById('register-form').classList.add('hidden');
-}
-
-function showRegister() {
-  document.getElementById('login-form').classList.add('hidden');
-  document.getElementById('register-form').classList.remove('hidden');
-}
-
-function togglePassword(inputId) {
-  const input = document.getElementById(inputId);
-  input.type = input.type === 'password' ? 'text' : 'password';
-}
-
 function checkAuth() {
   const savedUser = localStorage.getItem('tecuit_current_user');
   if (savedUser) {
@@ -1031,8 +1062,7 @@ function logoutUser() {
   localStorage.removeItem('tecuit_current_user');
   document.getElementById('main-app').classList.remove('active');
   document.getElementById('auth-pages').classList.add('active');
-  document.getElementById('login-form').classList.remove('hidden');
-  document.getElementById('register-form').classList.add('hidden');
+  showLogin();
   showToast(t('logged_out'));
 }
 
@@ -1094,10 +1124,33 @@ const apiStatusIndicator = document.getElementById('apiStatusIndicator');
 
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('[App] DOMContentLoaded');
+  
   initLanguageSelector();
+  
+  // Setup auth button listeners (FIXED - using IDs instead of onclick)
+  const showRegisterBtn = document.getElementById('showRegisterBtn');
+  const showLoginBtn = document.getElementById('showLoginBtn');
+  
+  if (showRegisterBtn) {
+    showRegisterBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('[Auth] showRegisterBtn clicked');
+      showRegister();
+    });
+  }
+  
+  if (showLoginBtn) {
+    showLoginBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('[Auth] showLoginBtn clicked');
+      showLogin();
+    });
+  }
   
   if (!checkAuth()) {
     document.getElementById('auth-pages').classList.add('active');
+    showLogin(); // Ensure login form is shown by default
   }
   
   document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -1601,12 +1654,10 @@ async function sendMessage() {
   const signal = abortController.signal;
   
   try {
-    // CRITICAL FIX: Ensure messages array is NEVER empty
     const messagesToSend = conversationHistory
       .filter(function(m) { return m.role === 'user' || m.role === 'assistant'; })
       .map(function(m) { return { role: m.role, content: m.content }; });
     
-    // If no messages in history, add the current message
     if (messagesToSend.length === 0) {
       messagesToSend.push({ role: 'user', content: fullMessage });
     }
@@ -1773,3 +1824,26 @@ function exportConversation() {
 </body>
 </html>
 
+<button id="showRegisterBtn" class="text-tecuit-accent hover:underline">S'inscrire</button>
+<button id="showLoginBtn" class="text-tecuit-accent hover:underline">Se connecter</button>
+
+
+
+              <script>
+                              const showRegisterBtn = document.getElementById('showRegisterBtn');
+if (showRegisterBtn) {
+  showRegisterBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    showRegister();
+  });
+}
+
+function showLogin() { ... }
+function showRegister() { ... }
+// Puis DOMContentLoaded qui les utilise
+
+
+              </script>
+                        </body>
+                        </html>
+                    
