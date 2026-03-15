@@ -12,2006 +12,918 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <!-- Tesseract.js for OCR -->
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-<!-- Fontsource Inter -->
+<!-- Font Inter -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
 tailwind.config = {
-theme: {
-extend: {
-fontFamily: {
-sans: ['Inter', 'sans-serif'],
-},
-colors: {
-tecuit: {
-dark: '#09090b',
-card: '#18181b',
-accent: '#6366f1',
-accentHover: '#4f46e5',
-border: '#27272a',
-text: '#e4e4e7',
-subtext: '#a1a1aa'
-}
-},
-animation: {
-'fade-in': 'fadeIn 0.3s ease-out',
-'fade-in-up': 'fadeInUp 0.4s ease-out',
-'slide-up': 'slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-'slide-down': 'slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-'slide-left': 'slideLeft 0.3s ease-out',
-'slide-right': 'slideRight 0.3s ease-out',
-'typing': 'typing 1.5s infinite',
-'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-'bounce-slow': 'bounce 2s infinite',
-'scale-in': 'scaleIn 0.2s ease-out',
-'rotate': 'rotate 1s linear infinite',
-'glow': 'glow 2s ease-in-out infinite alternate'
-},
-keyframes: {
-fadeIn: {
-'0%': { opacity: '0' },
-'100%': { opacity: '1' },
-},
-fadeInUp: {
-'0%': { opacity: '0', transform: 'translateY(20px)' },
-'100%': { opacity: '1', transform: 'translateY(0)' },
-},
-slideUp: {
-'0%': { transform: 'translateY(100%)' },
-'100%': { transform: 'translateY(0)' },
-},
-slideDown: {
-'0%': { transform: 'translateY(-100%)' },
-'100%': { transform: 'translateY(0)' },
-},
-slideLeft: {
-'0%': { transform: 'translateX(-100%)' },
-'100%': { transform: 'translateX(0)' },
-},
-slideRight: {
-'0%': { transform: 'translateX(100%)' },
-'100%': { transform: 'translateX(0)' },
-},
-typing: {
-'0%, 100%': { opacity: '0.3' },
-'50%': { opacity: '1' }
-},
-scaleIn: {
-'0%': { transform: 'scale(0.9)', opacity: '0' },
-'100%': { transform: 'scale(1)', opacity: '1' },
-},
-rotate: {
-'0%': { transform: 'rotate(0deg)' },
-'100%': { transform: 'rotate(360deg)' },
-},
-glow: {
-'0%': { boxShadow: '0 0 5px rgba(99, 102, 241, 0.5)' },
-'100%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.8), 0 0 30px rgba(168, 85, 247, 0.6)' }
-}
-}
-}
-}
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+      colors: {
+        tecuit: {
+          dark: '#09090b',
+          card: '#18181b',
+          accent: '#6366f1',
+          accentHover: '#4f46e5',
+          border: '#27272a',
+          text: '#e4e4e7',
+          subtext: '#a1a1aa'
+        }
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.3s ease-out',
+        'fade-in-up': 'fadeInUp 0.4s ease-out',
+        'slide-up': 'slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-down': 'slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+        'typing': 'typing 1.5s infinite',
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'scale-in': 'scaleIn 0.2s ease-out',
+        'rotate': 'rotate 1s linear infinite',
+        'glow': 'glow 2s ease-in-out infinite alternate'
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        slideDown: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        typing: {
+          '0%, 100%': { opacity: '0.3' },
+          '50%': { opacity: '1' }
+        },
+        scaleIn: {
+          '0%': { transform: 'scale(0.9)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        rotate: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        glow: {
+          '0%': { boxShadow: '0 0 5px rgba(99, 102, 241, 0.5)' },
+          '100%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.8), 0 0 30px rgba(168, 85, 247, 0.6)' }
+        }
+      }
+    }
+  }
 }
 </script>
 <style>
 * {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 body {
-background-color: #000;
-color: #fff;
-font-family: 'Inter', sans-serif;
--webkit-tap-highlight-color: transparent;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #09090b; }
 ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
 .message-bubble {
-max-width: 85%;
-border-radius: 18px;
-padding: 12px 16px;
-line-height: 1.6;
-font-size: 0.95rem;
-word-wrap: break-word;
-white-space: pre-wrap;
-animation: fadeInUp 0.3s ease-out;
+  max-width: 85%;
+  border-radius: 18px;
+  padding: 12px 16px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  animation: fadeInUp 0.3s ease-out;
 }
 .user-msg {
-background-color: #27272a;
-color: #fff;
-align-self: flex-end;
-border-bottom-right-radius: 4px;
+  background-color: #27272a;
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
 }
 .ai-msg {
-background-color: transparent;
-color: #e4e4e7;
-align-self: flex-start;
-padding-left: 0;
+  background-color: transparent;
+  color: #e4e4e7;
+  align-self: flex-start;
+  padding-left: 0;
 }
 .model-badge {
-font-size: 0.7rem;
-padding: 2px 8px;
-border-radius: 12px;
-background: rgba(99, 102, 241, 0.15);
-color: #818cf8;
-border: 1px solid rgba(99, 102, 241, 0.3);
-animation: scaleIn 0.2s ease-out;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  animation: scaleIn 0.2s ease-out;
 }
 .sheet-handle {
-width: 40px;
-height: 4px;
-background-color: #3f3f46;
-border-radius: 2px;
-margin: 0 auto 16px auto;
-transition: background-color 0.3s;
+  width: 40px;
+  height: 4px;
+  background-color: #3f3f46;
+  border-radius: 2px;
+  margin: 0 auto 16px auto;
 }
 .feature-item {
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .feature-item:hover {
-background-color: rgba(255, 255, 255, 0.05);
-transform: translateX(4px);
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateX(4px);
 }
 .feature-item:active {
-transform: scale(0.98);
+  transform: scale(0.98);
 }
 .typing-indicator span {
-display: inline-block;
-width: 6px;
-height: 6px;
-background-color: #a1a1aa;
-border-radius: 50%;
-margin: 0 2px;
-animation: typing 1.4s infinite;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #a1a1aa;
+  border-radius: 50%;
+  margin: 0 2px;
+  animation: typing 1.4s infinite;
 }
 .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
 .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
 .gradient-text {
-background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-background-size: 200% 200%;
-animation: gradientShift 3s ease infinite;
+  background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
 }
 @keyframes gradientShift {
-0%, 100% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 .glow-effect {
-box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
-transition: box-shadow 0.3s ease;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  transition: box-shadow 0.3s ease;
 }
 .glow-effect:hover {
-box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
 }
 .error-message {
-background: rgba(239, 68, 68, 0.1);
-border: 1px solid rgba(239, 68, 68, 0.3);
-border-radius: 8px;
-padding: 12px;
-margin: 8px 0;
-animation: shake 0.5s ease-out;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
+  animation: shake 0.5s ease-out;
 }
 @keyframes shake {
-0%, 100% { transform: translateX(0); }
-25% { transform: translateX(-5px); }
-75% { transform: translateX(5px); }
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
-/* Auth Pages */
-.auth-container {
-display: none;
-}
-.auth-container.active {
-display: flex;
-}
+.auth-container { display: none; }
+.auth-container.active { display: flex; }
 .auth-card {
-background: rgba(24, 24, 27, 0.95);
-backdrop-filter: blur(20px);
-border: 1px solid rgba(39, 39, 42, 0.5);
-animation: scaleIn 0.3s ease-out;
+  background: rgba(24, 24, 27, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(39, 39, 42, 0.5);
+  animation: scaleIn 0.3s ease-out;
 }
 .input-field {
-background: rgba(9, 9, 11, 0.8);
-border: 1px solid rgba(39, 39, 42, 0.5);
-transition: all 0.3s;
+  background: rgba(9, 9, 11, 0.8);
+  border: 1px solid rgba(39, 39, 42, 0.5);
+  transition: all 0.3s;
 }
 .input-field:focus {
-border-color: #6366f1;
-box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-transform: translateY(-1px);
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
-/* Main App */
-#main-app {
-display: none;
-}
-#main-app.active {
-display: flex;
-}
-/* File Upload Progress */
+#main-app { display: none; }
+#main-app.active { display: flex; }
 .file-progress {
-background: rgba(99, 102, 241, 0.2);
-border-radius: 8px;
-padding: 12px;
-margin: 8px 0;
-animation: fadeIn 0.3s ease-out;
+  background: rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
 }
 .file-progress-bar {
-height: 4px;
-background: linear-gradient(90deg, #6366f1, #a855f7);
-border-radius: 2px;
-transition: width 0.3s ease;
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1, #a855f7);
+  border-radius: 2px;
+  transition: width 0.3s ease;
 }
-/* Button Animations */
 .btn-animate {
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.btn-animate:hover {
-transform: translateY(-2px);
-}
-.btn-animate:active {
-transform: translateY(0);
-}
-/* Toast Animation */
-.toast-enter {
-animation: slideDown 0.3s ease-out;
-}
-.toast-exit {
-animation: slideUp 0.3s ease-out;
-}
-/* Language Selector */
-.lang-selector {
-position: relative;
-}
+.btn-animate:hover { transform: translateY(-2px); }
+.btn-animate:active { transform: translateY(0); }
+.toast-enter { animation: slideDown 0.3s ease-out; }
+.lang-selector { position: relative; }
 .lang-dropdown {
-position: absolute;
-top: 100%;
-right: 0;
-background: rgba(24, 24, 27, 0.98);
-border: 1px solid rgba(39, 39, 42, 0.5);
-border-radius: 12px;
-padding: 8px;
-min-width: 200px;
-max-height: 400px;
-overflow-y: auto;
-z-index: 100;
-animation: scaleIn 0.2s ease-out;
-display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(24, 24, 27, 0.98);
+  border: 1px solid rgba(39, 39, 42, 0.5);
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 100;
+  animation: scaleIn 0.2s ease-out;
+  display: none;
 }
-.lang-dropdown.active {
-display: block;
-}
+.lang-dropdown.active { display: block; }
 .lang-option {
-padding: 10px 16px;
-border-radius: 8px;
-cursor: pointer;
-transition: all 0.2s;
-display: flex;
-align-items: center;
-gap: 10px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.lang-option:hover {
-background: rgba(99, 102, 241, 0.2);
-}
-.lang-option.active {
-background: rgba(99, 102, 241, 0.3);
-}
-.lang-flag {
-width: 24px;
-height: 24px;
-border-radius: 4px;
-object-fit: cover;
-}
-/* Loading Spinner */
-.loading-spinner {
-width: 20px;
-height: 20px;
-border: 2px solid rgba(99, 102, 241, 0.3);
-border-top-color: #6366f1;
-border-radius: 50%;
-animation: rotate 1s linear infinite;
-}
-/* Pulse Animation for Active Elements */
-.pulse-active {
-animation: pulse-slow 2s infinite;
-}
-/* BETA Badge */
+.lang-option:hover { background: rgba(99, 102, 241, 0.2); }
+.lang-option.active { background: rgba(99, 102, 241, 0.3); }
 .beta-badge {
-background: linear-gradient(135deg, #f59e0b, #d97706);
-color: #000;
-font-size: 0.65rem;
-font-weight: 700;
-padding: 2px 8px;
-border-radius: 6px;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-animation: glow 2s ease-in-out infinite alternate;
-display: inline-flex;
-align-items: center;
-gap: 4px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: glow 2s ease-in-out infinite alternate;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
-.beta-badge i {
-font-size: 0.6rem;
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
 }
+.status-online { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+.status-offline { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+.status-checking { background: #f59e0b; animation: pulse 1s infinite; }
 </style>
 </head>
 <body class="h-screen overflow-hidden">
+
 <!-- ==================== AUTHENTICATION PAGES ==================== -->
 <div id="auth-pages" class="auth-container active h-screen items-center justify-center p-4">
-<div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20 animate-pulse-slow"></div>
-<!-- Login Form -->
-<div id="login-form" class="auth-card rounded-2xl p-8 w-full max-w-md relative z-10 animate-fade-in-up">
-<div class="text-center mb-8">
-<div class="relative inline-block">
-<img src="https://image.qwenlm.ai/public_source/03be4ece-6001-42f1-adee-a252dde72cc0/1c0a8c5ab-d41d-414b-a700-e26bded77ef0.png" alt="Tecuit Logo" class="w-16 h-16 rounded-full mx-auto mb-4 border-2 border-tecuit-accent/30 animate-pulse-slow">
-<div class="absolute -top-1 -right-1">
-<span class="beta-badge"><i class="fa-solid fa-flask"></i> BETA</span>
+  <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20 animate-pulse-slow"></div>
+  
+  <!-- Login Form -->
+  <div id="login-form" class="auth-card rounded-2xl p-8 w-full max-w-md relative z-10 animate-fade-in-up">
+    <div class="text-center mb-8">
+      <div class="relative inline-block">
+        <img src="https://image.qwenlm.ai/public_source/03be4ece-6001-42f1-adee-a252dde72cc0/1c0a8c5ab-d41d-414b-a700-e26bded77ef0.png" alt="Tecuit Logo" class="w-16 h-16 rounded-full mx-auto mb-4 border-2 border-tecuit-accent/30 animate-pulse-slow">
+        <div class="absolute -top-1 -right-1">
+          <span class="beta-badge"><i class="fa-solid fa-flask"></i> BETA</span>
+        </div>
+      </div>
+      <h1 class="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
+        <span class="gradient-text">Tecuit IA</span>
+        <span class="beta-badge"><i class="fa-solid fa-flask"></i> BETA</span>
+      </h1>
+      <p class="text-tecuit-subtext text-sm" data-i18n="login_subtitle">Connectez-vous pour accéder à vos conversations</p>
+    </div>
+    
+    <form id="loginForm" class="space-y-4">
+      <div class="animate-fade-in" style="animation-delay: 0.1s">
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="email">Email</label>
+        <input type="email" id="login-email" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none" placeholder="votre@email.com" required>
+      </div>
+      <div class="animate-fade-in" style="animation-delay: 0.2s">
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="password">Mot de passe</label>
+        <div class="relative">
+          <input type="password" id="login-password" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none pr-12" placeholder="••••••••" required>
+          <button type="button" onclick="togglePassword('login-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-tecuit-subtext hover:text-white transition-colors">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="w-full bg-tecuit-accent hover:bg-tecuit-accentHover text-white py-3 rounded-xl font-medium transition-all glow-effect btn-animate animate-fade-in" style="animation-delay: 0.3s" data-i18n="login">
+        Se connecter
+      </button>
+    </form>
+    
+    <div class="mt-6 text-center animate-fade-in" style="animation-delay: 0.4s">
+      <p class="text-tecuit-subtext text-sm">
+        <span data-i18n="no_account">Pas encore de compte ?</span>
+        <button onclick="showRegister()" class="text-tecuit-accent hover:underline transition-colors" data-i18n="register">S'inscrire</button>
+      </p>
+    </div>
+    <div class="mt-4 text-center animate-fade-in" style="animation-delay: 0.5s">
+      <p class="text-[10px] text-tecuit-subtext">
+        <i class="fa-solid fa-lock mr-1"></i> <span data-i18n="encryption_note">Vos données sont cryptées en AES-256</span>
+      </p>
+      <p class="text-[10px] text-amber-500/80 mt-1">
+        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Version BETA - Des bugs peuvent survenir
+      </p>
+    </div>
+  </div>
+  
+  <!-- Register Form -->
+  <div id="register-form" class="auth-card rounded-2xl p-8 w-full max-w-md relative z-10 hidden animate-fade-in-up">
+    <div class="text-center mb-8">
+      <div class="relative inline-block">
+        <img src="https://image.qwenlm.ai/public_source/03be4ece-6001-42f1-adee-a252dde72cc0/1c0a8c5ab-d41d-414b-a700-e26bded77ef0.png" alt="Tecuit Logo" class="w-16 h-16 rounded-full mx-auto mb-4 border-2 border-tecuit-accent/30 animate-pulse-slow">
+        <div class="absolute -top-1 -right-1">
+          <span class="beta-badge"><i class="fa-solid fa-flask"></i> BETA</span>
+        </div>
+      </div>
+      <h1 class="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
+        <span class="gradient-text">Tecuit IA</span>
+        <span class="beta-badge"><i class="fa-solid fa-flask"></i> BETA</span>
+      </h1>
+      <p class="text-tecuit-subtext text-sm" data-i18n="register_subtitle">Rejoignez Tecuit IA gratuitement</p>
+    </div>
+    
+    <form id="registerForm" class="space-y-4">
+      <div class="animate-fade-in" style="animation-delay: 0.1s">
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="username">Nom d'utilisateur</label>
+        <input type="text" id="register-username" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none" placeholder="Votre nom" required>
+      </div>
+      <div class="animate-fade-in" style="animation-delay: 0.2s">
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="email">Email</label>
+        <input type="email" id="register-email" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none" placeholder="votre@email.com" required>
+      </div>
+      <div class="animate-fade-in" style="animation-delay: 0.3s">
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="password">Mot de passe</label>
+        <div class="relative">
+          <input type="password" id="register-password" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none pr-12" placeholder="••••••••" minlength="6" required>
+          <button type="button" onclick="togglePassword('register-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-tecuit-subtext hover:text-white transition-colors">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+        <p class="text-[10px] text-tecuit-subtext mt-1" data-i18n="password_min">Minimum 6 caractères</p>
+      </div>
+      <div class="animate-fade-in" style="animation-delay: 0.4s">
+        <label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="confirm_password">Confirmer le mot de passe</label>
+        <div class="relative">
+          <input type="password" id="register-confirm" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none pr-12" placeholder="••••••••" required>
+          <button type="button" onclick="togglePassword('register-confirm')" class="absolute right-3 top-1/2 -translate-y-1/2 text-tecuit-subtext hover:text-white transition-colors">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="w-full bg-tecuit-accent hover:bg-tecuit-accentHover text-white py-3 rounded-xl font-medium transition-all glow-effect btn-animate animate-fade-in" style="animation-delay: 0.5s" data-i18n="register">
+        S'inscrire
+      </button>
+    </form>
+    
+    <div class="mt-6 text-center animate-fade-in" style="animation-delay: 0.6s">
+      <p class="text-tecuit-subtext text-sm">
+        <span data-i18n="have_account">Déjà un compte ?</span>
+        <button onclick="showLogin()" class="text-tecuit-accent hover:underline transition-colors" data-i18n="login">Se connecter</button>
+      </p>
+    </div>
+  </div>
 </div>
-</div>
-<h1 class="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
-<span class="gradient-text">Tecuit IA</span>
-<span class="beta-badge"><i class="fa-solid fa-flask"></i> BETA</span>
-</h1>
-<p class="text-tecuit-subtext text-sm" data-i18n="login_subtitle">Connectez-vous pour accéder à vos conversations</p>
-</div>
-<form id="loginForm" class="space-y-4">
-<div class="animate-fade-in" style="animation-delay: 0.1s">
-<label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="email">Email</label>
-<input type="email" id="login-email" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none" placeholder="votre@email.com" required>
-</div>
-<div class="animate-fade-in" style="animation-delay: 0.2s">
-<label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="password">Mot de passe</label>
-<div class="relative">
-<input type="password" id="login-password" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none pr-12" placeholder="••••••••" required>
-<button type="button" onclick="togglePassword('login-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-tecuit-subtext hover:text-white transition-colors">
-<i class="fa-solid fa-eye"></i>
-</button>
-</div>
-</div>
-<button type="submit" class="w-full bg-tecuit-accent hover:bg-tecuit-accentHover text-white py-3 rounded-xl font-medium transition-all glow-effect btn-animate animate-fade-in" style="animation-delay: 0.3s" data-i18n="login">
-Se connecter
-</button>
-</form>
-<div class="mt-6 text-center animate-fade-in" style="animation-delay: 0.4s">
-<p class="text-tecuit-subtext text-sm">
-<span data-i18n="no_account">Pas encore de compte ?</span>
-<button onclick="showRegister()" class="text-tecuit-accent hover:underline transition-colors" data-i18n="register">S'inscrire</button>
-</p>
-</div>
-<div class="mt-4 text-center animate-fade-in" style="animation-delay: 0.5s">
-<p class="text-[10px] text-tecuit-subtext">
-<i class="fa-solid fa-lock mr-1"></i> <span data-i18n="encryption_note">Vos données sont cryptées en AES-256</span>
-</p>
-<p class="text-[10px] text-amber-500/80 mt-1">
-<i class="fa-solid fa-triangle-exclamation mr-1"></i> Version BETA - Des bugs peuvent survenir
-</p>
-</div>
-</div>
-<!-- Register Form -->
-<div id="register-form" class="auth-card rounded-2xl p-8 w-full max-w-md relative z-10 hidden animate-fade-in-up">
-<div class="text-center mb-8">
-<div class="relative inline-block">
-<img src="https://image.qwenlm.ai/public_source/03be4ece-6001-42f1-adee-a252dde72cc0/1c0a8c5ab-d41d-414b-a700-e26bded77ef0.png" alt="Tecuit Logo" class="w-16 h-16 rounded-full mx-auto mb-4 border-2 border-tecuit-accent/30 animate-pulse-slow">
-<div class="absolute -top-1 -right-1">
-<span class="beta-badge"><i class="fa-solid fa-flask"></i> BETA</span>
-</div>
-</div>
-<h1 class="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
-<span class="gradient-text">Tecuit IA</span>
-<span class="beta-badge"><i class="fa-solid fa-flask"></i> BETA</span>
-</h1>
-<p class="text-tecuit-subtext text-sm" data-i18n="register_subtitle">Rejoignez Tecuit IA gratuitement</p>
-</div>
-<form id="registerForm" class="space-y-4">
-<div class="animate-fade-in" style="animation-delay: 0.1s">
-<label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="username">Nom d'utilisateur</label>
-<input type="text" id="register-username" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none" placeholder="Votre nom" required>
-</div>
-<div class="animate-fade-in" style="animation-delay: 0.2s">
-<label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="email">Email</label>
-<input type="email" id="register-email" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none" placeholder="votre@email.com" required>
-</div>
-<div class="animate-fade-in" style="animation-delay: 0.3s">
-<label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="password">Mot de passe</label>
-<div class="relative">
-<input type="password" id="register-password" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none pr-12" placeholder="••••••••" minlength="6" required>
-<button type="button" onclick="togglePassword('register-password')" class="absolute right-3 top-1/2 -translate-y-1/2 text-tecuit-subtext hover:text-white transition-colors">
-<i class="fa-solid fa-eye"></i>
-</button>
-</div>
-<p class="text-[10px] text-tecuit-subtext mt-1" data-i18n="password_min">Minimum 6 caractères</p>
-</div>
-<div class="animate-fade-in" style="animation-delay: 0.4s">
-<label class="block text-sm font-medium text-tecuit-subtext mb-2" data-i18n="confirm_password">Confirmer le mot de passe</label>
-<div class="relative">
-<input type="password" id="register-confirm" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-tecuit-subtext focus:outline-none pr-12" placeholder="••••••••" required>
-<button type="button" onclick="togglePassword('register-confirm')" class="absolute right-3 top-1/2 -translate-y-1/2 text-tecuit-subtext hover:text-white transition-colors">
-<i class="fa-solid fa-eye"></i>
-</button>
-</div>
-</div>
-<button type="submit" class="w-full bg-tecuit-accent hover:bg-tecuit-accentHover text-white py-3 rounded-xl font-medium transition-all glow-effect btn-animate animate-fade-in" style="animation-delay: 0.5s" data-i18n="register">
-S'inscrire
-</button>
-</form>
-<div class="mt-6 text-center animate-fade-in" style="animation-delay: 0.6s">
-<p class="text-tecuit-subtext text-sm">
-<span data-i18n="have_account">Déjà un compte ?</span>
-<button onclick="showLogin()" class="text-tecuit-accent hover:underline transition-colors" data-i18n="login">Se connecter</button>
-</p>
-</div>
-</div>
-</div>
+
 <!-- ==================== MAIN APPLICATION ==================== -->
 <div id="main-app" class="h-screen flex flex-col">
-<!-- Header -->
-<header class="flex items-center justify-between px-4 py-3 bg-tecuit-dark/95 backdrop-blur-md border-b border-tecuit-border z-30 flex-shrink-0 animate-fade-in">
-<div class="flex items-center gap-3">
-<button id="sidebarBtn" class="text-tecuit-subtext hover:text-white transition-colors p-2 btn-animate">
-<i class="fa-solid fa-bars text-lg"></i>
-</button>
-<div class="flex items-center gap-2">
-<div class="relative">
-<img src="https://image.qwenlm.ai/public_source/03be4ece-6001-42f1-adee-a252dde72cc0/1c0a8c5ab-d41d-414b-a700-e26bded77ef0.png" alt="Tecuit Logo" class="w-8 h-8 rounded-full object-cover border border-tecuit-accent/30 animate-pulse-slow">
-<div class="absolute -top-1 -right-1 scale-75">
-<span class="beta-badge"><i class="fa-solid fa-flask"></i></span>
-</div>
-</div>
-<div class="flex items-center gap-1">
-<h1 class="font-semibold text-lg tracking-tight">Tecuit</h1>
-<span class="beta-badge text-[10px] px-2 py-0.5"><i class="fa-solid fa-flask"></i> BETA</span>
-</div>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<!-- Language Selector -->
-<div class="lang-selector">
-<button id="langBtn" class="flex items-center gap-2 bg-tecuit-card px-3 py-1.5 rounded-full border border-tecuit-border hover:border-tecuit-accent/50 transition-all btn-animate">
-<i class="fa-solid fa-globe text-xs text-tecuit-subtext"></i>
-<span class="text-xs font-medium text-tecuit-subtext" id="current-lang-display">FR</span>
-<i class="fa-solid fa-chevron-down text-xs text-tecuit-subtext"></i>
-</button>
-<div id="langDropdown" class="lang-dropdown">
-<!-- Languages will be populated by JS -->
-</div>
-</div>
-<button id="modelBtn" class="flex items-center gap-2 bg-tecuit-card px-3 py-1.5 rounded-full border border-tecuit-border hover:border-tecuit-accent/50 transition-all btn-animate">
-<span class="text-xs font-medium text-tecuit-subtext" id="current-model-display">Hermes 7B Q4</span>
-<i class="fa-solid fa-chevron-down text-xs text-tecuit-subtext"></i>
-</button>
-<button id="newChatBtn" class="text-tecuit-subtext hover:text-white p-2 btn-animate" title="Nouvelle conversation">
-<i class="fa-regular fa-pen-to-square text-lg"></i>
-</button>
-<button id="menuBtn" class="text-tecuit-subtext hover:text-white p-2 btn-animate">
-<i class="fa-solid fa-ellipsis-vertical text-lg"></i>
-</button>
-</div>
-</header>
-<!-- Sidebar -->
-<div id="sidebar" class="fixed inset-y-0 left-0 w-72 bg-tecuit-card border-r border-tecuit-border transform -translate-x-full transition-transform duration-300 z-40">
-<div class="p-4 h-full flex flex-col">
-<div class="flex items-center justify-between mb-6">
-<div class="flex items-center gap-2">
-<h2 class="font-semibold text-lg" data-i18n="conversations">Conversations</h2>
-<span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
-</div>
-<button id="closeSidebarBtn" class="text-tecuit-subtext hover:text-white transition-colors btn-animate">
-<i class="fa-solid fa-xmark text-lg"></i>
-</button>
-</div>
-<button id="newConversationBtn" class="w-full bg-tecuit-accent hover:bg-tecuit-accentHover text-white py-3 rounded-xl mb-4 flex items-center justify-center gap-2 transition-all glow-effect btn-animate">
-<i class="fa-solid fa-plus"></i>
-<span data-i18n="new_conversation">Nouvelle conversation</span>
-</button>
-<div class="flex-1 overflow-y-auto">
-<div class="text-xs text-tecuit-subtext mb-2" data-i18n="today">Aujourd'hui</div>
-<div id="conversation-list" class="space-y-2">
-</div>
-</div>
-<div class="pt-4 border-t border-tecuit-border">
-<div class="flex items-center gap-3 p-3 rounded-xl bg-tecuit-dark/50 mb-2">
-<div class="w-10 h-10 rounded-full bg-gradient-to-br from-tecuit-accent to-purple-500 flex items-center justify-center pulse-active">
-<span id="user-initial" class="font-bold text-sm">U</span>
-</div>
-<div class="flex-1 min-w-0">
-<div id="user-name-display" class="font-medium text-sm truncate">Utilisateur</div>
-<div class="text-xs text-tecuit-subtext" id="memory-display">3.5GB / 10GB utilisé</div>
-</div>
-</div>
-<button id="logoutBtn" class="w-full text-left p-3 rounded-xl hover:bg-tecuit-dark/50 transition-colors text-tecuit-subtext hover:text-red-400 text-sm flex items-center gap-2 btn-animate">
-<i class="fa-solid fa-sign-out-alt"></i>
-<span data-i18n="logout">Déconnexion</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Chat Area -->
-<main id="chat-container" class="flex-1 overflow-y-auto p-4 flex flex-col gap-4">
-</main>
-<!-- Input Area -->
-<div class="p-4 bg-tecuit-dark border-t border-tecuit-border z-30 flex-shrink-0">
-<!-- File Upload Progress -->
-<div id="fileProgressContainer" class="hidden mb-2">
-<div class="file-progress">
-<div class="flex items-center justify-between mb-2">
-<span id="fileProgressName" class="text-xs text-tecuit-subtext">Traitement du fichier...</span>
-<span id="fileProgressPercent" class="text-xs text-tecuit-accent">0%</span>
-</div>
-<div class="w-full bg-tecuit-border rounded-full h-1">
-<div id="fileProgressBar" class="file-progress-bar" style="width: 0%"></div>
-</div>
-</div>
-</div>
-<div id="typingPreview" class="hidden mb-2 px-2 text-xs text-tecuit-subtext italic truncate"></div>
-<div id="stopButtonContainer" class="hidden mb-2 flex justify-center">
-<button id="stopGenBtn" class="bg-tecuit-card border border-tecuit-border text-white text-sm px-5 py-2.5 rounded-full shadow-xl flex items-center gap-2 hover:bg-red-900/30 hover:border-red-500/50 transition-all glow-effect btn-animate">
-<i class="fa-solid fa-stop text-red-400"></i>
-<span data-i18n="stop_generation">Arrêter la génération</span>
-</button>
-</div>
-<div class="flex items-end gap-2 bg-tecuit-card border border-tecuit-border rounded-2xl p-2 shadow-lg">
-<button id="attachBtn" class="p-3 text-tecuit-accent hover:bg-tecuit-border/50 rounded-xl transition-colors flex-shrink-0 btn-animate" title="Plus d'options">
-<i class="fa-solid fa-plus text-lg"></i>
-</button>
-<textarea id="chat-input" rows="1" class="flex-1 bg-transparent text-white placeholder-tecuit-subtext focus:outline-none resize-none py-3 max-h-32" placeholder="Chat..."></textarea>
-<button id="sendBtn" class="p-3 bg-tecuit-accent text-white rounded-xl hover:bg-tecuit-accentHover transition-colors flex-shrink-0 shadow-md shadow-indigo-500/20 btn-animate">
-<i class="fa-solid fa-arrow-up text-sm"></i>
-</button>
-</div>
-<div class="text-center mt-2">
-<p class="text-[10px] text-tecuit-subtext" data-i18n="disclaimer">Tecuit IA peut faire des erreurs. Vérifiez les informations importantes.</p>
-<p class="text-[9px] text-amber-500/60 mt-0.5">
-<i class="fa-solid fa-flask mr-1"></i> Version BETA v2.1.0
-</p>
-</div>
-</div>
-<!-- Hidden File Input -->
-<input type="file" id="fileInput" class="hidden" accept="image/*,.pdf,.doc,.docx,.txt,.md,.json,.csv">
-<!-- Bottom Sheet (Features Menu) -->
-<div id="bottom-sheet" class="fixed inset-0 z-50 pointer-events-none">
-<div id="sheet-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
-<div id="sheet-content" class="absolute bottom-0 left-0 right-0 bg-tecuit-card border-t border-tecuit-border rounded-t-3xl transform translate-y-full transition-transform duration-300 pointer-events-auto max-h-[85vh] flex flex-col">
-<div class="p-4 pb-2 overflow-y-auto">
-<div class="sheet-handle"></div>
-<h3 class="text-center font-semibold text-lg mb-4 flex items-center justify-center gap-2" data-i18n="tecuit_options">
-Options Tecuit
-<span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
-</h3>
-<div class="grid grid-cols-3 gap-3 mb-6">
-<button class="feature-item flex flex-col items-center justify-center gap-2 p-4 bg-tecuit-dark/50 rounded-2xl border border-tecuit-border hover:border-tecuit-accent/50 transition-all" onclick="triggerFileUpload('camera')">
-<div class="w-12 h-12 rounded-full bg-tecuit-accent/10 flex items-center justify-center text-tecuit-accent">
-<i class="fa-solid fa-camera text-xl"></i>
-</div>
-<span class="text-xs font-medium" data-i18n="camera">Caméra</span>
-</button>
-<button class="feature-item flex flex-col items-center justify-center gap-2 p-4 bg-tecuit-dark/50 rounded-2xl border border-tecuit-border hover:border-tecuit-accent/50 transition-all" onclick="triggerFileUpload('photos')">
-<div class="w-12 h-12 rounded-full bg-tecuit-accent/10 flex items-center justify-center text-tecuit-accent">
-<i class="fa-regular fa-image text-xl"></i>
-</div>
-<span class="text-xs font-medium" data-i18n="photos">Photos</span>
-</button>
-<button class="feature-item flex flex-col items-center justify-center gap-2 p-4 bg-tecuit-dark/50 rounded-2xl border border-tecuit-border hover:border-tecuit-accent/50 transition-all" onclick="triggerFileUpload('files')">
-<div class="w-12 h-12 rounded-full bg-tecuit-accent/10 flex items-center justify-center text-tecuit-accent">
-<i class="fa-solid fa-paperclip text-xl"></i>
-</div>
-<span class="text-xs font-medium" data-i18n="files">Fichiers</span>
-</button>
-</div>
-<div class="h-px bg-tecuit-border w-full mb-4"></div>
-<div class="flex flex-col gap-1 pb-6">
-<button class="feature-item flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors" onclick="activateFeature('create_image')">
-<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center text-pink-400 border border-pink-500/20">
-<i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
-</div>
-<div class="text-left flex-1">
-<h4 class="font-medium text-sm" data-i18n="create_image">Créer une image</h4>
-<p class="text-xs text-tecuit-subtext" data-i18n="create_image_desc">Visualisez n'importe quoi</p>
-</div>
-<i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
-</button>
-<button class="feature-item flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors" onclick="activateFeature('advanced_reasoning')">
-<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center text-amber-400 border border-amber-500/20">
-<i class="fa-regular fa-lightbulb text-lg"></i>
-</div>
-<div class="text-left flex-1">
-<h4 class="font-medium text-sm" data-i18n="advanced_reasoning">Raisonnement avancé</h4>
-<p class="text-xs text-tecuit-subtext" data-i18n="advanced_reasoning_desc">Réfléchir plus longtemps</p>
-</div>
-<i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
-</button>
-<button class="feature-item flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors" onclick="activateFeature('deep_research')">
-<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center text-blue-400 border border-blue-500/20">
-<i class="fa-solid fa-magnifying-glass-chart text-lg"></i>
-</div>
-<div class="text-left flex-1">
-<h4 class="font-medium text-sm" data-i18n="deep_research">Recherche approfondie</h4>
-<p class="text-xs text-tecuit-subtext" data-i18n="deep_research_desc">Rapports détaillés</p>
-</div>
-<i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
-</button>
-<button class="feature-item flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors" onclick="activateFeature('web_search')">
-<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 to-green-500/20 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
-<i class="fa-solid fa-globe text-lg"></i>
-</div>
-<div class="text-left flex-1">
-<h4 class="font-medium text-sm" data-i18n="web_search">Recherche sur Internet</h4>
-<p class="text-xs text-tecuit-subtext" data-i18n="web_search_desc">Infos en temps réel</p>
-</div>
-<i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
-</button>
-<button class="feature-item flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors" onclick="activateFeature('study_learn')">
-<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-violet-500/20 flex items-center justify-center text-indigo-400 border border-indigo-500/20">
-<i class="fa-solid fa-book-open text-lg"></i>
-</div>
-<div class="text-left flex-1">
-<h4 class="font-medium text-sm" data-i18n="study_learn">Étudier et apprendre</h4>
-<p class="text-xs text-tecuit-subtext" data-i18n="study_learn_desc">Nouveaux concepts</p>
-</div>
-<i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
-</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Model Selector Modal -->
-<div id="model-modal" class="fixed inset-0 z-50 hidden">
-<div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="modelBackdrop"></div>
-<div class="absolute inset-0 flex items-center justify-center p-4">
-<div class="bg-tecuit-card border border-tecuit-border rounded-2xl w-full max-w-sm p-6 shadow-2xl animate-scale-in">
-<div class="flex items-center justify-between mb-4">
-<h3 class="text-xl font-bold flex items-center gap-2" data-i18n="select_model">
-Sélectionner le modèle
-<span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
-</h3>
-<button id="closeModelBtn" class="text-tecuit-subtext hover:text-white transition-colors btn-animate">
-<i class="fa-solid fa-xmark text-xl"></i>
-</button>
-</div>
-<p class="text-sm text-tecuit-subtext mb-6" data-i18n="select_model_desc">Choisissez l'IA adaptée à vos besoins.</p>
-<div class="space-y-3">
-<button class="model-option w-full text-left p-4 rounded-xl border border-tecuit-border bg-tecuit-dark/50 hover:border-tecuit-accent transition-all btn-animate" data-model="Hermes 7B Q4" data-api="https://tecuit-ai-nc.ngrok.dev">
-<div class="flex justify-between items-center mb-2">
-<span class="font-semibold text-white">Hermes 7B Q4</span>
-<span class="text-xs bg-tecuit-border px-2 py-1 rounded text-tecuit-subtext" data-i18n="fast">Rapide</span>
-</div>
-<p class="text-xs text-tecuit-subtext" data-i18n="hermes_4b_desc">nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev</p>
-</button>
-<button class="model-option w-full text-left p-4 rounded-xl border border-tecuit-border bg-tecuit-dark/50 hover:border-tecuit-accent transition-all btn-animate" data-model="Hermes 7B Q8" data-api="https://zenkaritecuitai.ngrok.app">
-<div class="flex justify-between items-center mb-2">
-<span class="font-semibold text-white">Hermes 7B Q8</span>
-<span class="text-xs bg-indigo-900/50 text-indigo-300 px-2 py-1 rounded border border-indigo-500/30" data-i18n="powerful">Puissant</span>
-</div>
-<p class="text-xs text-tecuit-subtext" data-i18n="hermes_7b_desc">nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app</p>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Menu Modal -->
-<div id="menu-modal" class="fixed inset-0 z-50 hidden">
-<div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="menuBackdrop"></div>
-<div class="absolute inset-0 flex items-center justify-center p-4">
-<div class="bg-tecuit-card border border-tecuit-border rounded-2xl w-full max-w-sm p-6 shadow-2xl animate-scale-in">
-<div class="flex items-center justify-between mb-4">
-<h3 class="text-xl font-bold flex items-center gap-2" data-i18n="options">
-Options
-<span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
-</h3>
-<button id="closeMenuBtn" class="text-tecuit-subtext hover:text-white transition-colors btn-animate">
-<i class="fa-solid fa-xmark text-xl"></i>
-</button>
-</div>
-<div class="space-y-2">
-<button id="exportBtn" class="w-full text-left p-4 rounded-xl border border-tecuit-border bg-tecuit-dark/50 hover:border-tecuit-accent transition-all flex items-center gap-3 btn-animate">
-<div class="w-10 h-10 rounded-full bg-tecuit-accent/10 flex items-center justify-center text-tecuit-accent">
-<i class="fa-solid fa-download"></i>
-</div>
-<div>
-<div class="font-medium text-sm" data-i18n="export_conversation">Exporter la conversation</div>
-<div class="text-xs text-tecuit-subtext" data-i18n="export_desc">Télécharger en JSON crypté</div>
-</div>
-</button>
-<button id="clearBtn" class="w-full text-left p-4 rounded-xl border border-tecuit-border bg-tecuit-dark/50 hover:border-red-500/50 transition-all flex items-center gap-3 btn-animate">
-<div class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-400">
-<i class="fa-solid fa-trash"></i>
-</div>
-<div>
-<div class="font-medium text-sm" data-i18n="clear_conversation">Effacer la conversation</div>
-<div class="text-xs text-tecuit-subtext" data-i18n="clear_desc">Supprimer l'historique</div>
-</div>
-</button>
-</div>
-<div class="mt-6 pt-4 border-t border-tecuit-border text-center">
-<p class="text-xs text-tecuit-subtext flex items-center justify-center gap-2">
-Tecuit IA v2.1.0
-<span class="beta-badge text-[8px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i> BETA</span>
-</p>
-<p class="text-[10px] text-tecuit-subtext mt-1">
-<i class="fa-solid fa-shield-halved mr-1"></i> AES-256 Encryption + OCR
-</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Toast Notification -->
-<div id="toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-tecuit-card border border-tecuit-border px-6 py-3 rounded-full shadow-xl z-50 transition-all duration-300 opacity-0 pointer-events-none">
-<div class="flex items-center gap-2">
-<i class="fa-solid fa-circle-info text-tecuit-accent"></i>
-<span id="toast-message" class="text-sm">Notification</span>
-</div>
-</div>
-</div>
+  <!-- Header -->
+  <header class="flex items-center justify-between px-4 py-3 bg-tecuit-dark/95 backdrop-blur-md border-b border-tecuit-border z-30 flex-shrink-0 animate-fade-in">
+    <div class="flex items-center gap-3">
+      <button id="sidebarBtn" class="text-tecuit-subtext hover:text-white transition-colors p-2 btn-animate">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+      <div class="flex items-center gap-2">
+        <div class="relative">
+          <img src="https://image.qwenlm.ai/public_source/03be4ece-6001-42f1-adee-a252dde72cc0/1c0a8c5ab-d41d-414b-a700-e26bded77ef0.png" alt="Tecuit Logo" class="w-8 h-8 rounded-full object-cover border border-tecuit-accent/30 animate-pulse-slow">
+          <div class="absolute -top-1 -right-1 scale-75">
+            <span class="beta-badge"><i class="fa-solid fa-flask"></i></span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1">
+          <h1 class="font-semibold text-lg tracking-tight">Tecuit</h1>
+          <span class="beta-badge text-[10px] px-2 py-0.5"><i class="fa-solid fa-flask"></i> BETA</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <!-- Language Selector -->
+      <div class="lang-selector">
+        <button id="langBtn" class="flex items-center gap-2 bg-tecuit-card px-3 py-1.5 rounded-full border border-tecuit-border hover:border-tecuit-accent/50 transition-all btn-animate">
+          <i class="fa-solid fa-globe text-xs text-tecuit-subtext"></i>
+          <span class="text-xs font-medium text-tecuit-subtext" id="current-lang-display">FR</span>
+          <i class="fa-solid fa-chevron-down text-xs text-tecuit-subtext"></i>
+        </button>
+        <div id="langDropdown" class="lang-dropdown"></div>
+      </div>
+      
+      <!-- Model Selector with Status -->
+      <button id="modelBtn" class="flex items-center gap-2 bg-tecuit-card px-3 py-1.5 rounded-full border border-tecuit-border hover:border-tecuit-accent/50 transition-all btn-animate">
+        <span class="status-indicator status-checking" id="apiStatusIndicator"></span>
+        <span class="text-xs font-medium text-tecuit-subtext" id="current-model-display">Hermes 7B Q4</span>
+        <i class="fa-solid fa-chevron-down text-xs text-tecuit-subtext"></i>
+      </button>
+      
+      <button id="newChatBtn" class="text-tecuit-subtext hover:text-white p-2 btn-animate" title="Nouvelle conversation">
+        <i class="fa-regular fa-pen-to-square text-lg"></i>
+      </button>
+      <button id="menuBtn" class="text-tecuit-subtext hover:text-white p-2 btn-animate">
+        <i class="fa-solid fa-ellipsis-vertical text-lg"></i>
+      </button>
+    </div>
+  </header>
+  
+  <!-- Sidebar -->
+  <div id="sidebar" class="fixed inset-y-0 left-0 w-72 bg-tecuit-card border-r border-tecuit-border transform -translate-x-full transition-transform duration-300 z-40">
+    <div class="p-4 h-full flex flex-col">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-2">
+          <h2 class="font-semibold text-lg" data-i18n="conversations">Conversations</h2>
+          <span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
+        </div>
+        <button id="closeSidebarBtn" class="text-tecuit-subtext hover:text-white transition-colors btn-animate">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <button id="newConversationBtn" class="w-full bg-tecuit-accent hover:bg-tecuit-accentHover text-white py-3 rounded-xl mb-4 flex items-center justify-center gap-2 transition-all glow-effect btn-animate">
+        <i class="fa-solid fa-plus"></i>
+        <span data-i18n="new_conversation">Nouvelle conversation</span>
+      </button>
+      <div class="flex-1 overflow-y-auto">
+        <div class="text-xs text-tecuit-subtext mb-2" data-i18n="today">Aujourd'hui</div>
+        <div id="conversation-list" class="space-y-2"></div>
+      </div>
+      <div class="pt-4 border-t border-tecuit-border">
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-tecuit-dark/50 mb-2">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-tecuit-accent to-purple-500 flex items-center justify-center pulse-active">
+            <span id="user-initial" class="font-bold text-sm">U</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div id="user-name-display" class="font-medium text-sm truncate">Utilisateur</div>
+            <div class="text-xs text-tecuit-subtext" id="memory-display">3.5GB / 10GB utilisé</div>
+          </div>
+        </div>
+        <button id="logoutBtn" class="w-full text-left p-3 rounded-xl hover:bg-tecuit-dark/50 transition-colors text-tecuit-subtext hover:text-red-400 text-sm flex items-center gap-2 btn-animate">
+          <i class="fa-solid fa-sign-out-alt"></i>
+          <span data-i18n="logout">Déconnexion</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Chat Area -->
+  <main id="chat-container" class="flex-1 overflow-y-auto p-4 flex flex-col gap-4"></main>
+  
+  <!-- Input Area -->
+  <div class="p-4 bg-tecuit-dark border-t border-tecuit-border z-30 flex-shrink-0">
+    <!-- File Upload Progress -->
+    <div id="fileProgressContainer" class="hidden mb-2">
+      <div class="file-progress">
+        <div class="flex items-center justify-between mb-2">
+          <span id="fileProgressName" class="text-xs text-tecuit-subtext">Traitement du fichier...</span>
+          <span id="fileProgressPercent" class="text-xs text-tecuit-accent">0%</span>
+        </div>
+        <div class="w-full bg-tecuit-border rounded-full h-1">
+          <div id="fileProgressBar" class="file-progress-bar" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="typingPreview" class="hidden mb-2 px-2 text-xs text-tecuit-subtext italic truncate"></div>
+    
+    <div id="stopButtonContainer" class="hidden mb-2 flex justify-center">
+      <button id="stopGenBtn" class="bg-tecuit-card border border-tecuit-border text-white text-sm px-5 py-2.5 rounded-full shadow-xl flex items-center gap-2 hover:bg-red-900/30 hover:border-red-500/50 transition-all glow-effect btn-animate">
+        <i class="fa-solid fa-stop text-red-400"></i>
+        <span data-i18n="stop_generation">Arrêter la génération</span>
+      </button>
+    </div>
+    
+    <div class="flex items-end gap-2 bg-tecuit-card border border-tecuit-border rounded-2xl p-2 shadow-lg">
+      <button id="attachBtn" class="p-3 text-tecuit-accent hover:bg-tecuit-border/50 rounded-xl transition-colors flex-shrink-0 btn-animate" title="Plus d'options">
+        <i class="fa-solid fa-plus text-lg"></i>
+      </button>
+      <textarea id="chat-input" rows="1" class="flex-1 bg-transparent text-white placeholder-tecuit-subtext focus:outline-none resize-none py-3 max-h-32" placeholder="Chat..."></textarea>
+      <button id="sendBtn" class="p-3 bg-tecuit-accent text-white rounded-xl hover:bg-tecuit-accentHover transition-colors flex-shrink-0 shadow-md shadow-indigo-500/20 btn-animate">
+        <i class="fa-solid fa-arrow-up text-sm"></i>
+      </button>
+    </div>
+    
+    <div class="text-center mt-2">
+      <p class="text-[10px] text-tecuit-subtext" data-i18n="disclaimer">Tecuit IA peut faire des erreurs. Vérifiez les informations importantes.</p>
+      <p class="text-[9px] text-amber-500/60 mt-0.5">
+        <i class="fa-solid fa-flask mr-1"></i> Version BETA v2.1.0
+      </p>
+    </div>
+  </div>
+  
+  <!-- Hidden File Input -->
+  <input type="file" id="fileInput" class="hidden" accept="image/*,.pdf,.doc,.docx,.txt,.md,.json,.csv">
+  
+  <!-- Bottom Sheet (Features Menu) -->
+  <div id="bottom-sheet" class="fixed inset-0 z-50 pointer-events-none">
+    <div id="sheet-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+    <div id="sheet-content" class="absolute bottom-0 left-0 right-0 bg-tecuit-card border-t border-tecuit-border rounded-t-3xl transform translate-y-full transition-transform duration-300 pointer-events-auto max-h-[85vh] flex flex-col">
+      <div class="p-4 pb-2 overflow-y-auto">
+        <div class="sheet-handle"></div>
+        <h3 class="text-center font-semibold text-lg mb-4 flex items-center justify-center gap-2" data-i18n="tecuit_options">
+          Options Tecuit
+          <span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
+        </h3>
+        <div class="grid grid-cols-3 gap-3 mb-6">
+          <button class="feature-item flex flex-col items-center justify-center gap-2 p-4 bg-tecuit-dark/50 rounded-2xl border border-tecuit-border hover:border-tecuit-accent/50 transition-all" onclick="triggerFileUpload('camera')">
+            <div class="w-12 h-12 rounded-full bg-tecuit-accent/10 flex items-center justify-center text-tecuit-accent">
+              <i class="fa-solid fa-camera text-xl"></i>
+            </div>
+            <span class="text-xs font-medium" data-i18n="camera">Caméra</span>
+          </button>
+          <button class="feature-item flex flex-col items-center justify-center gap-2 p-4 bg-tecuit-dark/50 rounded-2xl border border-tecuit-border hover:border-tecuit-accent/50 transition-all" onclick="triggerFileUpload('photos')">
+            <div class="w-12 h-12 rounded-full bg-tecuit-accent/10 flex items-center justify-center text-tecuit-accent">
+              <i class="fa-regular fa-image text-xl"></i>
+            </div>
+            <span class="text-xs font-medium" data-i18n="photos">Photos</span>
+          </button>
+          <button class="feature-item flex flex-col items-center justify-center gap-2 p-4 bg-tecuit-dark/50 rounded-2xl border border-tecuit-border hover:border-tecuit-accent/50 transition-all" onclick="triggerFileUpload('files')">
+            <div class="w-12 h-12 rounded-full bg-tecuit-accent/10 flex items-center justify-center text-tecuit-accent">
+              <i class="fa-solid fa-paperclip text-xl"></i>
+            </div>
+            <span class="text-xs font-medium" data-i18n="files">Fichiers</span>
+          </button>
+        </div>
+        <div class="h-px bg-tecuit-border w-full mb-4"></div>
+        <div class="flex flex-col gap-1 pb-6">
+          <button class="feature-item flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors" onclick="activateFeature('create_image')">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center text-pink-400 border border-pink-500/20">
+              <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+            </div>
+            <div class="text-left flex-1">
+              <h4 class="font-medium text-sm" data-i18n="create_image">Créer une image</h4>
+              <p class="text-xs text-tecuit-subtext" data-i18n="create_image_desc">Visualisez n'importe quoi</p>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
+          </button>
+          <button class="feature-item flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors" onclick="activateFeature('advanced_reasoning')">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center text-amber-400 border border-amber-500/20">
+              <i class="fa-regular fa-lightbulb text-lg"></i>
+            </div>
+            <div class="text-left flex-1">
+              <h4 class="font-medium text-sm" data-i18n="advanced_reasoning">Raisonnement avancé</h4>
+              <p class="text-xs text-tecuit-subtext" data-i18n="advanced_reasoning_desc">Réfléchir plus longtemps</p>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
+          </button>
+          <button class="feature-item flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors" onclick="activateFeature('deep_research')">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center text-blue-400 border border-blue-500/20">
+              <i class="fa-solid fa-magnifying-glass-chart text-lg"></i>
+            </div>
+            <div class="text-left flex-1">
+              <h4 class="font-medium text-sm" data-i18n="deep_research">Recherche approfondie</h4>
+              <p class="text-xs text-tecuit-subtext" data-i18n="deep_research_desc">Rapports détaillés</p>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
+          </button>
+          <button class="feature-item flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors" onclick="activateFeature('web_search')">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 to-green-500/20 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
+              <i class="fa-solid fa-globe text-lg"></i>
+            </div>
+            <div class="text-left flex-1">
+              <h4 class="font-medium text-sm" data-i18n="web_search">Recherche sur Internet</h4>
+              <p class="text-xs text-tecuit-subtext" data-i18n="web_search_desc">Infos en temps réel</p>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
+          </button>
+          <button class="feature-item flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors" onclick="activateFeature('study_learn')">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-violet-500/20 flex items-center justify-center text-indigo-400 border border-indigo-500/20">
+              <i class="fa-solid fa-book-open text-lg"></i>
+            </div>
+            <div class="text-left flex-1">
+              <h4 class="font-medium text-sm" data-i18n="study_learn">Étudier et apprendre</h4>
+              <p class="text-xs text-tecuit-subtext" data-i18n="study_learn_desc">Nouveaux concepts</p>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs text-tecuit-subtext"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Model Selector Modal -->
+  <div id="model-modal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="modelBackdrop"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+      <div class="bg-tecuit-card border border-tecuit-border rounded-2xl w-full max-w-sm p-6 shadow-2xl animate-scale-in">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold flex items-center gap-2" data-i18n="select_model">
+            Sélectionner le modèle
+            <span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
+          </h3>
+          <button id="closeModelBtn" class="text-tecuit-subtext hover:text-white transition-colors btn-animate">
+            <i class="fa-solid fa-xmark text-xl"></i>
+          </button>
+        </div>
+        <p class="text-sm text-tecuit-subtext mb-6" data-i18n="select_model_desc">Choisissez l'IA adaptée à vos besoins.</p>
+        
+        <!-- Connection Test Button -->
+        <button id="testConnectionBtn" class="w-full mb-4 bg-tecuit-dark border border-tecuit-border text-tecuit-subtext text-sm px-4 py-2 rounded-xl flex items-center justify-center gap-2 hover:border-tecuit-accent/50 transition-all btn-animate">
+          <i class="fa-solid fa-wifi"></i>
+          <span>Tester la connexion API</span>
+        </button>
+        
+        <div class="space-y-3">
+          <button class="model-option w-full text-left p-4 rounded-xl border border-tecuit-border bg-tecuit-dark/50 hover:border-tecuit-accent transition-all btn-animate" 
+                  data-model="Hermes 7B Q4" 
+                  data-api="https://tecuit-ai-nc.ngrok.dev"
+                  data-model-name="nous-hermes-2-mistral-7b-dpo">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-semibold text-white">Hermes 7B Q4</span>
+              <span class="text-xs bg-tecuit-border px-2 py-1 rounded text-tecuit-subtext" data-i18n="fast">Rapide</span>
+            </div>
+            <p class="text-xs text-tecuit-subtext" data-i18n="hermes_4b_desc">nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev</p>
+          </button>
+          <button class="model-option w-full text-left p-4 rounded-xl border border-tecuit-border bg-tecuit-dark/50 hover:border-tecuit-accent transition-all btn-animate" 
+                  data-model="Hermes 7B Q8" 
+                  data-api="https://zenkaritecuitai.ngrok.app"
+                  data-model-name="nousresearch/nous-hermes-2-mistral-7b-dpo">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-semibold text-white">Hermes 7B Q8</span>
+              <span class="text-xs bg-indigo-900/50 text-indigo-300 px-2 py-1 rounded border border-indigo-500/30" data-i18n="powerful">Puissant</span>
+            </div>
+            <p class="text-xs text-tecuit-subtext" data-i18n="hermes_7b_desc">nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app</p>
+          </button>
+        </div>
+        
+        <div class="mt-6 p-4 bg-amber-900/20 border border-amber-500/30 rounded-xl">
+          <p class="text-xs text-amber-400 flex items-start gap-2">
+            <i class="fa-solid fa-circle-info mt-0.5"></i>
+            <span>Si vous rencontrez des erreurs de connexion, assurez-vous que les tunnels ngrok sont actifs et que CORS est configuré correctement sur le backend.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Menu Modal -->
+  <div id="menu-modal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="menuBackdrop"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+      <div class="bg-tecuit-card border border-tecuit-border rounded-2xl w-full max-w-sm p-6 shadow-2xl animate-scale-in">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-bold flex items-center gap-2" data-i18n="options">
+            Options
+            <span class="beta-badge text-[9px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i></span>
+          </h3>
+          <button id="closeMenuBtn" class="text-tecuit-subtext hover:text-white transition-colors btn-animate">
+            <i class="fa-solid fa-xmark text-xl"></i>
+          </button>
+        </div>
+        <div class="space-y-2">
+          <button id="exportBtn" class="w-full text-left p-4 rounded-xl border border-tecuit-border bg-tecuit-dark/50 hover:border-tecuit-accent transition-all flex items-center gap-3 btn-animate">
+            <div class="w-10 h-10 rounded-full bg-tecuit-accent/10 flex items-center justify-center text-tecuit-accent">
+              <i class="fa-solid fa-download"></i>
+            </div>
+            <div>
+              <div class="font-medium text-sm" data-i18n="export_conversation">Exporter la conversation</div>
+              <div class="text-xs text-tecuit-subtext" data-i18n="export_desc">Télécharger en JSON crypté</div>
+            </div>
+          </button>
+          <button id="clearBtn" class="w-full text-left p-4 rounded-xl border border-tecuit-border bg-tecuit-dark/50 hover:border-red-500/50 transition-all flex items-center gap-3 btn-animate">
+            <div class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-400">
+              <i class="fa-solid fa-trash"></i>
+            </div>
+            <div>
+              <div class="font-medium text-sm" data-i18n="clear_conversation">Effacer la conversation</div>
+              <div class="text-xs text-tecuit-subtext" data-i18n="clear_desc">Supprimer l'historique</div>
+            </div>
+          </button>
+        </div>
+        <div class="mt-6 pt-4 border-t border-tecuit-border text-center">
+          <p class="text-xs text-tecuit-subtext flex items-center justify-center gap-2">
+            Tecuit IA v2.1.0
+            <span class="beta-badge text-[8px] px-1.5 py-0.5"><i class="fa-solid fa-flask"></i> BETA</span>
+          </p>
+          <p class="text-[10px] text-tecuit-subtext mt-1">
+            <i class="fa-solid fa-shield-halved mr-1"></i> AES-256 Encryption + OCR
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-tecuit-card border border-tecuit-border px-6 py-3 rounded-full shadow-xl z-50 transition-all duration-300 opacity-0 pointer-events-none">
+    <div class="flex items-center gap-2">
+      <i class="fa-solid fa-circle-info text-tecuit-accent"></i>
+      <span id="toast-message" class="text-sm">Notification</span>
+    </div>
+  </div>
+</div>
+
 <script>
-// ==================== TRANSLATIONS (15 Languages) ====================
+// ==================== TRANSLATIONS ====================
 const translations = {
-fr: {
-login_subtitle: "Connectez-vous pour accéder à vos conversations",
-email: "Email",
-password: "Mot de passe",
-login: "Se connecter",
-no_account: "Pas encore de compte ?",
-register: "S'inscrire",
-encryption_note: "Vos données sont cryptées en AES-256",
-create_account: "Créer un compte",
-register_subtitle: "Rejoignez Tecuit IA gratuitement",
-username: "Nom d'utilisateur",
-password_min: "Minimum 6 caractères",
-confirm_password: "Confirmer le mot de passe",
-have_account: "Déjà un compte ?",
-conversations: "Conversations",
-new_conversation: "Nouvelle conversation",
-today: "Aujourd'hui",
-logout: "Déconnexion",
-stop_generation: "Arrêter la génération",
-disclaimer: "Tecuit IA peut faire des erreurs. Vérifiez les informations importantes.",
-tecuit_options: "Options Tecuit",
-camera: "Caméra",
-photos: "Photos",
-files: "Fichiers",
-create_image: "Créer une image",
-create_image_desc: "Visualisez n'importe quoi",
-advanced_reasoning: "Raisonnement avancé",
-advanced_reasoning_desc: "Réfléchir plus longtemps",
-deep_research: "Recherche approfondie",
-deep_research_desc: "Rapports détaillés",
-web_search: "Recherche sur Internet",
-web_search_desc: "Infos en temps réel",
-study_learn: "Étudier et apprendre",
-study_learn_desc: "Nouveaux concepts",
-select_model: "Sélectionner le modèle",
-select_model_desc: "Choisissez l'IA adaptée à vos besoins.",
-fast: "Rapide",
-powerful: "Puissant",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "Mémoire utilisateur",
-memory_note: "10GB de stockage pour la continuité des conversations",
-options: "Options",
-export_conversation: "Exporter la conversation",
-export_desc: "Télécharger en JSON crypté",
-clear_conversation: "Effacer la conversation",
-clear_desc: "Supprimer l'historique",
-welcome_message: "Bonjour",
-welcome_subtitle: "Je suis Tecuit IA, votre assistant intelligent.",
-help_with: "Je peux vous aider avec :",
-smart_responses: "Réponses intelligentes avec Hermes 7B Q4/Q8",
-image_analysis: "Analyse de fichiers (texte, images avec OCR)",
-web_research: "Recherche sur Internet",
-memory_continuity: "Mémoire de 10GB pour la continuité",
-encrypted_data: "Données cryptées AES-256",
-new_conversation_created: "Nouvelle conversation créée",
-model_changed: "Modèle changé pour",
-model_activated: "activé",
-feature_activated: "activé",
-file_processed: "Fichier traité avec succès",
-file_too_large: "Fichier trop volumineux (max 50MB)",
-generation_stopped: "Génération arrêtée",
-conversation_cleared: "Conversation effacée",
-conversation_exported: "Conversation exportée (cryptée)",
-logged_out: "Déconnecté avec succès",
-wrong_password: "Email ou mot de passe incorrect",
-email_used: "Cet email est déjà utilisé",
-passwords_mismatch: "Les mots de passe ne correspondent pas",
-password_min_length: "Le mot de passe doit faire au moins 6 caractères",
-ocr_in_progress: "OCR en cours...",
-no_text_detected: "Aucun texte détecté dans l'image",
-ocr_completed: "OCR terminé",
-characters: "caractères",
-file_analyzed: "Fichier analysé",
-size: "Taille",
-type: "Type",
-extracted_text: "Texte extrait",
-file_content: "Contenu du fichier",
-connection_error: "Erreur de connexion",
-backend_accessible: "Assurez-vous que le backend est accessible",
-processing_file: "Traitement du fichier..."
-},
-en: {
-login_subtitle: "Log in to access your conversations",
-email: "Email",
-password: "Password",
-login: "Log In",
-no_account: "No account yet?",
-register: "Sign Up",
-encryption_note: "Your data is encrypted with AES-256",
-create_account: "Create Account",
-register_subtitle: "Join Tecuit IA for free",
-username: "Username",
-password_min: "Minimum 6 characters",
-confirm_password: "Confirm Password",
-have_account: "Already have an account?",
-conversations: "Conversations",
-new_conversation: "New Conversation",
-today: "Today",
-logout: "Log Out",
-stop_generation: "Stop Generation",
-disclaimer: "Tecuit IA can make mistakes. Verify important information.",
-tecuit_options: "Tecuit Options",
-camera: "Camera",
-photos: "Photos",
-files: "Files",
-create_image: "Create Image",
-create_image_desc: "Visualize anything",
-advanced_reasoning: "Advanced Reasoning",
-advanced_reasoning_desc: "Think longer",
-deep_research: "Deep Research",
-deep_research_desc: "Detailed reports",
-web_search: "Web Search",
-web_search_desc: "Real-time info",
-study_learn: "Study & Learn",
-study_learn_desc: "New concepts",
-select_model: "Select Model",
-select_model_desc: "Choose the AI that fits your needs.",
-fast: "Fast",
-powerful: "Powerful",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "User Memory",
-memory_note: "10GB storage for conversation continuity",
-options: "Options",
-export_conversation: "Export Conversation",
-export_desc: "Download encrypted JSON",
-clear_conversation: "Clear Conversation",
-clear_desc: "Delete history",
-welcome_message: "Hello",
-welcome_subtitle: "I am Tecuit IA, your intelligent assistant.",
-help_with: "I can help you with:",
-smart_responses: "Smart responses with Hermes 7B Q4/Q8",
-image_analysis: "File analysis (text, images with OCR)",
-web_research: "Web Research",
-memory_continuity: "10GB memory for continuity",
-encrypted_data: "AES-256 Encrypted Data",
-new_conversation_created: "New conversation created",
-model_changed: "Model changed to",
-model_activated: "activated",
-feature_activated: "activated",
-file_processed: "File processed successfully",
-file_too_large: "File too large (max 50MB)",
-generation_stopped: "Generation stopped",
-conversation_cleared: "Conversation cleared",
-conversation_exported: "Conversation exported (encrypted)",
-logged_out: "Logged out successfully",
-wrong_password: "Incorrect email or password",
-email_used: "This email is already in use",
-passwords_mismatch: "Passwords do not match",
-password_min_length: "Password must be at least 6 characters",
-ocr_in_progress: "OCR in progress...",
-no_text_detected: "No text detected in image",
-ocr_completed: "OCR completed",
-characters: "characters",
-file_analyzed: "File analyzed",
-size: "Size",
-type: "Type",
-extracted_text: "Extracted text",
-file_content: "File content",
-connection_error: "Connection Error",
-backend_accessible: "Make sure the backend is accessible",
-processing_file: "Processing file..."
-},
-es: {
-login_subtitle: "Inicia sesión para acceder a tus conversaciones",
-email: "Correo electrónico",
-password: "Contraseña",
-login: "Iniciar sesión",
-no_account: "¿Aún no tienes cuenta?",
-register: "Registrarse",
-encryption_note: "Tus datos están cifrados con AES-256",
-create_account: "Crear cuenta",
-register_subtitle: "Únete a Tecuit IA gratis",
-username: "Nombre de usuario",
-password_min: "Mínimo 6 caracteres",
-confirm_password: "Confirmar contraseña",
-have_account: "¿Ya tienes cuenta?",
-conversations: "Conversaciones",
-new_conversation: "Nueva conversación",
-today: "Hoy",
-logout: "cerrar sesión",
-stop_generation: "Detener generación",
-disclaimer: "Tecuit IA puede cometer errores. Verifica la información importante.",
-tecuit_options: "Opciones Tecuit",
-camera: "Cámara",
-photos: "Fotos",
-files: "Archivos",
-create_image: "Crear imagen",
-create_image_desc: "Visualiza cualquier cosa",
-advanced_reasoning: "Razonamiento avanzado",
-advanced_reasoning_desc: "Piensa más tiempo",
-deep_research: "Investigación profunda",
-deep_research_desc: "Informes detallados",
-web_search: "Búsqueda web",
-web_search_desc: "Información en tiempo real",
-study_learn: "Estudiar y aprender",
-study_learn_desc: "Nuevos conceptos",
-select_model: "Seleccionar modelo",
-select_model_desc: "Elige la IA que se adapte a tus necesidades.",
-fast: "Rápido",
-powerful: "Potente",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "Memoria de usuario",
-memory_note: "10GB de almacenamiento para continuidad",
-options: "Opciones",
-export_conversation: "Exportar conversación",
-export_desc: "Descargar JSON cifrado",
-clear_conversation: "Borrar conversación",
-clear_desc: "Eliminar historial",
-welcome_message: "Hola",
-welcome_subtitle: "Soy Tecuit IA, tu asistente inteligente.",
-help_with: "Puedo ayudarte con:",
-smart_responses: "Respuestas inteligentes con Hermes 7B Q4/Q8",
-image_analysis: "Análisis de archivos (texto, imágenes con OCR)",
-web_research: "Investigación web",
-memory_continuity: "10GB de memoria para continuidad",
-encrypted_data: "Datos cifrados AES-256",
-new_conversation_created: "Nueva conversación creada",
-model_changed: "Modelo cambiado a",
-model_activated: "activado",
-feature_activated: "activado",
-file_processed: "Archivo procesado con éxito",
-file_too_large: "Archivo demasiado grande (máx 50MB)",
-generation_stopped: "Generación detenida",
-conversation_cleared: "Conversación borrada",
-conversation_exported: "Conversación exportada (cifrada)",
-logged_out: "Sesión cerrada con éxito",
-wrong_password: "Correo o contraseña incorrectos",
-email_used: "Este correo ya está en uso",
-passwords_mismatch: "Las contraseñas no coinciden",
-password_min_length: "La contraseña debe tener al menos 6 caracteres",
-ocr_in_progress: "OCR en progreso...",
-no_text_detected: "No se detectó texto en la imagen",
-ocr_completed: "OCR completado",
-characters: "caracteres",
-file_analyzed: "Archivo analizado",
-size: "Tamaño",
-type: "Tipo",
-extracted_text: "Texto extraído",
-file_content: "Contenido del archivo",
-connection_error: "Error de conexión",
-backend_accessible: "Asegúrate de que el backend sea accesible",
-processing_file: "Procesando archivo..."
-},
-de: {
-login_subtitle: "Melden Sie sich an, um auf Ihre Konversationen zuzugreifen",
-email: "E-Mail",
-password: "Passwort",
-login: "Anmelden",
-no_account: "Noch kein Konto?",
-register: "Registrieren",
-encryption_note: "Ihre Daten sind mit AES-256 verschlüsselt",
-create_account: "Konto erstellen",
-register_subtitle: "Treten Sie Tecuit IA kostenlos bei",
-username: "Benutzername",
-password_min: "Mindestens 6 Zeichen",
-confirm_password: "Passwort bestätigen",
-have_account: "Bereits ein Konto?",
-conversations: "Konversationen",
-new_conversation: "Neue Konversation",
-today: "Heute",
-logout: "Abmelden",
-stop_generation: "Generierung stoppen",
-disclaimer: "Tecuit IA kann Fehler machen. Überprüfen Sie wichtige Informationen.",
-tecuit_options: "Tecuit Optionen",
-camera: "Kamera",
-photos: "Fotos",
-files: "Dateien",
-create_image: "Bild erstellen",
-create_image_desc: "Visualisieren Sie alles",
-advanced_reasoning: "Fortgeschrittenes Denken",
-advanced_reasoning_desc: "Länger nachdenken",
-deep_research: "Tiefe Recherche",
-deep_research_desc: "Detaillierte Berichte",
-web_search: "Websuche",
-web_search_desc: "Echtzeit-Infos",
-study_learn: "Lernen & Studieren",
-study_learn_desc: "Neue Konzepte",
-select_model: "Modell auswählen",
-select_model_desc: "Wählen Sie die KI, die zu Ihren Bedürfnissen passt.",
-fast: "Schnell",
-powerful: "Leistungsstark",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "Benutzerspeicher",
-memory_note: "10GB Speicher für Kontinuität",
-options: "Optionen",
-export_conversation: "Konversation exportieren",
-export_desc: "Verschlüsseltes JSON herunterladen",
-clear_conversation: "Konversation löschen",
-clear_desc: "Verlauf löschen",
-welcome_message: "Hallo",
-welcome_subtitle: "Ich bin Tecuit IA, Ihr intelligenter Assistent.",
-help_with: "Ich kann Ihnen helfen mit:",
-smart_responses: "Intelligente Antworten mit Hermes 7B Q4/Q8",
-image_analysis: "Dateianalyse (Text, Bilder mit OCR)",
-web_research: "Web-Recherche",
-memory_continuity: "10GB Speicher für Kontinuität",
-encrypted_data: "AES-256 verschlüsselte Daten",
-new_conversation_created: "Neue Konversation erstellt",
-model_changed: "Modell geändert zu",
-model_activated: "aktiviert",
-feature_activated: "aktiviert",
-file_processed: "Datei erfolgreich verarbeitet",
-file_too_large: "Datei zu groß (max 50MB)",
-generation_stopped: "Generierung gestoppt",
-conversation_cleared: "Konversation gelöscht",
-conversation_exported: "Konversation exportiert (verschlüsselt)",
-logged_out: "Erfolgreich abgemeldet",
-wrong_password: "Falsche E-Mail oder Passwort",
-email_used: "Diese E-Mail wird bereits verwendet",
-passwords_mismatch: "Passwörter stimmen nicht überein",
-password_min_length: "Passwort muss mindestens 6 Zeichen haben",
-ocr_in_progress: "OCR läuft...",
-no_text_detected: "Kein Text im Bild erkannt",
-ocr_completed: "OCR abgeschlossen",
-characters: "Zeichen",
-file_analyzed: "Datei analysiert",
-size: "Größe",
-type: "Typ",
-extracted_text: "Extrahierter Text",
-file_content: "Dateiinhalt",
-connection_error: "Verbindungsfehler",
-backend_accessible: "Stellen Sie sicher, dass das Backend zugänglich ist",
-processing_file: "Datei wird verarbeitet..."
-},
-it: {
-login_subtitle: "Accedi per accedere alle tue conversazioni",
-email: "Email",
-password: "Password",
-login: "Accedi",
-no_account: "Non hai ancora un account?",
-register: "Registrati",
-encryption_note: "I tuoi dati sono crittografati con AES-256",
-create_account: "Crea account",
-register_subtitle: "Unisciti a Tecuit IA gratuitamente",
-username: "Nome utente",
-password_min: "Minimo 6 caratteri",
-confirm_password: "Conferma password",
-have_account: "Hai già un account?",
-conversations: "Conversazioni",
-new_conversation: "Nuova conversazione",
-today: "Oggi",
-logout: "Disconnetti",
-stop_generation: "Ferma generazione",
-disclaimer: "Tecuit IA può commettere errori. Verifica le informazioni importanti.",
-tecuit_options: "Opzioni Tecuit",
-camera: "Fotocamera",
-photos: "Foto",
-files: "File",
-create_image: "Crea immagine",
-create_image_desc: "Visualizza qualsiasi cosa",
-advanced_reasoning: "Ragionamento avanzato",
-advanced_reasoning_desc: "Pensa più a lungo",
-deep_research: "Ricerca approfondita",
-deep_research_desc: "Rapporti dettagliati",
-web_search: "Ricerca web",
-web_search_desc: "Info in tempo reale",
-study_learn: "Studia e impara",
-study_learn_desc: "Nuovi concetti",
-select_model: "Seleziona modello",
-select_model_desc: "Scegli l'IA adatta alle tue esigenze.",
-fast: "Veloce",
-powerful: "Potente",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "Memoria utente",
-memory_note: "10GB di archiviazione per continuità",
-options: "Opzioni",
-export_conversation: "Esporta conversazione",
-export_desc: "Scarica JSON crittografato",
-clear_conversation: "Cancella conversazione",
-clear_desc: "Elimina cronologia",
-welcome_message: "Ciao",
-welcome_subtitle: "Sono Tecuit IA, il tuo assistente intelligente.",
-help_with: "Posso aiutarti con:",
-smart_responses: "Risposte intelligenti con Hermes 7B Q4/Q8",
-image_analysis: "Analisi file (testo, immagini con OCR)",
-web_research: "Ricerca web",
-memory_continuity: "10GB di memoria per continuità",
-encrypted_data: "Dati crittografati AES-256",
-new_conversation_created: "Nuova conversazione creata",
-model_changed: "Modello cambiato a",
-model_activated: "attivato",
-feature_activated: "attivato",
-file_processed: "File elaborato con successo",
-file_too_large: "File troppo grande (max 50MB)",
-generation_stopped: "Generazione fermata",
-conversation_cleared: "Conversazione cancellata",
-conversation_exported: "Conversazione esportata (crittografata)",
-logged_out: "Disconnesso con successo",
-wrong_password: "Email o password errati",
-email_used: "Questa email è già in uso",
-passwords_mismatch: "Le password non corrispondono",
-password_min_length: "La password deve avere almeno 6 caratteri",
-ocr_in_progress: "OCR in corso...",
-no_text_detected: "Nessun testo rilevato nell'immagine",
-ocr_completed: "OCR completato",
-characters: "caratteri",
-file_analyzed: "File analizzato",
-size: "Dimensione",
-type: "Tipo",
-extracted_text: "Testo estratto",
-file_content: "Contenuto file",
-connection_error: "Errore di connessione",
-backend_accessible: "Assicurati che il backend sia accessibile",
-processing_file: "Elaborazione file..."
-},
-pt: {
-login_subtitle: "Faça login para acessar suas conversas",
-email: "Email",
-password: "Senha",
-login: "Entrar",
-no_account: "Ainda não tem conta?",
-register: "Cadastrar",
-encryption_note: "Seus dados são criptografados com AES-256",
-create_account: "Criar conta",
-register_subtitle: "Junte-se ao Tecuit IA gratuitamente",
-username: "Nome de usuário",
-password_min: "Mínimo 6 caracteres",
-confirm_password: "Confirmar senha",
-have_account: "Já tem uma conta?",
-conversations: "Conversas",
-new_conversation: "Nova conversa",
-today: "Hoje",
-logout: "Sair",
-stop_generation: "Parar geração",
-disclaimer: "Tecuit IA pode cometer erros. Verifique informações importantes.",
-tecuit_options: "Opções Tecuit",
-camera: "Câmera",
-photos: "Fotos",
-files: "Arquivos",
-create_image: "Criar imagem",
-create_image_desc: "Visualize qualquer coisa",
-advanced_reasoning: "Raciocínio avançado",
-advanced_reasoning_desc: "Pense por mais tempo",
-deep_research: "Pesquisa profunda",
-deep_research_desc: "Relatórios detalhados",
-web_search: "Pesquisa na web",
-web_search_desc: "Info em tempo real",
-study_learn: "Estudar e aprender",
-study_learn_desc: "Novos conceitos",
-select_model: "Selecionar modelo",
-select_model_desc: "Escolha a IA que atende às suas necessidades.",
-fast: "Rápido",
-powerful: "Poderoso",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "Memória do usuário",
-memory_note: "10GB de armazenamento para continuidade",
-options: "Opções",
-export_conversation: "Exportar conversa",
-export_desc: "Baixar JSON criptografado",
-clear_conversation: "Limpar conversa",
-clear_desc: "Excluir histórico",
-welcome_message: "Olá",
-welcome_subtitle: "Sou Tecuit IA, seu assistente inteligente.",
-help_with: "Posso ajudá-lo com:",
-smart_responses: "Respostas inteligentes com Hermes 7B Q4/Q8",
-image_analysis: "Análise de arquivos (texto, imagens com OCR)",
-web_research: "Pesquisa na web",
-memory_continuity: "10GB de memória para continuidade",
-encrypted_data: "Dados criptografados AES-256",
-new_conversation_created: "Nova conversa criada",
-model_changed: "Modelo alterado para",
-model_activated: "ativado",
-feature_activated: "ativado",
-file_processed: "Arquivo processado com sucesso",
-file_too_large: "Arquivo muito grande (máx 50MB)",
-generation_stopped: "Geração parada",
-conversation_cleared: "Conversa limpa",
-conversation_exported: "Conversa exportada (criptografada)",
-logged_out: "Desconectado com sucesso",
-wrong_password: "Email ou senha incorretos",
-email_used: "Este email já está em uso",
-passwords_mismatch: "As senhas não coincidem",
-password_min_length: "A senha deve ter pelo menos 6 caracteres",
-ocr_in_progress: "OCR em andamento...",
-no_text_detected: "Nenhum texto detectado na imagem",
-ocr_completed: "OCR concluído",
-characters: "caracteres",
-file_analyzed: "Arquivo analisado",
-size: "Tamanho",
-type: "Tipo",
-extracted_text: "Texto extraído",
-file_content: "Conteúdo do arquivo",
-connection_error: "Erro de conexão",
-backend_accessible: "Certifique-se de que o backend esteja acessível",
-processing_file: "Processando arquivo..."
-},
-ru: {
-login_subtitle: "Войдите, чтобы получить доступ к вашим разговорам",
-email: "Email",
-password: "Пароль",
-login: "Войти",
-no_account: "Еще нет аккаунта?",
-register: "Зарегистрироваться",
-encryption_note: "Ваши данные зашифрованы AES-256",
-create_account: "Создать аккаунт",
-register_subtitle: "Присоединяйтесь к Tecuit IA бесплатно",
-username: "Имя пользователя",
-password_min: "Минимум 6 символов",
-confirm_password: "Подтвердить пароль",
-have_account: "Уже есть аккаунт?",
-conversations: "Разговоры",
-new_conversation: "Новый разговор",
-today: "Сегодня",
-logout: "Выйти",
-stop_generation: "Остановить генерацию",
-disclaimer: "Tecuit IA может ошибаться. Проверяйте важную информацию.",
-tecuit_options: "Опции Tecuit",
-camera: "Камера",
-photos: "Фото",
-files: "Файлы",
-create_image: "Создать изображение",
-create_image_desc: "Визуализируйте что угодно",
-advanced_reasoning: "Продвинутое мышление",
-advanced_reasoning_desc: "Думайте дольше",
-deep_research: "Глубокое исследование",
-deep_research_desc: "Подробные отчеты",
-web_search: "Веб-поиск",
-web_search_desc: "Информация в реальном времени",
-study_learn: "Учиться и изучать",
-study_learn_desc: "Новые концепции",
-select_model: "Выбрать модель",
-select_model_desc: "Выберите ИИ, который подходит вашим потребностям.",
-fast: "Быстрый",
-powerful: "Мощный",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "Память пользователя",
-memory_note: "10GB хранилища для непрерывности",
-options: "Опции",
-export_conversation: "Экспортировать разговор",
-export_desc: "Скачать зашифрованный JSON",
-clear_conversation: "Очистить разговор",
-clear_desc: "Удалить историю",
-welcome_message: "Привет",
-welcome_subtitle: "Я Tecuit IA, ваш умный помощник.",
-help_with: "Я могу помочь вам с:",
-smart_responses: "Умные ответы с Hermes 7B Q4/Q8",
-image_analysis: "Анализ файлов (текст, изображения с OCR)",
-web_research: "Веб-исследование",
-memory_continuity: "10GB памяти для непрерывности",
-encrypted_data: "Зашифрованные данные AES-256",
-new_conversation_created: "Новый разговор создан",
-model_changed: "Модель изменена на",
-model_activated: "активировано",
-feature_activated: "активировано",
-file_processed: "Файл успешно обработан",
-file_too_large: "Файл слишком большой (макс 50MB)",
-generation_stopped: "Генерация остановлена",
-conversation_cleared: "Разговор очищен",
-conversation_exported: "Разговор экспортирован (зашифрован)",
-logged_out: "Успешный выход",
-wrong_password: "Неверный email или пароль",
-email_used: "Этот email уже используется",
-passwords_mismatch: "Пароли не совпадают",
-password_min_length: "Пароль должен быть не менее 6 символов",
-ocr_in_progress: "OCR в процессе...",
-no_text_detected: "Текст на изображении не обнаружен",
-ocr_completed: "OCR завершен",
-characters: "символов",
-file_analyzed: "Файл проанализирован",
-size: "Размер",
-type: "Тип",
-extracted_text: "Извлеченный текст",
-file_content: "Содержимое файла",
-connection_error: "Ошибка подключения",
-backend_accessible: "Убедитесь, что backend доступен",
-processing_file: "Обработка файла..."
-},
-zh: {
-login_subtitle: "登录以访问您的对话",
-email: "电子邮件",
-password: "密码",
-login: "登录",
-no_account: "还没有账户？",
-register: "注册",
-encryption_note: "您的数据使用 AES-256 加密",
-create_account: "创建账户",
-register_subtitle: "免费加入 Tecuit IA",
-username: "用户名",
-password_min: "最少 6 个字符",
-confirm_password: "确认密码",
-have_account: "已有账户？",
-conversations: "对话",
-new_conversation: "新对话",
-today: "今天",
-logout: "登出",
-stop_generation: "停止生成",
-disclaimer: "Tecuit IA 可能会出错。请核实重要信息。",
-tecuit_options: "Tecuit 选项",
-camera: "相机",
-photos: "照片",
-files: "文件",
-create_image: "创建图像",
-create_image_desc: "可视化任何内容",
-advanced_reasoning: "高级推理",
-advanced_reasoning_desc: "更长时间思考",
-deep_research: "深入研究",
-deep_research_desc: "详细报告",
-web_search: "网络搜索",
-web_search_desc: "实时信息",
-study_learn: "学习",
-study_learn_desc: "新概念",
-select_model: "选择模型",
-select_model_desc: "选择适合您需求的 AI。",
-fast: "快速",
-powerful: "强大",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "用户内存",
-memory_note: "10GB 存储用于连续性",
-options: "选项",
-export_conversation: "导出对话",
-export_desc: "下载加密的 JSON",
-clear_conversation: "清除对话",
-clear_desc: "删除历史",
-welcome_message: "你好",
-welcome_subtitle: "我是 Tecuit IA，您的智能助手。",
-help_with: "我可以帮助您：",
-smart_responses: "使用 Hermes 7B Q4/Q8 的智能回复",
-image_analysis: "文件分析（文本，带 OCR 的图像）",
-web_research: "网络研究",
-memory_continuity: "10GB 内存用于连续性",
-encrypted_data: "AES-256 加密数据",
-new_conversation_created: "新对话已创建",
-model_changed: "模型已更改为",
-model_activated: "已激活",
-feature_activated: "已激活",
-file_processed: "文件处理成功",
-file_too_large: "文件太大（最大 50MB）",
-generation_stopped: "生成已停止",
-conversation_cleared: "对话已清除",
-conversation_exported: "对话已导出（加密）",
-logged_out: "成功登出",
-wrong_password: "电子邮件或密码不正确",
-email_used: "此电子邮件已被使用",
-passwords_mismatch: "密码不匹配",
-password_min_length: "密码必须至少 6 个字符",
-ocr_in_progress: "OCR 进行中...",
-no_text_detected: "图像中未检测到文本",
-ocr_completed: "OCR 完成",
-characters: "字符",
-file_analyzed: "文件已分析",
-size: "大小",
-type: "类型",
-extracted_text: "提取的文本",
-file_content: "文件内容",
-connection_error: "连接错误",
-backend_accessible: "确保后端可访问",
-processing_file: "处理文件中..."
-},
-ja: {
-login_subtitle: "ログインして会話にアクセス",
-email: "メール",
-password: "パスワード",
-login: "ログイン",
-no_account: "アカウントをお持ちでないですか？",
-register: "登録",
-encryption_note: "データは AES-256 で暗号化されています",
-create_account: "アカウント作成",
-register_subtitle: "Tecuit IA に無料で参加",
-username: "ユーザー名",
-password_min: "最低 6 文字",
-confirm_password: "パスワード確認",
-have_account: "既にアカウントをお持ちですか？",
-conversations: "会話",
-new_conversation: "新しい会話",
-today: "今日",
-logout: "ログアウト",
-stop_generation: "生成を停止",
-disclaimer: "Tecuit IA は間違いを犯す可能性があります。重要な情報を確認してください。",
-tecuit_options: "Tecuit オプション",
-camera: "カメラ",
-photos: "写真",
-files: "ファイル",
-create_image: "画像を作成",
-create_image_desc: "何でも可視化",
-advanced_reasoning: "高度な推論",
-advanced_reasoning_desc: "より長く考える",
-deep_research: "詳細調査",
-deep_research_desc: "詳細レポート",
-web_search: "ウェブ検索",
-web_search_desc: "リアルタイム情報",
-study_learn: "学習",
-study_learn_desc: "新しい概念",
-select_model: "モデル選択",
-select_model_desc: "ニーズに合った AI を選択。",
-fast: "高速",
-powerful: "強力",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "ユーザーメモリ",
-memory_note: "継続性のため 10GB ストレージ",
-options: "オプション",
-export_conversation: "会話をエクスポート",
-export_desc: "暗号化された JSON をダウンロード",
-clear_conversation: "会話をクリア",
-clear_desc: "履歴を削除",
-welcome_message: "こんにちは",
-welcome_subtitle: "Tecuit IA です、あなたのインテリジェントアシスタント。",
-help_with: "お手伝いできます：",
-smart_responses: "Hermes 7B Q4/Q8 によるスマートレスポンス",
-image_analysis: "ファイル分析（テキスト、OCR 付き画像）",
-web_research: "ウェブリサーチ",
-memory_continuity: "継続性のため 10GB メモリ",
-encrypted_data: "AES-256 暗号化データ",
-new_conversation_created: "新しい会話を作成",
-model_changed: "モデルを変更",
-model_activated: "アクティブ化",
-feature_activated: "アクティブ化",
-file_processed: "ファイル処理成功",
-file_too_large: "ファイルが大きすぎます（最大 50MB）",
-generation_stopped: "生成停止",
-conversation_cleared: "会話クリア",
-conversation_exported: "会話エクスポート（暗号化）",
-logged_out: "正常にログアウト",
-wrong_password: "メールまたはパスワードが正しくありません",
-email_used: "このメールは既に使用されています",
-passwords_mismatch: "パスワードが一致しません",
-password_min_length: "パスワードは最低 6 文字必要です",
-ocr_in_progress: "OCR 処理中...",
-no_text_detected: "画像にテキストが検出されません",
-ocr_completed: "OCR 完了",
-characters: "文字",
-file_analyzed: "ファイル分析済み",
-size: "サイズ",
-type: "タイプ",
-extracted_text: "抽出されたテキスト",
-file_content: "ファイル内容",
-connection_error: "接続エラー",
-backend_accessible: "バックエンドがアクセス可能か確認",
-processing_file: "ファイル処理中..."
-},
-ko: {
-login_subtitle: "로그인하여 대화에 액세스",
-email: "이메일",
-password: "비밀번호",
-login: "로그인",
-no_account: "아직 계정이 없으신가요?",
-register: "등록",
-encryption_note: "데이터는 AES-256 으로 암호화됩니다",
-create_account: "계정 생성",
-register_subtitle: "Tecuit IA 에 무료로 가입",
-username: "사용자 이름",
-password_min: "최소 6 자",
-confirm_password: "비밀번호 확인",
-have_account: "이미 계정이 있으신가요?",
-conversations: "대화",
-new_conversation: "새 대화",
-today: "오늘",
-logout: "로그아웃",
-stop_generation: "생성 중지",
-disclaimer: "Tecuit IA 는 실수를 할 수 있습니다. 중요한 정보를 확인하세요.",
-tecuit_options: "Tecuit 옵션",
-camera: "카메라",
-photos: "사진",
-files: "파일",
-create_image: "이미지 생성",
-create_image_desc: "무엇이든 시각화",
-advanced_reasoning: "고급 추론",
-advanced_reasoning_desc: "더 오래 생각",
-deep_research: "심층 연구",
-deep_research_desc: "상세 보고서",
-web_search: "웹 검색",
-web_search_desc: "실시간 정보",
-study_learn: "학습",
-study_learn_desc: "새로운 개념",
-select_model: "모델 선택",
-select_model_desc: "요구에 맞는 AI 를 선택하세요.",
-fast: "빠름",
-powerful: "강력",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "사용자 메모리",
-memory_note: "연속성을 위한 10GB 저장소",
-options: "옵션",
-export_conversation: "대화 내보내기",
-export_desc: "암호화된 JSON 다운로드",
-clear_conversation: "대화 지우기",
-clear_desc: "기록 삭제",
-welcome_message: "안녕하세요",
-welcome_subtitle: "Tecuit IA 입니다, 당신의 지능형 비서.",
-help_with: "도움말:",
-smart_responses: "Hermes 7B Q4/Q8 와 함께 스마트 응답",
-image_analysis: "파일 분석 (텍스트, OCR 포함 이미지)",
-web_research: "웹 연구",
-memory_continuity: "연속성을 위한 10GB 메모리",
-encrypted_data: "AES-256 암호화 데이터",
-new_conversation_created: "새 대화 생성됨",
-model_changed: "모델 변경됨",
-model_activated: "활성화됨",
-feature_activated: "활성화됨",
-file_processed: "파일 처리 성공",
-file_too_large: "파일이 너무 큽니다 (최대 50MB)",
-generation_stopped: "생성 중지됨",
-conversation_cleared: "대화 지워짐",
-conversation_exported: "대화 내보냄 (암호화)",
-logged_out: "성공적으로 로그아웃",
-wrong_password: "이메일 또는 비밀번호가 잘못됨",
-email_used: "이 이메일은 이미 사용 중입니다",
-passwords_mismatch: "비밀번호가 일치하지 않음",
-password_min_length: "비밀번호는 최소 6 자여야 합니다",
-ocr_in_progress: "OCR 진행 중...",
-no_text_detected: "이미지에서 텍스트가 감지되지 않음",
-ocr_completed: "OCR 완료",
-characters: "문자",
-file_analyzed: "파일 분석됨",
-size: "크기",
-type: "유형",
-extracted_text: "추출된 텍스트",
-file_content: "파일 내용",
-connection_error: "연결 오류",
-backend_accessible: "백엔드가 액세스 가능한지 확인",
-processing_file: "파일 처리 중..."
-},
-ar: {
-login_subtitle: "سجل الدخول للوصول إلى محادثاتك",
-email: "البريد الإلكتروني",
-password: "كلمة المرور",
-login: "تسجيل الدخول",
-no_account: "ليس لديك حساب بعد؟",
-register: "تسجيل",
-encryption_note: "بياناتك مشفرة بـ AES-256",
-create_account: "إنشاء حساب",
-register_subtitle: "انضم إلى Tecuit IA مجاناً",
-username: "اسم المستخدم",
-password_min: "6 أحرف على الأقل",
-confirm_password: "تأكيد كلمة المرور",
-have_account: "لديك حساب بالفعل؟",
-conversations: "المحادثات",
-new_conversation: "محادثة جديدة",
-today: "اليوم",
-logout: "تسجيل الخروج",
-stop_generation: "إيقاف التوليد",
-disclaimer: "قد يرتكب Tecuit IA أخطاءً. تحقق من المعلومات المهمة.",
-tecuit_options: "خيارات Tecuit",
-camera: "الكاميرا",
-photos: "الصور",
-files: "الملفات",
-create_image: "إنشاء صورة",
-create_image_desc: "تصور أي شيء",
-advanced_reasoning: "التفكير المتقدم",
-advanced_reasoning_desc: "فكر لفترة أطول",
-deep_research: "بحث متعمق",
-deep_research_desc: "تقارير مفصلة",
-web_search: "بحث الويب",
-web_search_desc: "معلومات في الوقت الفعلي",
-study_learn: "الدراسة والتعلم",
-study_learn_desc: "مفاهيم جديدة",
-select_model: "اختر النموذج",
-select_model_desc: "اختر الذكاء الاصطناعي المناسب لاحتياجاتك.",
-fast: "سريع",
-powerful: "قوي",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "ذاكرة المستخدم",
-memory_note: "10GB تخزين للاستمرارية",
-options: "خيارات",
-export_conversation: "تصدير المحادثة",
-export_desc: "تنزيل JSON مشفر",
-clear_conversation: "مسح المحادثة",
-clear_desc: "حذف السجل",
-welcome_message: "مرحباً",
-welcome_subtitle: "أنا Tecuit IA، مساعدك الذكي.",
-help_with: "يمكنني مساعدتك بـ:",
-smart_responses: "ردود ذكية مع Hermes 7B Q4/Q8",
-image_analysis: "تحليل الملفات (نص، صور مع OCR)",
-web_research: "بحث الويب",
-memory_continuity: "10GB ذاكرة للاستمرارية",
-encrypted_data: "بيانات مشفرة AES-256",
-new_conversation_created: "تم إنشاء محادثة جديدة",
-model_changed: "تم تغيير النموذج إلى",
-model_activated: "تم التفعيل",
-feature_activated: "تم التفعيل",
-file_processed: "تم معالجة الملف بنجاح",
-file_too_large: "الملف كبير جداً (الحد الأقصى 50MB)",
-generation_stopped: "تم إيقاف التوليد",
-conversation_cleared: "تم مسح المحادثة",
-conversation_exported: "تم تصدير المحادثة (مشفر)",
-logged_out: "تم تسجيل الخروج بنجاح",
-wrong_password: "البريد الإلكتروني أو كلمة المرور غير صحيحة",
-email_used: "هذا البريد الإلكتروني مستخدم بالفعل",
-passwords_mismatch: "كلمات المرور غير متطابقة",
-password_min_length: "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
-ocr_in_progress: "OCR قيد التقدم...",
-no_text_detected: "لم يتم اكتشاف نص في الصورة",
-ocr_completed: "اكتمل OCR",
-characters: "أحرف",
-file_analyzed: "تم تحليل الملف",
-size: "الحجم",
-type: "النوع",
-extracted_text: "النص المستخرج",
-file_content: "محتوى الملف",
-connection_error: "خطأ في الاتصال",
-backend_accessible: "تأكد من إمكانية الوصول إلى الواجهة الخلفية",
-processing_file: "معالجة الملف..."
-},
-hi: {
-login_subtitle: "अपनी बातचीत तक पहुंचने के लिए लॉग इन करें",
-email: "ईमेल",
-password: "पासवर्ड",
-login: "लॉग इन",
-no_account: "अभी तक खाता नहीं है?",
-register: "रजिस्टर",
-encryption_note: "आपका डेटा AES-256 से एन्क्रिप्टेड है",
-create_account: "खाता बनाएं",
-register_subtitle: "Tecuit IA में मुफ्त में शामिल हों",
-username: "उपयोगकर्ता नाम",
-password_min: "कम से कम 6 अक्षर",
-confirm_password: "पासवर्ड की पुष्टि करें",
-have_account: "पहले से खाता है?",
-conversations: "बातचीत",
-new_conversation: "नई बातचीत",
-today: "आज",
-logout: "लॉग आउट",
-stop_generation: "जनरेशन रोकें",
-disclaimer: "Tecuit IA गलतियां कर सकता है। महत्वपूर्ण जानकारी सत्यापित करें।",
-tecuit_options: "Tecuit विकल्प",
-camera: "कैमरा",
-photos: "तस्वीरें",
-files: "फाइलें",
-create_image: "छवि बनाएं",
-create_image_desc: "कुछ भी विज़ुअलाइज़ करें",
-advanced_reasoning: "उन्नत तर्क",
-advanced_reasoning_desc: "लंबे समय तक सोचें",
-deep_research: "गहन शोध",
-deep_research_desc: "विस्तृत रिपोर्ट",
-web_search: "वेब खोज",
-web_search_desc: "रियल-टाइम जानकारी",
-study_learn: "अध्ययन और सीखें",
-study_learn_desc: "नई अवधारणाएं",
-select_model: "मॉडल चुनें",
-select_model_desc: "अपनी जरूरतों के अनुसार AI चुनें।",
-fast: "तेज",
-powerful: "शक्तिशाली",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "उपयोगकर्ता मेमोरी",
-memory_note: "निरंतरता के लिए 10GB स्टोरेज",
-options: "विकल्प",
-export_conversation: "बातचीत निर्यात करें",
-export_desc: "एन्क्रिप्टेड JSON डाउनलोड करें",
-clear_conversation: "बातचीत साफ करें",
-clear_desc: "इतिहास हटाएं",
-welcome_message: "नमस्ते",
-welcome_subtitle: "मैं Tecuit IA हूं, आपका बुद्धिमान सहायक।",
-help_with: "मैं आपकी मदद कर सकता हूं:",
-smart_responses: "Hermes 7B Q4/Q8 के साथ स्मार्ट प्रतिक्रियाएं",
-image_analysis: "फाइल विश्लेषण (टेक्स्ट, OCR के साथ छवियां)",
-web_research: "वेब शोध",
-memory_continuity: "निरंतरता के लिए 10GB मेमोरी",
-encrypted_data: "AES-256 एन्क्रिप्टेड डेटा",
-new_conversation_created: "नई बातचीत बनाई गई",
-model_changed: "मॉडल बदला गया",
-model_activated: "सक्रिय",
-feature_activated: "सक्रिय",
-file_processed: "फाइल सफलतापूर्वक प्रोसेस की गई",
-file_too_large: "फाइल बहुत बड़ी है (अधिकतम 50MB)",
-generation_stopped: "जनरेशन रोका गया",
-conversation_cleared: "बातचीत साफ की गई",
-conversation_exported: "बातचीत निर्यात की गई (एन्क्रिप्टेड)",
-logged_out: "सफलतापूर्वक लॉग आउट",
-wrong_password: "गलत ईमेल या पासवर्ड",
-email_used: "यह ईमेल पहले से उपयोग में है",
-passwords_mismatch: "पासवर्ड मेल नहीं खाते",
-password_min_length: "पासवर्ड कम से कम 6 अक्षर का होना चाहिए",
-ocr_in_progress: "OCR प्रगति पर...",
-no_text_detected: "छवि में कोई टेक्स्ट नहीं मिला",
-ocr_completed: "OCR पूरा हुआ",
-characters: "अक्षर",
-file_analyzed: "फाइल विश्लेषित",
-size: "आकार",
-type: "प्रकार",
-extracted_text: "निकाला गया टेक्स्ट",
-file_content: "फाइल सामग्री",
-connection_error: "कनेक्शन त्रुटि",
-backend_accessible: "सुनिश्चित करें कि बैकएंड एक्सेसिबल है",
-processing_file: "फाइल प्रोसेसिंग..."
-},
-tr: {
-login_subtitle: "Konuşmalarınıza erişmek için giriş yapın",
-email: "E-posta",
-password: "Şifre",
-login: "Giriş Yap",
-no_account: "Henüz hesabınız yok mu?",
-register: "Kaydol",
-encryption_note: "Verileriniz AES-256 ile şifrelenmiştir",
-create_account: "Hesap Oluştur",
-register_subtitle: "Tecuit IA'ya ücretsiz katılın",
-username: "Kullanıcı adı",
-password_min: "Minimum 6 karakter",
-confirm_password: "Şifreyi Onayla",
-have_account: "Zaten hesabınız var mı?",
-conversations: "Konuşmalar",
-new_conversation: "Yeni Konuşma",
-today: "Bugün",
-logout: "Çıkış Yap",
-stop_generation: "Oluşturmayı Durdur",
-disclaimer: "Tecuit IA hata yapabilir. Önemli bilgileri doğrulayın.",
-tecuit_options: "Tecuit Seçenekleri",
-camera: "Kamera",
-photos: "Fotoğraflar",
-files: "Dosyalar",
-create_image: "Görsel Oluştur",
-create_image_desc: "Herhangi bir şeyi görselleştirin",
-advanced_reasoning: "Gelişmiş Akıl Yürütme",
-advanced_reasoning_desc: "Daha uzun düşünün",
-deep_research: "Derin Araştırma",
-deep_research_desc: "Detaylı raporlar",
-web_search: "Web Arama",
-web_search_desc: "Gerçek zamanlı bilgi",
-study_learn: "Çalış ve Öğren",
-study_learn_desc: "Yeni kavramlar",
-select_model: "Model Seç",
-select_model_desc: "İhtiyaçlarınıza uygun AI'yı seçin.",
-fast: "Hızlı",
-powerful: "Güçlü",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "Kullanıcı Belleği",
-memory_note: "Süreklilik için 10GB depolama",
-options: "Seçenekler",
-export_conversation: "Konuşmayı Dışa Aktar",
-export_desc: "Şifreli JSON indir",
-clear_conversation: "Konuşmayı Temizle",
-clear_desc: "Geçmişi sil",
-welcome_message: "Merhaba",
-welcome_subtitle: "Ben Tecuit IA, akıllı asistanınız.",
-help_with: "Size şu konularda yardımcı olabilirim:",
-smart_responses: "Hermes 7B Q4/Q8 ile akıllı yanıtlar",
-image_analysis: "Dosya analizi (metin, OCR ile görseller)",
-web_research: "Web Araştırması",
-memory_continuity: "Süreklilik için 10GB bellek",
-encrypted_data: "AES-256 Şifreli Veriler",
-new_conversation_created: "Yeni konuşma oluşturuldu",
-model_changed: "Model değiştirildi",
-model_activated: "aktive edildi",
-feature_activated: "aktive edildi",
-file_processed: "Dosya başarıyla işlendi",
-file_too_large: "Dosya çok büyük (maks 50MB)",
-generation_stopped: "Oluşturma durduruldu",
-conversation_cleared: "Konuşma temizlendi",
-conversation_exported: "Konuşma dışa aktarıldı (şifreli)",
-logged_out: "Başarıyla çıkış yapıldı",
-wrong_password: "Yanlış e-posta veya şifre",
-email_used: "Bu e-posta zaten kullanılıyor",
-passwords_mismatch: "Şifreler eşleşmiyor",
-password_min_length: "Şifre en az 6 karakter olmalıdır",
-ocr_in_progress: "OCR devam ediyor...",
-no_text_detected: "Görselde metin algılanmadı",
-ocr_completed: "OCR tamamlandı",
-characters: "karakter",
-file_analyzed: "Dosya analiz edildi",
-size: "Boyut",
-type: "Tip",
-extracted_text: "Çıkarılan metin",
-file_content: "Dosya içeriği",
-connection_error: "Bağlantı Hatası",
-backend_accessible: "Backend'in erişilebilir olduğundan emin olun",
-processing_file: "Dosya işleniyor..."
-},
-pl: {
-login_subtitle: "Zaloguj się, aby uzyskać dostęp do rozmów",
-email: "Email",
-password: "Hasło",
-login: "Zaloguj się",
-no_account: "Nie masz jeszcze konta?",
-register: "Zarejestruj się",
-encryption_note: "Twoje dane są szyfrowane AES-256",
-create_account: "Utwórz konto",
-register_subtitle: "Dołącz do Tecuit IA za darmo",
-username: "Nazwa użytkownika",
-password_min: "Minimum 6 znaków",
-confirm_password: "Potwierdź hasło",
-have_account: "Masz już konto?",
-conversations: "Rozmowy",
-new_conversation: "Nowa rozmowa",
-today: "Dzisiaj",
-logout: "Wyloguj się",
-stop_generation: "Zatrzymaj generowanie",
-disclaimer: "Tecuit IA może popełniać błędy. Sprawdź ważne informacje.",
-tecuit_options: "Opcje Tecuit",
-camera: "Kamera",
-photos: "Zdjęcia",
-files: "Pliki",
-create_image: "Utwórz obraz",
-create_image_desc: "Wizualizuj cokolwiek",
-advanced_reasoning: "Zaawansowane rozumowanie",
-advanced_reasoning_desc: "Myśl dłużej",
-deep_research: "Głębokie badania",
-deep_research_desc: "Szczegółowe raporty",
-web_search: "Wyszukiwanie w sieci",
-web_search_desc: "Informacje w czasie rzeczywistym",
-study_learn: "Nauka i studiowanie",
-study_learn_desc: "Nowe koncepcje",
-select_model: "Wybierz model",
-select_model_desc: "Wybierz AI odpowiedni dla Twoich potrzeb.",
-fast: "Szybki",
-powerful: "Potężny",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "Pamięć użytkownika",
-memory_note: "10GB pamięci dla ciągłości",
-options: "Opcje",
-export_conversation: "Eksportuj rozmowę",
-export_desc: "Pobierz szyfrowany JSON",
-clear_conversation: "Wyczyść rozmowę",
-clear_desc: "Usuń historię",
-welcome_message: "Witaj",
-welcome_subtitle: "Jestem Tecuit IA, Twój inteligentny asystent.",
-help_with: "Mogę Ci pomóc z:",
-smart_responses: "Inteligentne odpowiedzi z Hermes 7B Q4/Q8",
-image_analysis: "Analiza plików (tekst, obrazy z OCR)",
-web_research: "Badania sieciowe",
-memory_continuity: "10GB pamięci dla ciągłości",
-encrypted_data: "Dane szyfrowane AES-256",
-new_conversation_created: "Utworzono nową rozmowę",
-model_changed: "Zmieniono model na",
-model_activated: "aktywowano",
-feature_activated: "aktywowano",
-file_processed: "Plik przetworzony pomyślnie",
-file_too_large: "Plik zbyt duży (max 50MB)",
-generation_stopped: "Generowanie zatrzymane",
-conversation_cleared: "Rozmowa wyczyszczona",
-conversation_exported: "Rozmowa wyeksportowana (szyfrowana)",
-logged_out: "Pomyślnie wylogowano",
-wrong_password: "Nieprawidłowy email lub hasło",
-email_used: "Ten email jest już używany",
-passwords_mismatch: "Hasła nie pasują do siebie",
-password_min_length: "Hasło musi mieć co najmniej 6 znaków",
-ocr_in_progress: "OCR w toku...",
-no_text_detected: "Nie wykryto tekstu na obrazie",
-ocr_completed: "OCR zakończony",
-characters: "znaków",
-file_analyzed: "Plik przeanalizowany",
-size: "Rozmiar",
-type: "Typ",
-extracted_text: "Wyodrębniony tekst",
-file_content: "Zawartość pliku",
-connection_error: "Błąd połączenia",
-backend_accessible: "Upewnij się, że backend jest dostępny",
-processing_file: "Przetwarzanie pliku..."
-},
-nl: {
-login_subtitle: "Log in om toegang te krijgen tot uw gesprekken",
-email: "E-mail",
-password: "Wachtwoord",
-login: "Inloggen",
-no_account: "Nog geen account?",
-register: "Registreren",
-encryption_note: "Uw gegevens zijn versleuteld met AES-256",
-create_account: "Account aanmaken",
-register_subtitle: "Sluit je gratis aan bij Tecuit IA",
-username: "Gebruikersnaam",
-password_min: "Minimaal 6 tekens",
-confirm_password: "Bevestig wachtwoord",
-have_account: "Heb je al een account?",
-conversations: "Gesprekken",
-new_conversation: "Nieuw gesprek",
-today: "Vandaag",
-logout: "Uitloggen",
-stop_generation: "Generatie stoppen",
-disclaimer: "Tecuit IA kan fouten maken. Controleer belangrijke informatie.",
-tecuit_options: "Tecuit Opties",
-camera: "Camera",
-photos: "Foto's",
-files: "Bestanden",
-create_image: "Afbeelding maken",
-create_image_desc: "Visualiseer alles",
-advanced_reasoning: "Geavanceerd redeneren",
-advanced_reasoning_desc: "Langer nadenken",
-deep_research: "Diep onderzoek",
-deep_research_desc: "Gedetailleerde rapporten",
-web_search: "Webzoekopdracht",
-web_search_desc: "Real-time info",
-study_learn: "Studeren & Leren",
-study_learn_desc: "Nieuwe concepten",
-select_model: "Model selecteren",
-select_model_desc: "Kies de AI die bij uw behoeften past.",
-fast: "Snel",
-powerful: "Krachtig",
-hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
-hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
-user_memory: "Gebruikersgeheugen",
-memory_note: "10GB opslag voor continuïteit",
-options: "Opties",
-export_conversation: "Gesprek exporteren",
-export_desc: "Versleutelde JSON downloaden",
-clear_conversation: "Gesprek wissen",
-clear_desc: "Geschiedenis verwijderen",
-welcome_message: "Hallo",
-welcome_subtitle: "Ik ben Tecuit IA, uw intelligente assistent.",
-help_with: "Ik kan u helpen met:",
-smart_responses: "Slimme antwoorden met Hermes 7B Q4/Q8",
-image_analysis: "Bestandsanalyse (tekst, afbeeldingen met OCR)",
-web_research: "Webonderzoek",
-memory_continuity: "10GB geheugen voor continuïteit",
-encrypted_data: "AES-256 versleutelde gegevens",
-new_conversation_created: "Nieuw gesprek aangemaakt",
-model_changed: "Model gewijzigd naar",
-model_activated: "geactiveerd",
-feature_activated: "geactiveerd",
-file_processed: "Bestand succesvol verwerkt",
-file_too_large: "Bestand te groot (max 50MB)",
-generation_stopped: "Generatie gestopt",
-conversation_cleared: "Gesprek gewist",
-conversation_exported: "Gesprek geëxporteerd (versleuteld)",
-logged_out: "Succesvol uitgelogd",
-wrong_password: "Onjuiste e-mail of wachtwoord",
-email_used: "Dit e-mailadres is al in gebruik",
-passwords_mismatch: "Wachtwoorden komen niet overeen",
-password_min_length: "Wachtwoord moet minimaal 6 tekens zijn",
-ocr_in_progress: "OCR bezig...",
-no_text_detected: "Geen tekst gedetecteerd in afbeelding",
-ocr_completed: "OCR voltooid",
-characters: "tekens",
-file_analyzed: "Bestand geanalyseerd",
-size: "Grootte",
-type: "Type",
-extracted_text: "Geëxtraheerde tekst",
-file_content: "Bestandsinhoud",
-connection_error: "Verbindingsfout",
-backend_accessible: "Zorg ervoor dat de backend toegankelijk is",
-processing_file: "Bestand verwerken..."
-}
+  fr: {
+    login_subtitle: "Connectez-vous pour accéder à vos conversations",
+    email: "Email",
+    password: "Mot de passe",
+    login: "Se connecter",
+    no_account: "Pas encore de compte ?",
+    register: "S'inscrire",
+    encryption_note: "Vos données sont cryptées en AES-256",
+    register_subtitle: "Rejoignez Tecuit IA gratuitement",
+    username: "Nom d'utilisateur",
+    password_min: "Minimum 6 caractères",
+    confirm_password: "Confirmer le mot de passe",
+    have_account: "Déjà un compte ?",
+    conversations: "Conversations",
+    new_conversation: "Nouvelle conversation",
+    today: "Aujourd'hui",
+    logout: "Déconnexion",
+    stop_generation: "Arrêter la génération",
+    disclaimer: "Tecuit IA peut faire des erreurs. Vérifiez les informations importantes.",
+    tecuit_options: "Options Tecuit",
+    camera: "Caméra",
+    photos: "Photos",
+    files: "Fichiers",
+    create_image: "Créer une image",
+    create_image_desc: "Visualisez n'importe quoi",
+    advanced_reasoning: "Raisonnement avancé",
+    advanced_reasoning_desc: "Réfléchir plus longtemps",
+    deep_research: "Recherche approfondie",
+    deep_research_desc: "Rapports détaillés",
+    web_search: "Recherche sur Internet",
+    web_search_desc: "Infos en temps réel",
+    study_learn: "Étudier et apprendre",
+    study_learn_desc: "Nouveaux concepts",
+    select_model: "Sélectionner le modèle",
+    select_model_desc: "Choisissez l'IA adaptée à vos besoins.",
+    fast: "Rapide",
+    powerful: "Puissant",
+    hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
+    hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
+    options: "Options",
+    export_conversation: "Exporter la conversation",
+    export_desc: "Télécharger en JSON crypté",
+    clear_conversation: "Effacer la conversation",
+    clear_desc: "Supprimer l'historique",
+    welcome_message: "Bonjour",
+    welcome_subtitle: "Je suis Tecuit IA, votre assistant intelligent.",
+    help_with: "Je peux vous aider avec :",
+    smart_responses: "Réponses intelligentes avec Hermes 7B Q4/Q8",
+    image_analysis: "Analyse de fichiers (texte, images avec OCR)",
+    web_research: "Recherche sur Internet",
+    memory_continuity: "Mémoire de 10GB pour la continuité",
+    encrypted_data: "Données cryptées AES-256",
+    new_conversation_created: "Nouvelle conversation créée",
+    model_changed: "Modèle changé pour",
+    model_activated: "activé",
+    feature_activated: "activé",
+    file_processed: "Fichier traité avec succès",
+    file_too_large: "Fichier trop volumineux (max 50MB)",
+    generation_stopped: "Génération arrêtée",
+    conversation_cleared: "Conversation effacée",
+    conversation_exported: "Conversation exportée (cryptée)",
+    logged_out: "Déconnecté avec succès",
+    wrong_password: "Email ou mot de passe incorrect",
+    email_used: "Cet email est déjà utilisé",
+    passwords_mismatch: "Les mots de passe ne correspondent pas",
+    password_min_length: "Le mot de passe doit faire au moins 6 caractères",
+    ocr_in_progress: "OCR en cours...",
+    no_text_detected: "Aucun texte détecté dans l'image",
+    ocr_completed: "OCR terminé",
+    characters: "caractères",
+    file_analyzed: "Fichier analysé",
+    size: "Taille",
+    type: "Type",
+    extracted_text: "Texte extrait",
+    file_content: "Contenu du fichier",
+    connection_error: "Erreur de connexion",
+    backend_accessible: "Assurez-vous que le backend est accessible",
+    processing_file: "Traitement du fichier...",
+    connection_test_success: "Connexion API réussie !",
+    connection_test_failed: "Échec de la connexion API",
+    checking_connection: "Vérification de la connexion..."
+  },
+  en: {
+    login_subtitle: "Log in to access your conversations",
+    email: "Email",
+    password: "Password",
+    login: "Log In",
+    no_account: "No account yet?",
+    register: "Sign Up",
+    encryption_note: "Your data is encrypted with AES-256",
+    register_subtitle: "Join Tecuit IA for free",
+    username: "Username",
+    password_min: "Minimum 6 characters",
+    confirm_password: "Confirm Password",
+    have_account: "Already have an account?",
+    conversations: "Conversations",
+    new_conversation: "New Conversation",
+    today: "Today",
+    logout: "Log Out",
+    stop_generation: "Stop Generation",
+    disclaimer: "Tecuit IA can make mistakes. Verify important information.",
+    tecuit_options: "Tecuit Options",
+    camera: "Camera",
+    photos: "Photos",
+    files: "Files",
+    create_image: "Create Image",
+    create_image_desc: "Visualize anything",
+    advanced_reasoning: "Advanced Reasoning",
+    advanced_reasoning_desc: "Think longer",
+    deep_research: "Deep Research",
+    deep_research_desc: "Detailed reports",
+    web_search: "Web Search",
+    web_search_desc: "Real-time info",
+    study_learn: "Study & Learn",
+    study_learn_desc: "New concepts",
+    select_model: "Select Model",
+    select_model_desc: "Choose the AI that fits your needs.",
+    fast: "Fast",
+    powerful: "Powerful",
+    hermes_4b_desc: "nous-hermes-2-mistral-7b-dpo (Q4) - tecuit-ai-nc.ngrok.dev",
+    hermes_7b_desc: "nousresearch/nous-hermes-2-mistral-7b-dpo (Q8) - zenkaritecuitai.ngrok.app",
+    options: "Options",
+    export_conversation: "Export Conversation",
+    export_desc: "Download encrypted JSON",
+    clear_conversation: "Clear Conversation",
+    clear_desc: "Delete history",
+    welcome_message: "Hello",
+    welcome_subtitle: "I am Tecuit IA, your intelligent assistant.",
+    help_with: "I can help you with:",
+    smart_responses: "Smart responses with Hermes 7B Q4/Q8",
+    image_analysis: "File analysis (text, images with OCR)",
+    web_research: "Web Research",
+    memory_continuity: "10GB memory for continuity",
+    encrypted_data: "AES-256 Encrypted Data",
+    new_conversation_created: "New conversation created",
+    model_changed: "Model changed to",
+    model_activated: "activated",
+    feature_activated: "activated",
+    file_processed: "File processed successfully",
+    file_too_large: "File too large (max 50MB)",
+    generation_stopped: "Generation stopped",
+    conversation_cleared: "Conversation cleared",
+    conversation_exported: "Conversation exported (encrypted)",
+    logged_out: "Logged out successfully",
+    wrong_password: "Incorrect email or password",
+    email_used: "This email is already in use",
+    passwords_mismatch: "Passwords do not match",
+    password_min_length: "Password must be at least 6 characters",
+    ocr_in_progress: "OCR in progress...",
+    no_text_detected: "No text detected in image",
+    ocr_completed: "OCR completed",
+    characters: "characters",
+    file_analyzed: "File analyzed",
+    size: "Size",
+    type: "Type",
+    extracted_text: "Extracted text",
+    file_content: "File content",
+    connection_error: "Connection Error",
+    backend_accessible: "Make sure the backend is accessible",
+    processing_file: "Processing file...",
+    connection_test_success: "API connection successful!",
+    connection_test_failed: "API connection failed",
+    checking_connection: "Checking connection..."
+  }
 };
+
 const languages = [
-{ code: 'fr', name: 'Français', flag: '🇫' },
-{ code: 'en', name: 'English', flag: '🇬🇧' },
-{ code: 'es', name: 'Español', flag: '🇪' },
-{ code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-{ code: 'it', name: 'Italiano', flag: '🇮🇹' },
-{ code: 'pt', name: 'Português', flag: '🇵' },
-{ code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
-{ code: 'ru', name: 'Русский', flag: '🇷🇺' },
-{ code: 'zh', name: '中文', flag: '🇨🇳' },
-{ code: 'ja', name: '日本語', flag: '🇯🇵' },
-{ code: 'ko', name: '한국어', flag: '🇰🇷' },
-{ code: 'ar', name: 'العربية', flag: '🇸🇦' },
-{ code: 'hi', name: 'हिन्दी', flag: '🇮' },
-{ code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
-{ code: 'pl', name: 'Polski', flag: '🇵🇱' }
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+  { code: 'pt', name: 'Português', flag: '🇵🇹' }
 ];
+
 let currentLanguage = 'fr';
+
 // ==================== CONFIGURATION ====================
 const API_ENDPOINT = '/v1/chat/completions';
 const MODEL_MAP = {
-'Hermes 7B Q4': {
-modelName: 'nous-hermes-2-mistral-7b-dpo',
-apiUrl: 'https://tecuit-ai-nc.ngrok.dev',
-quantization: 'Q4'
-},
-'Hermes 7B Q8': {
-modelName: 'nousresearch/nous-hermes-2-mistral-7b-dpo',
-apiUrl: 'https://zenkaritecuitai.ngrok.app',
-quantization: 'Q8'
-}
+  'Hermes 7B Q4': {
+    modelName: 'nous-hermes-2-mistral-7b-dpo',
+    apiUrl: 'https://tecuit-ai-nc.ngrok.dev',
+    quantization: 'Q4'
+  },
+  'Hermes 7B Q8': {
+    modelName: 'nousresearch/nous-hermes-2-mistral-7b-dpo',
+    apiUrl: 'https://zenkaritecuitai.ngrok.app',
+    quantization: 'Q8'
+  }
 };
 const ENCRYPTION_KEY = 'TecuitIA-SecretKey-2024-AES256';
 const MAX_FILE_SIZE = 50 * 1024 * 1024;
+const API_TIMEOUT = 30000;
+
 // ==================== STATE ====================
 let currentUser = null;
 let currentModel = 'Hermes 7B Q4';
@@ -2022,186 +934,242 @@ let conversations = [];
 let currentConversationId = null;
 let isGenerating = false;
 let pendingFileContent = null;
+let apiStatus = 'checking';
+
 // ==================== TRANSLATION FUNCTIONS ====================
 function initLanguageSelector() {
-const dropdown = document.getElementById('langDropdown');
-languages.forEach(lang => {
-const option = document.createElement('div');
-option.className = 'lang-option';
-option.dataset.lang = lang.code;
-option.innerHTML = `
-<span class="lang-flag">${lang.flag}</span>
-<span>${lang.name}</span>
-`;
-option.addEventListener('click', () => setLanguage(lang.code));
-dropdown.appendChild(option);
-});
-document.getElementById('langBtn').addEventListener('click', () => {
-dropdown.classList.toggle('active');
-});
-document.addEventListener('click', (e) => {
-if (!e.target.closest('.lang-selector')) {
-dropdown.classList.remove('active');
+  const dropdown = document.getElementById('langDropdown');
+  languages.forEach(lang => {
+    const option = document.createElement('div');
+    option.className = 'lang-option';
+    option.dataset.lang = lang.code;
+    option.innerHTML = `<span class="lang-flag">${lang.flag}</span><span>${lang.name}</span>`;
+    option.addEventListener('click', () => setLanguage(lang.code));
+    dropdown.appendChild(option);
+  });
+  
+  document.getElementById('langBtn').addEventListener('click', () => {
+    dropdown.classList.toggle('active');
+  });
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+      dropdown.classList.remove('active');
+    }
+  });
+  
+  const savedLang = localStorage.getItem('tecuit_language');
+  if (savedLang && languages.find(l => l.code === savedLang)) {
+    setLanguage(savedLang);
+  }
 }
-});
-// Load saved language
-const savedLang = localStorage.getItem('tecuit_language');
-if (savedLang && languages.find(l => l.code === savedLang)) {
-setLanguage(savedLang);
-}
-}
+
 function setLanguage(langCode) {
-currentLanguage = langCode;
-localStorage.setItem('tecuit_language', langCode);
-// Update button display
-document.getElementById('current-lang-display').textContent = langCode.toUpperCase();
-// Update all translatable elements
-document.querySelectorAll('[data-i18n]').forEach(el => {
-const key = el.dataset.i18n;
-if (translations[langCode] && translations[langCode][key]) {
-el.textContent = translations[langCode][key];
+  currentLanguage = langCode;
+  localStorage.setItem('tecuit_language', langCode);
+  document.getElementById('current-lang-display').textContent = langCode.toUpperCase();
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (translations[langCode] && translations[langCode][key]) {
+      el.textContent = translations[langCode][key];
+    }
+  });
+  
+  document.getElementById('langDropdown').classList.remove('active');
+  showToast(translations[langCode].feature_activated || 'Language changed');
 }
-});
-// Update placeholders
-const emailInputs = document.querySelectorAll('input[type="email"]');
-emailInputs.forEach(input => {
-input.placeholder = langCode === 'fr' ? 'votre@email.com' : 'your@email.com';
-});
-// Close dropdown
-document.getElementById('langDropdown').classList.remove('active');
-// Animate language change
-document.body.style.opacity = '0.5';
-setTimeout(() => {
-document.body.style.opacity = '1';
-}, 200);
-showToast(translations[langCode].feature_activated || 'Language changed');
-}
+
 function t(key) {
-return translations[currentLanguage] && translations[currentLanguage][key]
-? translations[currentLanguage][key]
-: key;
+  return translations[currentLanguage] && translations[currentLanguage][key]
+    ? translations[currentLanguage][key]
+    : key;
 }
+
 // ==================== ENCRYPTION FUNCTIONS ====================
 function encryptData(data) {
-try {
-const jsonString = JSON.stringify(data);
-const encrypted = CryptoJS.AES.encrypt(jsonString, ENCRYPTION_KEY).toString();
-return encrypted;
-} catch (e) {
-console.error('[Encryption] Error:', e);
-return null;
+  try {
+    const jsonString = JSON.stringify(data);
+    return CryptoJS.AES.encrypt(jsonString, ENCRYPTION_KEY).toString();
+  } catch (e) {
+    console.error('[Encryption] Error:', e);
+    return null;
+  }
 }
-}
+
 function decryptData(encryptedData) {
-try {
-const bytes = CryptoJS.AES.decrypt(encryptedData, ENCRYPTION_KEY);
-const decryptedString = bytes.toString(CryptoJS.enc.Utf8);
-if (!decryptedString) return null;
-return JSON.parse(decryptedString);
-} catch (e) {
-console.error('[Decryption] Error:', e);
-return null;
+  try {
+    const bytes = CryptoJS.AES.decrypt(encryptedData, ENCRYPTION_KEY);
+    const decryptedString = bytes.toString(CryptoJS.enc.Utf8);
+    if (!decryptedString) return null;
+    return JSON.parse(decryptedString);
+  } catch (e) {
+    console.error('[Decryption] Error:', e);
+    return null;
+  }
 }
-}
+
 function hashPassword(password) {
-return CryptoJS.SHA256(password).toString();
+  return CryptoJS.SHA256(password).toString();
 }
+
+// ==================== API CONNECTION TEST ====================
+async function testApiConnection(apiUrl) {
+  const indicator = document.getElementById('apiStatusIndicator');
+  indicator.className = 'status-indicator status-checking';
+  
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT);
+    
+    const response = await fetch(`${apiUrl}${API_ENDPOINT}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: MODEL_MAP[currentModel].modelName,
+        messages: [{ role: 'user', content: 'test' }],
+        stream: false,
+        max_tokens: 10
+      }),
+      signal: controller.signal
+    });
+    
+    clearTimeout(timeoutId);
+    
+    if (response.ok) {
+      indicator.className = 'status-indicator status-online';
+      apiStatus = 'online';
+      showToast(t('connection_test_success'));
+      return true;
+    } else {
+      throw new Error(`HTTP ${response.status}`);
+    }
+  } catch (error) {
+    indicator.className = 'status-indicator status-offline';
+    apiStatus = 'offline';
+    showToast(t('connection_test_failed'));
+    console.error('[Connection Test] Error:', error);
+    return false;
+  }
+}
+
 // ==================== AUTHENTICATION ====================
 function showLogin() {
-document.getElementById('login-form').classList.remove('hidden');
-document.getElementById('register-form').classList.add('hidden');
+  document.getElementById('login-form').classList.remove('hidden');
+  document.getElementById('register-form').classList.add('hidden');
 }
+
 function showRegister() {
-document.getElementById('login-form').classList.add('hidden');
-document.getElementById('register-form').classList.remove('hidden');
+  document.getElementById('login-form').classList.add('hidden');
+  document.getElementById('register-form').classList.remove('hidden');
 }
+
 function togglePassword(inputId) {
-const input = document.getElementById(inputId);
-input.type = input.type === 'password' ? 'text' : 'password';
+  const input = document.getElementById(inputId);
+  input.type = input.type === 'password' ? 'text' : 'password';
 }
+
 function checkAuth() {
-const savedUser = localStorage.getItem('tecuit_current_user');
-if (savedUser) {
-currentUser = decryptData(savedUser);
-if (currentUser) {
-showMainApp();
-return true;
+  const savedUser = localStorage.getItem('tecuit_current_user');
+  if (savedUser) {
+    currentUser = decryptData(savedUser);
+    if (currentUser) {
+      showMainApp();
+      return true;
+    }
+  }
+  return false;
 }
-}
-return false;
-}
+
 function registerUser(username, email, password) {
-const users = getUsers();
-if (users.find(u => u.email === email)) {
-showToast(t('email_used'));
-return false;
+  const users = getUsers();
+  if (users.find(u => u.email === email)) {
+    showToast(t('email_used'));
+    return false;
+  }
+  
+  const newUser = {
+    id: 'user_' + Date.now(),
+    username: username,
+    email: email,
+    password: hashPassword(password),
+    createdAt: new Date().toISOString(),
+    memoryUsed: 0,
+    memoryMax: 10 * 1024 * 1024 * 1024
+  };
+  
+  users.push(newUser);
+  saveUsers(users);
+  loginUser(email, password);
+  return true;
 }
-const newUser = {
-id: 'user_' + Date.now(),
-username: username,
-email: email,
-password: hashPassword(password),
-createdAt: new Date().toISOString(),
-memoryUsed: 0,
-memoryMax: 10 * 1024 * 1024 * 1024
-};
-users.push(newUser);
-saveUsers(users);
-loginUser(email, password);
-return true;
-}
+
 function loginUser(email, password) {
-const users = getUsers();
-const user = users.find(u => u.email === email && u.password === hashPassword(password));
-if (!user) {
-showToast(t('wrong_password'));
-return false;
+  const users = getUsers();
+  const user = users.find(u => u.email === email && u.password === hashPassword(password));
+  
+  if (!user) {
+    showToast(t('wrong_password'));
+    return false;
+  }
+  
+  currentUser = user;
+  localStorage.setItem('tecuit_current_user', encryptData(user));
+  showMainApp();
+  return true;
 }
-currentUser = user;
-localStorage.setItem('tecuit_current_user', encryptData(user));
-showMainApp();
-return true;
-}
+
 function logoutUser() {
-currentUser = null;
-localStorage.removeItem('tecuit_current_user');
-document.getElementById('main-app').classList.remove('active');
-document.getElementById('auth-pages').classList.add('active');
-document.getElementById('login-form').classList.remove('hidden');
-document.getElementById('register-form').classList.add('hidden');
-showToast(t('logged_out'));
+  currentUser = null;
+  localStorage.removeItem('tecuit_current_user');
+  document.getElementById('main-app').classList.remove('active');
+  document.getElementById('auth-pages').classList.add('active');
+  document.getElementById('login-form').classList.remove('hidden');
+  document.getElementById('register-form').classList.add('hidden');
+  showToast(t('logged_out'));
 }
+
 function getUsers() {
-const encrypted = localStorage.getItem('tecuit_users');
-if (!encrypted) return [];
-return decryptData(encrypted) || [];
+  const encrypted = localStorage.getItem('tecuit_users');
+  if (!encrypted) return [];
+  return decryptData(encrypted) || [];
 }
+
 function saveUsers(users) {
-const encrypted = encryptData(users);
-localStorage.setItem('tecuit_users', encrypted);
+  const encrypted = encryptData(users);
+  localStorage.setItem('tecuit_users', encrypted);
 }
+
 function getUserConversations(userId) {
-const encrypted = localStorage.getItem('tecuit_conversations_' + userId);
-if (!encrypted) return [];
-return decryptData(encrypted) || [];
+  const encrypted = localStorage.getItem('tecuit_conversations_' + userId);
+  if (!encrypted) return [];
+  return decryptData(encrypted) || [];
 }
+
 function saveUserConversations(userId, convs) {
-const encrypted = encryptData(convs);
-localStorage.setItem('tecuit_conversations_' + userId, encrypted);
-updateMemoryDisplay();
+  const encrypted = encryptData(convs);
+  localStorage.setItem('tecuit_conversations_' + userId, encrypted);
+  updateMemoryDisplay();
 }
+
 function showMainApp() {
-document.getElementById('auth-pages').classList.remove('active');
-document.getElementById('main-app').classList.add('active');
-document.getElementById('user-name-display').textContent = currentUser.username;
-document.getElementById('user-initial').textContent = currentUser.username.charAt(0).toUpperCase();
-conversations = getUserConversations(currentUser.id);
-createNewConversation();
-renderConversationList();
-addWelcomeMessage();
-loadFromLocalStorage();
-updateMemoryDisplay();
+  document.getElementById('auth-pages').classList.remove('active');
+  document.getElementById('main-app').classList.add('active');
+  document.getElementById('user-name-display').textContent = currentUser.username;
+  document.getElementById('user-initial').textContent = currentUser.username.charAt(0).toUpperCase();
+  conversations = getUserConversations(currentUser.id);
+  createNewConversation();
+  renderConversationList();
+  addWelcomeMessage();
+  loadFromLocalStorage();
+  updateMemoryDisplay();
+  
+  // Test API connection on app load
+  setTimeout(() => testApiConnection(currentApiUrl), 1000);
 }
+
 // ==================== DOM ELEMENTS ====================
 const chatContainer = document.getElementById('chat-container');
 const input = document.getElementById('chat-input');
@@ -2218,590 +1186,678 @@ const fileProgressContainer = document.getElementById('fileProgressContainer');
 const fileProgressBar = document.getElementById('fileProgressBar');
 const fileProgressPercent = document.getElementById('fileProgressPercent');
 const fileProgressName = document.getElementById('fileProgressName');
+const apiStatusIndicator = document.getElementById('apiStatusIndicator');
+
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', function() {
-initLanguageSelector();
-if (!checkAuth()) {
-document.getElementById('auth-pages').classList.add('active');
-}
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-e.preventDefault();
-const email = document.getElementById('login-email').value;
-const password = document.getElementById('login-password').value;
-loginUser(email, password);
+  initLanguageSelector();
+  
+  if (!checkAuth()) {
+    document.getElementById('auth-pages').classList.add('active');
+  }
+  
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    loginUser(email, password);
+  });
+  
+  document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('register-username').value;
+    const email = document.getElementById('register-email').value;
+    const password = document.getElementById('register-password').value;
+    const confirm = document.getElementById('register-confirm').value;
+    
+    if (password !== confirm) {
+      showToast(t('passwords_mismatch'));
+      return;
+    }
+    if (password.length < 6) {
+      showToast(t('password_min_length'));
+      return;
+    }
+    registerUser(username, email, password);
+  });
+  
+  document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+  setupEventListeners();
 });
-document.getElementById('registerForm').addEventListener('submit', function(e) {
-e.preventDefault();
-const username = document.getElementById('register-username').value;
-const email = document.getElementById('register-email').value;
-const password = document.getElementById('register-password').value;
-const confirm = document.getElementById('register-confirm').value;
-if (password !== confirm) {
-showToast(t('passwords_mismatch'));
-return;
-}
-if (password.length < 6) {
-showToast(t('password_min_length'));
-return;
-}
-registerUser(username, email, password);
-});
-document.getElementById('logoutBtn').addEventListener('click', logoutUser);
-setupEventListeners();
-});
+
 function setupEventListeners() {
-document.getElementById('sidebarBtn').addEventListener('click', toggleSidebar);
-document.getElementById('closeSidebarBtn').addEventListener('click', toggleSidebar);
-document.getElementById('newConversationBtn').addEventListener('click', newConversation);
-document.getElementById('modelBtn').addEventListener('click', toggleModelSelector);
-document.getElementById('closeModelBtn').addEventListener('click', toggleModelSelector);
-document.getElementById('modelBackdrop').addEventListener('click', toggleModelSelector);
-document.querySelectorAll('.model-option').forEach(function(btn) {
-btn.addEventListener('click', function() {
-const model = this.getAttribute('data-model');
-const apiUrl = this.getAttribute('data-api');
-selectModel(model, apiUrl);
-});
-});
-document.getElementById('menuBtn').addEventListener('click', toggleMenu);
-document.getElementById('closeMenuBtn').addEventListener('click', toggleMenu);
-document.getElementById('menuBackdrop').addEventListener('click', toggleMenu);
-document.getElementById('exportBtn').addEventListener('click', exportConversation);
-document.getElementById('clearBtn').addEventListener('click', clearConversation);
-document.getElementById('newChatBtn').addEventListener('click', newConversation);
-sendBtn.addEventListener('click', sendMessage);
-stopGenBtn.addEventListener('click', stopGeneration);
-document.getElementById('attachBtn').addEventListener('click', function() {
-toggleBottomSheet(true);
-});
-input.addEventListener('keydown', function(e) {
-if (e.key === 'Enter' && !e.shiftKey) {
-e.preventDefault();
-sendMessage();
+  document.getElementById('sidebarBtn').addEventListener('click', toggleSidebar);
+  document.getElementById('closeSidebarBtn').addEventListener('click', toggleSidebar);
+  document.getElementById('newConversationBtn').addEventListener('click', newConversation);
+  document.getElementById('modelBtn').addEventListener('click', toggleModelSelector);
+  document.getElementById('closeModelBtn').addEventListener('click', toggleModelSelector);
+  document.getElementById('modelBackdrop').addEventListener('click', toggleModelSelector);
+  
+  document.querySelectorAll('.model-option').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const model = this.getAttribute('data-model');
+      const apiUrl = this.getAttribute('data-api');
+      selectModel(model, apiUrl);
+    });
+  });
+  
+  document.getElementById('testConnectionBtn').addEventListener('click', function() {
+    testApiConnection(currentApiUrl);
+  });
+  
+  document.getElementById('menuBtn').addEventListener('click', toggleMenu);
+  document.getElementById('closeMenuBtn').addEventListener('click', toggleMenu);
+  document.getElementById('menuBackdrop').addEventListener('click', toggleMenu);
+  document.getElementById('exportBtn').addEventListener('click', exportConversation);
+  document.getElementById('clearBtn').addEventListener('click', clearConversation);
+  document.getElementById('newChatBtn').addEventListener('click', newConversation);
+  sendBtn.addEventListener('click', sendMessage);
+  stopGenBtn.addEventListener('click', stopGeneration);
+  
+  document.getElementById('attachBtn').addEventListener('click', function() {
+    toggleBottomSheet(true);
+  });
+  
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  
+  input.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 128) + 'px';
+    updateTypingPreview();
+  });
+  
+  fileInput.addEventListener('change', function(e) {
+    if (e.target.files[0]) {
+      handleFileUpload(e.target.files[0]);
+    }
+  });
+  
+  document.getElementById('sheet-backdrop').addEventListener('click', function() {
+    toggleBottomSheet(false);
+  });
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      toggleBottomSheet(false);
+      toggleModelSelector();
+      toggleMenu();
+      closeSidebar();
+    }
+  });
 }
-});
-input.addEventListener('input', function() {
-this.style.height = 'auto';
-this.style.height = Math.min(this.scrollHeight, 128) + 'px';
-updateTypingPreview();
-});
-fileInput.addEventListener('change', function(e) {
-if (e.target.files[0]) {
-handleFileUpload(e.target.files[0]);
-}
-});
-document.getElementById('sheet-backdrop').addEventListener('click', function() {
-toggleBottomSheet(false);
-});
-document.addEventListener('keydown', function(e) {
-if (e.key === 'Escape') {
-toggleBottomSheet(false);
-toggleModelSelector();
-toggleMenu();
-closeSidebar();
-}
-});
-}
+
 // ==================== UI FUNCTIONS ====================
 function toggleSidebar() {
-const sidebar = document.getElementById('sidebar');
-sidebar.classList.toggle('-translate-x-full');
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('-translate-x-full');
 }
+
 function closeSidebar() {
-const sidebar = document.getElementById('sidebar');
-sidebar.classList.add('-translate-x-full');
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.add('-translate-x-full');
 }
+
 function toggleBottomSheet(show) {
-const sheet = document.getElementById('bottom-sheet');
-const backdrop = document.getElementById('sheet-backdrop');
-const content = document.getElementById('sheet-content');
-if (show) {
-sheet.classList.remove('pointer-events-none');
-backdrop.classList.remove('opacity-0');
-content.classList.remove('translate-y-full');
-} else {
-sheet.classList.add('pointer-events-none');
-backdrop.classList.add('opacity-0');
-content.classList.add('translate-y-full');
+  const sheet = document.getElementById('bottom-sheet');
+  const backdrop = document.getElementById('sheet-backdrop');
+  const content = document.getElementById('sheet-content');
+  
+  if (show) {
+    sheet.classList.remove('pointer-events-none');
+    backdrop.classList.remove('opacity-0');
+    content.classList.remove('translate-y-full');
+  } else {
+    sheet.classList.add('pointer-events-none');
+    backdrop.classList.add('opacity-0');
+    content.classList.add('translate-y-full');
+  }
 }
-}
+
 function toggleModelSelector() {
-const modal = document.getElementById('model-modal');
-modal.classList.toggle('hidden');
+  const modal = document.getElementById('model-modal');
+  modal.classList.toggle('hidden');
 }
+
 function toggleMenu() {
-const modal = document.getElementById('menu-modal');
-modal.classList.toggle('hidden');
+  const modal = document.getElementById('menu-modal');
+  modal.classList.toggle('hidden');
 }
+
 function selectModel(modelName, apiUrl) {
-currentModel = modelName;
-currentApiUrl = apiUrl;
-currentModelDisplay.textContent = modelName;
-toggleModelSelector();
-addSystemMessage(t('model_changed') + ' <strong>' + modelName + '</strong>');
-showToast(modelName + ' ' + t('model_activated'));
+  currentModel = modelName;
+  currentApiUrl = apiUrl;
+  currentModelDisplay.textContent = modelName;
+  toggleModelSelector();
+  addSystemMessage(t('model_changed') + ' <strong>' + modelName + '</strong>');
+  showToast(modelName + ' ' + t('model_activated'));
+  
+  // Test new API connection
+  setTimeout(() => testApiConnection(apiUrl), 500);
 }
+
 function activateFeature(featureKey) {
-toggleBottomSheet(false);
-const featureNames = {
-'create_image': t('create_image'),
-'advanced_reasoning': t('advanced_reasoning'),
-'deep_research': t('deep_research'),
-'web_search': t('web_search'),
-'study_learn': t('study_learn')
-};
-input.value = featureNames[featureKey] + ': ';
-input.focus();
-showToast(featureNames[featureKey] + ' ' + t('feature_activated'));
+  toggleBottomSheet(false);
+  const featureNames = {
+    'create_image': t('create_image'),
+    'advanced_reasoning': t('advanced_reasoning'),
+    'deep_research': t('deep_research'),
+    'web_search': t('web_search'),
+    'study_learn': t('study_learn')
+  };
+  input.value = featureNames[featureKey] + ': ';
+  input.focus();
+  showToast(featureNames[featureKey] + ' ' + t('feature_activated'));
 }
+
 function triggerFileUpload(type) {
-toggleBottomSheet(false);
-if (type === 'camera') {
-fileInput.setAttribute('capture', 'environment');
-fileInput.setAttribute('accept', 'image/*');
-} else if (type === 'photos') {
-fileInput.removeAttribute('capture');
-fileInput.setAttribute('accept', 'image/*');
-} else {
-fileInput.removeAttribute('capture');
-fileInput.setAttribute('accept', 'image/*,.pdf,.doc,.docx,.txt,.md,.json,.csv');
+  toggleBottomSheet(false);
+  if (type === 'camera') {
+    fileInput.setAttribute('capture', 'environment');
+    fileInput.setAttribute('accept', 'image/*');
+  } else if (type === 'photos') {
+    fileInput.removeAttribute('capture');
+    fileInput.setAttribute('accept', 'image/*');
+  } else {
+    fileInput.removeAttribute('capture');
+    fileInput.setAttribute('accept', 'image/*,.pdf,.doc,.docx,.txt,.md,.json,.csv');
+  }
+  fileInput.click();
 }
-fileInput.click();
-}
+
 function showToast(message) {
-toastMessage.textContent = message;
-toast.classList.remove('opacity-0', 'pointer-events-none');
-toast.classList.add('toast-enter');
-setTimeout(function() {
-toast.classList.add('opacity-0', 'pointer-events-none');
-toast.classList.remove('toast-enter');
-}, 3000);
+  toastMessage.textContent = message;
+  toast.classList.remove('opacity-0', 'pointer-events-none');
+  toast.classList.add('toast-enter');
+  setTimeout(function() {
+    toast.classList.add('opacity-0', 'pointer-events-none');
+    toast.classList.remove('toast-enter');
+  }, 3000);
 }
+
 function updateFileProgress(percent, filename) {
-fileProgressContainer.classList.remove('hidden');
-fileProgressBar.style.width = percent + '%';
-fileProgressPercent.textContent = percent + '%';
-fileProgressName.textContent = filename || t('processing_file');
+  fileProgressContainer.classList.remove('hidden');
+  fileProgressBar.style.width = percent + '%';
+  fileProgressPercent.textContent = percent + '%';
+  fileProgressName.textContent = filename || t('processing_file');
 }
+
 function hideFileProgress() {
-fileProgressContainer.classList.add('hidden');
-fileProgressBar.style.width = '0%';
+  fileProgressContainer.classList.add('hidden');
+  fileProgressBar.style.width = '0%';
 }
+
 // ==================== CONVERSATION MANAGEMENT ====================
 function createNewConversation() {
-currentConversationId = 'conv_' + Date.now();
-const conversation = {
-id: currentConversationId,
-title: t('new_conversation'),
-messages: [],
-createdAt: new Date().toISOString(),
-model: currentModel,
-apiUrl: currentApiUrl
-};
-conversations.unshift(conversation);
-saveConversations();
+  currentConversationId = 'conv_' + Date.now();
+  const conversation = {
+    id: currentConversationId,
+    title: t('new_conversation'),
+    messages: [],
+    createdAt: new Date().toISOString(),
+    model: currentModel,
+    apiUrl: currentApiUrl
+  };
+  conversations.unshift(conversation);
+  saveConversations();
 }
+
 function newConversation() {
-saveCurrentConversation();
-createNewConversation();
-closeSidebar();
-chatContainer.innerHTML = '';
-conversationHistory = [];
-addWelcomeMessage();
-saveToLocalStorage();
-renderConversationList();
-showToast(t('new_conversation_created'));
+  saveCurrentConversation();
+  createNewConversation();
+  closeSidebar();
+  chatContainer.innerHTML = '';
+  conversationHistory = [];
+  addWelcomeMessage();
+  saveToLocalStorage();
+  renderConversationList();
+  showToast(t('new_conversation_created'));
 }
+
 function saveCurrentConversation() {
-const conv = conversations.find(function(c) { return c.id === currentConversationId; });
-if (conv) {
-conv.messages = conversationHistory.slice();
-if (conversationHistory.length > 0) {
-const firstMsg = conversationHistory[0].content;
-conv.title = firstMsg.substring(0, 30) + (firstMsg.length > 30 ? '...' : '');
+  const conv = conversations.find(function(c) { return c.id === currentConversationId; });
+  if (conv) {
+    conv.messages = conversationHistory.slice();
+    if (conversationHistory.length > 0) {
+      const firstMsg = conversationHistory[0].content;
+      conv.title = firstMsg.substring(0, 30) + (firstMsg.length > 30 ? '...' : '');
+    }
+    saveConversations();
+  }
 }
-saveConversations();
-}
-}
+
 function loadConversation(convId) {
-saveCurrentConversation();
-currentConversationId = convId;
-const conv = conversations.find(function(c) { return c.id === convId; });
-if (conv) {
-conversationHistory = conv.messages || [];
-currentModel = conv.model || 'Hermes 7B Q4';
-currentApiUrl = conv.apiUrl || 'https://tecuit-ai-nc.ngrok.dev';
-currentModelDisplay.textContent = currentModel;
-renderConversation();
+  saveCurrentConversation();
+  currentConversationId = convId;
+  const conv = conversations.find(function(c) { return c.id === convId; });
+  if (conv) {
+    conversationHistory = conv.messages || [];
+    currentModel = conv.model || 'Hermes 7B Q4';
+    currentApiUrl = conv.apiUrl || 'https://tecuit-ai-nc.ngrok.dev';
+    currentModelDisplay.textContent = currentModel;
+    renderConversation();
+  }
+  closeSidebar();
 }
-closeSidebar();
-}
+
 function saveConversations() {
-if (currentUser) {
-saveUserConversations(currentUser.id, conversations);
+  if (currentUser) {
+    saveUserConversations(currentUser.id, conversations);
+  }
+  renderConversationList();
 }
-renderConversationList();
-}
+
 function renderConversationList() {
-conversationList.innerHTML = '';
-conversations.forEach(function(conv) {
-const div = document.createElement('div');
-div.className = 'p-3 rounded-xl cursor-pointer transition-all ' +
-(conv.id === currentConversationId ? 'bg-tecuit-accent/20 border border-tecuit-accent/30' : 'hover:bg-tecuit-dark/50');
-div.innerHTML = '<div class="font-medium text-sm truncate">' + conv.title + '</div>' +
-'<div class="text-xs text-tecuit-subtext mt-1">' + new Date(conv.createdAt).toLocaleDateString(currentLanguage === 'fr' ? 'fr-FR' : 'en-US') + '</div>';
-div.addEventListener('click', function() { loadConversation(conv.id); });
-conversationList.appendChild(div);
-});
+  conversationList.innerHTML = '';
+  conversations.forEach(function(conv) {
+    const div = document.createElement('div');
+    div.className = 'p-3 rounded-xl cursor-pointer transition-all ' +
+      (conv.id === currentConversationId ? 'bg-tecuit-accent/20 border border-tecuit-accent/30' : 'hover:bg-tecuit-dark/50');
+    div.innerHTML = '<div class="font-medium text-sm truncate">' + conv.title + '</div>' +
+      '<div class="text-xs text-tecuit-subtext mt-1">' + new Date(conv.createdAt).toLocaleDateString(currentLanguage === 'fr' ? 'fr-FR' : 'en-US') + '</div>';
+    div.addEventListener('click', function() { loadConversation(conv.id); });
+    conversationList.appendChild(div);
+  });
 }
+
 function renderConversation() {
-chatContainer.innerHTML = '';
-if (conversationHistory.length === 0) {
-addWelcomeMessage();
-} else {
-conversationHistory.forEach(function(msg) {
-appendMessage(msg.content, msg.role, false);
-});
+  chatContainer.innerHTML = '';
+  if (conversationHistory.length === 0) {
+    addWelcomeMessage();
+  } else {
+    conversationHistory.forEach(function(msg) {
+      appendMessage(msg.content, msg.role, false);
+    });
+  }
 }
-}
+
 function loadFromLocalStorage() {
-const saved = localStorage.getItem('tecuit_chat_' + (currentUser ? currentUser.id : 'guest'));
-if (saved) {
-try {
-const data = JSON.parse(saved);
-conversationHistory = data.messages || [];
-} catch (e) {
-console.error('Error loading chat history');
+  const saved = localStorage.getItem('tecuit_chat_' + (currentUser ? currentUser.id : 'guest'));
+  if (saved) {
+    try {
+      const data = JSON.parse(saved);
+      conversationHistory = data.messages || [];
+    } catch (e) {
+      console.error('Error loading chat history');
+    }
+  }
 }
-}
-}
+
 function saveToLocalStorage() {
-localStorage.setItem('tecuit_chat_' + (currentUser ? currentUser.id : 'guest'), JSON.stringify({
-messages: conversationHistory,
-model: currentModel,
-apiUrl: currentApiUrl
-}));
+  localStorage.setItem('tecuit_chat_' + (currentUser ? currentUser.id : 'guest'), JSON.stringify({
+    messages: conversationHistory,
+    model: currentModel,
+    apiUrl: currentApiUrl
+  }));
 }
+
 function updateMemoryDisplay() {
-if (!currentUser) return;
-const memoryUsed = new Blob([JSON.stringify(conversations)]).size;
-currentUser.memoryUsed = memoryUsed;
-const percent = (memoryUsed / currentUser.memoryMax) * 100;
-document.getElementById('memory-display').textContent = formatBytes(memoryUsed) + ' / 10GB';
-localStorage.setItem('tecuit_current_user', encryptData(currentUser));
+  if (!currentUser) return;
+  const memoryUsed = new Blob([JSON.stringify(conversations)]).size;
+  currentUser.memoryUsed = memoryUsed;
+  document.getElementById('memory-display').textContent = formatBytes(memoryUsed) + ' / 10GB';
+  localStorage.setItem('tecuit_current_user', encryptData(currentUser));
 }
+
 function formatBytes(bytes) {
-if (bytes === 0) return '0 B';
-const k = 1024;
-const sizes = ['B', 'KB', 'MB', 'GB'];
-const i = Math.floor(Math.log(bytes) / Math.log(k));
-return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  if (bytes === 0) return '0 B';
+  const k = 1024;
+  const sizes = ['B', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
+
 // ==================== MESSAGE FUNCTIONS ====================
 function addWelcomeMessage() {
-const html = '<div class="flex flex-col gap-2 ai-msg animate-fade-in-up">' +
-'<div class="flex items-center gap-2 mb-1">' +
-'<img src="https://image.qwenlm.ai/public_source/03be4ece-6001-42f1-adee-a252dde72cc0/1c0a8c5ab-d41d-414b-a700-e26bded77ef0.png" class="w-6 h-6 rounded-full">' +
-'<span class="text-xs font-bold text-tecuit-subtext">Tecuit IA</span>' +
-'<span class="model-badge">' + currentModel + '</span>' +
-'</div>' +
-'<div class="message-bubble">' +
-t('welcome_message') + ' ' + (currentUser ? currentUser.username : '') + ' ! 👋 ' + t('welcome_subtitle') + '<br><br>' +
-t('help_with') + '<br>' +
-'• ' + t('smart_responses') + '<br>' +
-'• ' + t('image_analysis') + '<br>' +
-'• ' + t('web_research') + '<br>' +
-'• ' + t('memory_continuity') + '<br><br>' +
-'<span class="text-xs bg-tecuit-card border border-tecuit-border px-3 py-1.5 rounded-full text-tecuit-subtext">' +
-'<i class="fa-solid fa-lock mr-1"></i> ' + t('encrypted_data') + '</span>' +
-'</div></div>';
-chatContainer.innerHTML = html;
+  const html = '<div class="flex flex-col gap-2 ai-msg animate-fade-in-up">' +
+    '<div class="flex items-center gap-2 mb-1">' +
+    '<img src="https://image.qwenlm.ai/public_source/03be4ece-6001-42f1-adee-a252dde72cc0/1c0a8c5ab-d41d-414b-a700-e26bded77ef0.png" class="w-6 h-6 rounded-full">' +
+    '<span class="text-xs font-bold text-tecuit-subtext">Tecuit IA</span>' +
+    '<span class="model-badge">' + currentModel + '</span>' +
+    '</div>' +
+    '<div class="message-bubble">' +
+    t('welcome_message') + ' ' + (currentUser ? currentUser.username : '') + ' ! 👋 ' + t('welcome_subtitle') + '<br><br>' +
+    t('help_with') + '<br>' +
+    '• ' + t('smart_responses') + '<br>' +
+    '• ' + t('image_analysis') + '<br>' +
+    '• ' + t('web_research') + '<br>' +
+    '• ' + t('memory_continuity') + '<br><br>' +
+    '<span class="text-xs bg-tecuit-card border border-tecuit-border px-3 py-1.5 rounded-full text-tecuit-subtext">' +
+    '<i class="fa-solid fa-lock mr-1"></i> ' + t('encrypted_data') + '</span>' +
+    '</div></div>';
+  chatContainer.innerHTML = html;
 }
+
 function appendMessage(text, sender, save) {
-if (save === undefined) save = true;
-const div = document.createElement('div');
-const isUser = sender === 'user';
-const msgId = 'msg_' + Date.now();
-div.className = 'flex flex-col gap-1 ' + (isUser ? 'user-msg self-end' : 'ai-msg') + ' animate-fade-in-up';
-let contentHtml = '';
-if (!isUser) {
-contentHtml += '<div class="flex items-center gap-2 mb-1">' +
-'<img src="https://image.qwenlm.ai/public_source/03be4ece-6001-42f1-adee-a252dde72cc0/1c0a8c5ab-d41d-414b-a700-e26bded77ef0.png" class="w-6 h-6 rounded-full">' +
-'<span class="text-xs font-bold text-tecuit-subtext">Tecuit IA</span>' +
-'<span class="model-badge">' + currentModel + '</span>' +
-'</div>';
+  if (save === undefined) save = true;
+  const div = document.createElement('div');
+  const isUser = sender === 'user';
+  const msgId = 'msg_' + Date.now();
+  div.className = 'flex flex-col gap-1 ' + (isUser ? 'user-msg self-end' : 'ai-msg') + ' animate-fade-in-up';
+  
+  let contentHtml = '';
+  if (!isUser) {
+    contentHtml += '<div class="flex items-center gap-2 mb-1">' +
+      '<img src="https://image.qwenlm.ai/public_source/03be4ece-6001-42f1-adee-a252dde72cc0/1c0a8c5ab-d41d-414b-a700-e26bded77ef0.png" class="w-6 h-6 rounded-full">' +
+      '<span class="text-xs font-bold text-tecuit-subtext">Tecuit IA</span>' +
+      '<span class="model-badge">' + currentModel + '</span>' +
+      '</div>';
+  }
+  
+  contentHtml += '<div id="' + msgId + '" class="message-bubble ' + (isUser ? '' : '') + '">' + formatMessage(text) + '</div>';
+  
+  if (isUser) {
+    const now = new Date();
+    const time = now.getHours() + ':' + (now.getMinutes()<10?'0':'') + now.getMinutes();
+    contentHtml += '<div class="text-right text-xs text-tecuit-subtext px-1">' + time + '</div>';
+  }
+  
+  div.innerHTML = contentHtml;
+  chatContainer.appendChild(div);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+  
+  if (save) {
+    conversationHistory.push({
+      role: sender === 'tecuit' ? 'assistant' : sender,
+      content: text,
+      displayRole: sender
+    });
+    saveToLocalStorage();
+    saveCurrentConversation();
+  }
+  return msgId;
 }
-contentHtml += '<div id="' + msgId + '" class="message-bubble ' + (isUser ? '' : '') + '">' + formatMessage(text) + '</div>';
-if (isUser) {
-const now = new Date();
-const time = now.getHours() + ':' + (now.getMinutes()<10?'0':'') + now.getMinutes();
-contentHtml += '<div class="text-right text-xs text-tecuit-subtext px-1">' + time + '</div>';
-}
-div.innerHTML = contentHtml;
-chatContainer.appendChild(div);
-chatContainer.scrollTop = chatContainer.scrollHeight;
-if (save) {
-conversationHistory.push({
-role: sender === 'tecuit' ? 'assistant' : sender,
-content: text,
-displayRole: sender
-});
-saveToLocalStorage();
-saveCurrentConversation();
-}
-return msgId;
-}
+
 function formatMessage(text) {
-return text
-.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-.replace(/\*(.*?)\*/g, '<em>$1</em>')
-.replace(/`(.*?)`/g, '<code>$1</code>')
-.replace(/\n/g, '<br>');
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/`(.*?)`/g, '<code>$1</code>')
+    .replace(/\n/g, '<br>');
 }
+
 function addSystemMessage(html) {
-const div = document.createElement('div');
-div.className = 'flex justify-center my-4 animate-fade-in';
-div.innerHTML = '<span class="text-xs bg-tecuit-card border border-tecuit-border text-tecuit-subtext px-3 py-1 rounded-full">' + html + '</span>';
-chatContainer.appendChild(div);
-chatContainer.scrollTop = chatContainer.scrollHeight;
+  const div = document.createElement('div');
+  div.className = 'flex justify-center my-4 animate-fade-in';
+  div.innerHTML = '<span class="text-xs bg-tecuit-card border border-tecuit-border text-tecuit-subtext px-3 py-1 rounded-full">' + html + '</span>';
+  chatContainer.appendChild(div);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
 }
+
 function updateTypingPreview() {
-const text = input.value.trim();
-if (text) {
-const previewText = text.length > 50 ? text.substring(0, 50) + '...' : text;
-typingPreview.textContent = previewText;
-typingPreview.style.display = 'block';
-} else {
-typingPreview.style.display = 'none';
+  const text = input.value.trim();
+  if (text) {
+    const previewText = text.length > 50 ? text.substring(0, 50) + '...' : text;
+    typingPreview.textContent = previewText;
+    typingPreview.style.display = 'block';
+  } else {
+    typingPreview.style.display = 'none';
+  }
 }
-}
-// ==================== FILE PROCESSING (OCR + Text Extraction) ====================
+
+// ==================== FILE PROCESSING ====================
 async function handleFileUpload(file) {
-if (!file) return;
-if (file.size > MAX_FILE_SIZE) {
-showToast(t('file_too_large'));
-return;
+  if (!file) return;
+  if (file.size > MAX_FILE_SIZE) {
+    showToast(t('file_too_large'));
+    return;
+  }
+  
+  const filename = file.name;
+  const fileSize = formatBytes(file.size);
+  const fileType = file.type;
+  
+  try {
+    let extractedText = '';
+    
+    if (fileType.startsWith('image/')) {
+      updateFileProgress(0, t('ocr_in_progress'));
+      const worker = await Tesseract.createWorker('eng');
+      await worker.load();
+      await worker.loadLanguage('eng');
+      await worker.initialize('eng');
+      const { data: { text } } = await worker.recognize(file);
+      await worker.terminate();
+      extractedText = text;
+      hideFileProgress();
+      
+      if (!extractedText.trim()) {
+        showToast(t('no_text_detected'));
+        return;
+      }
+      showToast(t('ocr_completed') + ' - ' + extractedText.length + ' ' + t('characters'));
+    } else if (fileType === 'text/plain' || fileType === 'text/markdown' ||
+               filename.endsWith('.txt') || filename.endsWith('.md')) {
+      extractedText = await readTextFile(file);
+    } else if (fileType === 'application/json' || filename.endsWith('.json')) {
+      extractedText = await readTextFile(file);
+    } else if (fileType === 'text/csv' || filename.endsWith('.csv')) {
+      extractedText = await readTextFile(file);
+    } else {
+      showToast('⚠️ Format de fichier non supporté');
+      return;
+    }
+    
+    pendingFileContent = {
+      filename: filename,
+      size: fileSize,
+      type: fileType,
+      content: extractedText
+    };
+    
+    const fileInfo = '📎 **' + t('file_analyzed') + ':** ' + filename + '\n' +
+      '**' + t('size') + ':** ' + fileSize + '\n' +
+      '**' + t('type') + ':** ' + (fileType || t('type')) + '\n' +
+      '**' + t('extracted_text') + ':** ' + extractedText.length + ' ' + t('characters') + '\n' +
+      '--- ' + t('file_content') + ' ---\n' +
+      extractedText.substring(0, 500) + (extractedText.length > 500 ? '...' : '');
+    
+    appendMessage(fileInfo, 'user');
+    input.value = 'Analyse ce fichier: ';
+    input.focus();
+    showToast(t('file_processed'));
+  } catch (error) {
+    console.error('[File Upload] Error:', error);
+    hideFileProgress();
+    showToast('❌ Error: ' + error.message);
+  }
 }
-const filename = file.name;
-const fileSize = formatBytes(file.size);
-const fileType = file.type;
-try {
-let extractedText = '';
-if (fileType.startsWith('image/')) {
-updateFileProgress(0, t('ocr_in_progress'));
-const worker = await Tesseract.createWorker('eng');
-await worker.load();
-await worker.loadLanguage('eng');
-await worker.initialize('eng');
-const { data: { text } } = await worker.recognize(file);
-await worker.terminate();
-extractedText = text;
-hideFileProgress();
-if (!extractedText.trim()) {
-showToast(t('no_text_detected'));
-return;
-}
-showToast(t('ocr_completed') + ' - ' + extractedText.length + ' ' + t('characters'));
-} else if (fileType === 'text/plain' || fileType === 'text/markdown' ||
-filename.endsWith('.txt') || filename.endsWith('.md')) {
-extractedText = await readTextFile(file);
-} else if (fileType === 'application/json' || filename.endsWith('.json')) {
-extractedText = await readTextFile(file);
-} else if (fileType === 'text/csv' || filename.endsWith('.csv')) {
-extractedText = await readTextFile(file);
-} else if (fileType === 'application/pdf' || filename.endsWith('.pdf')) {
-showToast('⚠️ PDF files not supported. Convert to text first.');
-return;
-} else if (fileType === 'application/msword' || filename.endsWith('.doc') || filename.endsWith('.docx')) {
-showToast('⚠️ Word files not supported. Convert to text first.');
-return;
-} else {
-extractedText = await readTextFile(file);
-}
-pendingFileContent = {
-filename: filename,
-size: fileSize,
-type: fileType,
-content: extractedText
-};
-const fileInfo = '📎 **' + t('file_analyzed') + ':** ' + filename + '\n' +
-'**' + t('size') + ':** ' + fileSize + '\n' +
-'**' + t('type') + ':** ' + (fileType || t('type')) + '\n' +
-'**' + t('extracted_text') + ':** ' + extractedText.length + ' ' + t('characters') + '\n' +
-'--- ' + t('file_content') + ' ---\n' +
-extractedText.substring(0, 500) + (extractedText.length > 500 ? '...' : '');
-appendMessage(fileInfo, 'user');
-input.value = 'Analyse ce fichier: ';
-input.focus();
-showToast(t('file_processed'));
-} catch (error) {
-console.error('[File Upload] Error:', error);
-hideFileProgress();
-showToast('❌ Error: ' + error.message);
-}
-}
+
 function readTextFile(file) {
-return new Promise(function(resolve, reject) {
-const reader = new FileReader();
-reader.onload = function(e) {
-resolve(e.target.result);
-};
-reader.onerror = function() {
-reject(new Error('File read error'));
-};
-reader.readAsText(file);
-});
+  return new Promise(function(resolve, reject) {
+    const reader = new FileReader();
+    reader.onload = function(e) { resolve(e.target.result); };
+    reader.onerror = function() { reject(new Error('File read error')); };
+    reader.readAsText(file);
+  });
 }
+
 // ==================== SEND MESSAGE ====================
 async function sendMessage() {
-const text = input.value.trim();
-if (!text && !pendingFileContent || isGenerating) return;
-let fullMessage = text;
-if (pendingFileContent) {
-fullMessage = text + '\n--- FILE CONTENT ---\n' + pendingFileContent.content;
-pendingFileContent = null;
+  const text = input.value.trim();
+  if (!text && !pendingFileContent || isGenerating) return;
+  
+  let fullMessage = text;
+  if (pendingFileContent) {
+    fullMessage = text + '\n--- FILE CONTENT ---\n' + pendingFileContent.content;
+    pendingFileContent = null;
+  }
+  
+  appendMessage(text || '📎 File sent', 'user');
+  input.value = '';
+  input.style.height = 'auto';
+  typingPreview.style.display = 'none';
+  stopButtonContainer.classList.remove('hidden');
+  isGenerating = true;
+  
+  abortController = new AbortController();
+  const signal = abortController.signal;
+  
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT);
+    
+    const res = await fetch(currentApiUrl + API_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'text/event-stream'
+      },
+      body: JSON.stringify({
+        model: MODEL_MAP[currentModel].modelName,
+        messages: conversationHistory
+          .filter(function(m) { return m.role === 'user' || m.role === 'assistant'; })
+          .map(function(m) { return { role: m.role, content: m.content }; }),
+        stream: true,
+        temperature: 0.7,
+        max_tokens: 2048
+      }),
+      signal: controller.signal
+    });
+    
+    clearTimeout(timeoutId);
+    
+    if (!res.ok) {
+      const errorData = await res.text();
+      throw new Error('Server Error: ' + res.status + ' - ' + errorData.substring(0, 200));
+    }
+    
+    const messageId = appendMessage('', 'tecuit', false);
+    const tecuitDiv = document.getElementById(messageId);
+    tecuitDiv.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+    
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let fullReply = '';
+    
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      
+      const chunk = decoder.decode(value, { stream: true });
+      const lines = chunk.split('\n');
+      
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.includes('data:')) {
+          const dataStr = line.replace('data:', '').trim();
+          if (dataStr === '[DONE]' || dataStr === '') continue;
+          try {
+            const json = JSON.parse(dataStr);
+            const content = json.choices && json.choices[0] && json.choices[0].delta ? (json.choices[0].delta.content || '') : '';
+            fullReply += content;
+            if (tecuitDiv && fullReply) {
+              tecuitDiv.innerHTML = formatMessage(fullReply);
+            }
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+          } catch (e) {
+            console.log('Parse error:', e);
+          }
+        }
+      }
+    }
+    
+    if (fullReply) {
+      conversationHistory.push({
+        role: 'assistant',
+        content: fullReply,
+        displayRole: 'tecuit'
+      });
+      saveToLocalStorage();
+      saveCurrentConversation();
+    }
+    
+    stopButtonContainer.classList.add('hidden');
+    isGenerating = false;
+    
+  } catch (err) {
+    console.error('API Error:', err);
+    
+    if (err.name === 'AbortError') {
+      const lastAiMsg = chatContainer.querySelectorAll('.ai-msg .message-bubble');
+      if (lastAiMsg.length > 0) {
+        lastAiMsg[lastAiMsg.length - 1].innerHTML += '<br><br><em class="text-tecuit-subtext">[' + t('generation_stopped') + ']</em>';
+      }
+    } else {
+      // More detailed error message
+      let errorMsg = err.message;
+      if (errorMsg.includes('Failed to fetch')) {
+        errorMsg = t('connection_error') + ' - ' + t('backend_accessible') + '<br><br>' +
+          '<small class="text-tecuit-subtext">URL: ' + currentApiUrl + '<br>' +
+          'Modèle: ' + MODEL_MAP[currentModel].modelName + '</small>';
+      }
+      
+      const errorHtml = '<div class="error-message">' +
+        '<strong>⚠️ ' + t('connection_error') + '</strong><br>' +
+        errorMsg +
+        '</div>';
+      appendMessage(errorHtml, 'tecuit');
+      
+      // Update status indicator
+      apiStatusIndicator.className = 'status-indicator status-offline';
+      apiStatus = 'offline';
+    }
+    
+    stopButtonContainer.classList.add('hidden');
+    isGenerating = false;
+  }
 }
-appendMessage(text || '📎 File sent', 'user');
-input.value = '';
-input.style.height = 'auto';
-typingPreview.style.display = 'none';
-stopButtonContainer.classList.remove('hidden');
-isGenerating = true;
-abortController = new AbortController();
-const signal = abortController.signal;
-try {
-const res = await fetch(currentApiUrl + API_ENDPOINT, {
-method: 'POST',
-headers: {
-'Content-Type': 'application/json',
-'Accept': 'text/event-stream'
-},
-body: JSON.stringify({
-model: MODEL_MAP[currentModel].modelName,
-messages: conversationHistory
-.filter(function(m) {
-return m.role === 'user' || m.role === 'assistant';
-})
-.map(function(m) {
-return { role: m.role, content: m.content };
-}),
-stream: true,
-temperature: 0.7,
-max_tokens: 2048
-}),
-signal: signal
-});
-if (!res.ok) {
-const errorData = await res.text();
-throw new Error('Server Error: ' + res.status + ' - ' + errorData.substring(0, 200));
-}
-const messageId = appendMessage('', 'tecuit', false);
-const tecuitDiv = document.getElementById(messageId);
-tecuitDiv.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
-const reader = res.body.getReader();
-const decoder = new TextDecoder();
-let fullReply = '';
-while (true) {
-const { done, value } = await reader.read();
-if (done) break;
-const chunk = decoder.decode(value, { stream: true });
-const lines = chunk.split('\n');
-for (let i = 0; i < lines.length; i++) {
-const line = lines[i];
-if (line.includes('data:')) {
-const dataStr = line.replace('data:', '').trim();
-if (dataStr === '[DONE]' || dataStr === '') continue;
-try {
-const json = JSON.parse(dataStr);
-const content = json.choices && json.choices[0] && json.choices[0].delta ? (json.choices[0].delta.content || '') : '';
-fullReply += content;
-if (tecuitDiv && fullReply) {
-tecuitDiv.innerHTML = formatMessage(fullReply);
-}
-chatContainer.scrollTop = chatContainer.scrollHeight;
-} catch (e) {
-console.log('Parse error:', e);
-}
-}
-}
-}
-if (fullReply) {
-conversationHistory.push({
-role: 'assistant',
-content: fullReply,
-displayRole: 'tecuit'
-});
-saveToLocalStorage();
-saveCurrentConversation();
-}
-stopButtonContainer.classList.add('hidden');
-isGenerating = false;
-} catch (err) {
-console.error('API Error:', err);
-if (err.name === 'AbortError') {
-const lastAiMsg = chatContainer.querySelectorAll('.ai-msg .message-bubble');
-if (lastAiMsg.length > 0) {
-lastAiMsg[lastAiMsg.length - 1].innerHTML += '<br><br><em class="text-tecuit-subtext">[' + t('generation_stopped') + ']</em>';
-}
-} else {
-const errorHtml = '<div class="error-message">' +
-'<strong>⚠️ ' + t('connection_error') + '</strong><br>' +
-err.message + '<br><br>' +
-'<small>' + t('backend_accessible') + '.</small>' +
-'</div>';
-appendMessage(errorHtml, 'tecuit');
-}
-stopButtonContainer.classList.add('hidden');
-isGenerating = false;
-}
-}
+
 function stopGeneration() {
-if (abortController) {
-abortController.abort();
-abortController = null;
-isGenerating = false;
-stopButtonContainer.classList.add('hidden');
-showToast(t('generation_stopped'));
+  if (abortController) {
+    abortController.abort();
+    abortController = null;
+    isGenerating = false;
+    stopButtonContainer.classList.add('hidden');
+    showToast(t('generation_stopped'));
+  }
 }
-}
+
 // ==================== CONVERSATION UTILS ====================
 function clearConversation() {
-if (!confirm(t('clear_conversation') + ' ?')) return;
-chatContainer.innerHTML = '';
-conversationHistory = [];
-saveToLocalStorage();
-const conv = conversations.find(function(c) { return c.id === currentConversationId; });
-if (conv) {
-conv.messages = [];
-saveConversations();
+  if (!confirm(t('clear_conversation') + ' ?')) return;
+  chatContainer.innerHTML = '';
+  conversationHistory = [];
+  saveToLocalStorage();
+  const conv = conversations.find(function(c) { return c.id === currentConversationId; });
+  if (conv) {
+    conv.messages = [];
+    saveConversations();
+  }
+  addWelcomeMessage();
+  toggleMenu();
+  showToast(t('conversation_cleared'));
 }
-addWelcomeMessage();
-toggleMenu();
-showToast(t('conversation_cleared'));
-}
+
 function exportConversation() {
-const messages = conversationHistory.map(function(msg) {
-return {
-from: msg.displayRole || msg.role,
-text: msg.content,
-timestamp: new Date().toISOString()
-};
-});
-const exportData = {
-user: currentUser ? currentUser.email : 'anonymous',
-exportedAt: new Date().toISOString(),
-encrypted: true,
-data: encryptData(messages)
-};
-const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-const url = window.URL.createObjectURL(blob);
-const a = document.createElement('a');
-a.href = url;
-a.download = 'tecuit_chat_encrypted_' + Date.now() + '.json';
-a.click();
-window.URL.revokeObjectURL(url);
-toggleMenu();
-showToast(t('conversation_exported'));
+  const messages = conversationHistory.map(function(msg) {
+    return {
+      from: msg.displayRole || msg.role,
+      text: msg.content,
+      timestamp: new Date().toISOString()
+    };
+  });
+  
+  const exportData = {
+    user: currentUser ? currentUser.email : 'anonymous',
+    exportedAt: new Date().toISOString(),
+    encrypted: true,
+    data: encryptData(messages)
+  };
+  
+  const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'tecuit_chat_encrypted_' + Date.now() + '.json';
+  a.click();
+  window.URL.revokeObjectURL(url);
+  toggleMenu();
+  showToast(t('conversation_exported'));
 }
 </script>
 </body>
